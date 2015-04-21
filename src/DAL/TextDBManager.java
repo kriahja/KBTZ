@@ -5,6 +5,7 @@
  */
 package DAL;
 
+import BLL.Exceptions.BivExceptions;
 import Entities.Text;
 import java.io.IOException;
 import java.sql.Connection;

@@ -6,6 +6,7 @@
 package BLL;
 
 import BLL.Exceptions.BivExceptions;
+import DAL.TextDBManager;
 import Entities.Text;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class TextManager
     {
         return db.readAll();
     }
-    
+
     public Text getById(int id)
     {
         return db.readById(id);
@@ -75,9 +76,4 @@ public class TextManager
         return db.readByTitle();
     }
 
-    /**
-     * getByid(int id) getByPriorityId (int priid) getByDisplayId (int dispId)
-     * getByTimer (String getByStartdate (Date getByEndDate (Date getByNotSafe
-     * (Boolean getByText (String getByTitle (String
-     */
 }
