@@ -5,7 +5,7 @@
  */
 package Entities;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -45,6 +45,11 @@ public class Text
         priorityId = pri.getId();
         this.disp = disp;
         displayId = disp.getId();
+    }
+    
+    public Text(int id, Text txt)
+    {
+        this(id, txt.getTitle(), txt.getText(), txt.getStartDate(), txt.getEndDate(), txt.getTimer(), txt.getDisplayId(), txt.isNotSafe(), txt.getPriorityId());
     }
 
     /**
@@ -106,7 +111,7 @@ public class Text
     /**
      * @return the enddate
      */
-    public Date getEnddate()
+    public Date getEndDate()
     {
         return endDate;
     }

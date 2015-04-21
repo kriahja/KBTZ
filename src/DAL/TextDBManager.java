@@ -7,6 +7,7 @@ package DAL;
 
 import BLL.Exceptions.BivExceptions;
 import Entities.Text;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -144,7 +147,7 @@ public class TextDBManager {
         }
     }
 
-        public ArrayList<Text> readByNotSafe(boolean safe) {
+    public ArrayList<Text> readByNotSafe(boolean safe) {
         try (Connection con = cm.getConnection()) {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "SELECT * FROM Text WHERE NotSafe = ?";
@@ -160,6 +163,31 @@ public class TextDBManager {
             return txtList;
         } catch (SQLException ex) {
             throw new BivExceptions("Unable to read Text safe");
+        }
+    }
+
+    public void createText(Text txt) {
+        try (Connection con = cm.getConnection()) {
+            String sql = "Insert into Text(Title, Text, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
+                    + "Values (?, ? , ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, txt.getTitle());
+            ps.setString(2, txt.getText());
+            ps.setDate(3, txt.getStartDate());
+            ps.setDate(4, txt.getEndDate());
+            ps.setDouble(5, txt.getTimer());
+            ps.setInt(6, txt.getDisplayId());
+            ps.setBoolean(7, txt.isNotSafe());
+            ps.setInt(8, txt.getPriorityId());
+            
+            ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            int id = keys.getInt(1);
+            
+            new Text(id, txt);
+
+        } catch (SQLException ex) {
+            throw new BivExceptions("Unable to create text");
         }
     }
 }
