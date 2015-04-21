@@ -190,4 +190,21 @@ public class TextDBManager {
             throw new BivExceptions("Unable to create text");
         }
     }
+    
+        public void delete(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "DELETE FROM Text WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("Unable to remove Text.");
+        }
+    }
 }
