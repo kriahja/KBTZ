@@ -71,4 +71,9 @@ public class TextDBManager {
 
         return new Text(id, title, text, startDate, endDate, timer, displayId, notSafe, priorityId);
     }
+    
+    public void tamas ()
+    {
+        
+    }
 }
