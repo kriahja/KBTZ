@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biv;
+package Application;
 
 /**
  *
  * @author notandi
  */
-public class BIV
+public class Main
 {
 
     /**
