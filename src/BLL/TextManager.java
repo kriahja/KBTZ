@@ -66,14 +66,14 @@ public class TextManager
         return db.readByDisplayId(dispId);
     }
 
-    public ArrayList<Text> getBySafe(boolean safe)
+    public ArrayList<Text> getBySafe()
     {
-        return db.readBySafe(safe);
+        return db.readByNotSafe(false);
     }
 
     public Text getByTitle(String title)
     {
-        return db.readByTitle();
+        return db.readByTitle(title);
     }
 
 }
