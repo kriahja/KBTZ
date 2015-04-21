@@ -21,19 +21,19 @@ public class Text
     private int priorityId;
     private double timer;
     private Date startDate; 
-    private Date enddate;
+    private Date endDate;
     private boolean notSafe;
     private String text;
     private String title;
 
-    public Text(int id, int displayId, int priorityId, double timer, Date startDate, Date enddate, boolean notSafe, String text, String title)
+    public Text(int id, String title, String text, Date startDate, Date endDate, double timer, int displayId, boolean notSafe, int priorityId)
     {
         this.id = id;
         this.displayId = displayId;
         this.priorityId = priorityId;
         this.timer = timer;
         this.startDate = startDate;
-        this.enddate = enddate;
+        this.endDate = endDate;
         this.notSafe = notSafe;
         this.text = text;
         this.title = title;
@@ -108,15 +108,15 @@ public class Text
      */
     public Date getEnddate()
     {
-        return enddate;
+        return endDate;
     }
 
     /**
      * @param enddate the enddate to set
      */
-    public void setEnddate(Date enddate)
+    public void setEnddate(Date endDate)
     {
-        this.enddate = enddate;
+        this.endDate = endDate;
     }
 
     /**
