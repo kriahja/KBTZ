@@ -159,7 +159,7 @@ public class Options extends javax.swing.JFrame {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         System.out.println(title + "  " + txt);
-        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+        
         startDate = new java.sql.Date(jStartDate.getDate().getTime());
  //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
         endDate = new java.sql.Date(jEndDate.getDate().getTime());

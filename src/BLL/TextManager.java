@@ -9,8 +9,11 @@ import BLL.Exceptions.BivExceptions;
 import DAL.TextDBManager;
 import Entities.Text;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -79,7 +82,11 @@ public class TextManager
 
     public void createText(Text text)
     {
-        db.createText(text);
+        try {
+            db.createText(text);
+        } catch (SQLException ex) {
+            Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void deleteText(int id)

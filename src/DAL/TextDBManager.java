@@ -29,15 +29,16 @@ public class TextDBManager {
 
     private static TextDBManager instance = null;
 
+    private TextDBManager() throws IOException {
+        cm = DBConnectionManager.getInstance();
+
+    }
+
     public static TextDBManager getInstance() throws IOException {
         if (instance == null) {
             instance = new TextDBManager();
         }
         return instance;
-    }
-
-    private TextDBManager() throws IOException {
-        cm = DBConnectionManager.getInstance();
     }
 
     public ArrayList<Text> readAll() {
@@ -166,38 +167,39 @@ public class TextDBManager {
         }
     }
 
-    public Text createText(Text txt) {
+    public Text createText(Text txt) throws SQLException {
+
         try (Connection con = cm.getConnection()) {
-            String sql = "Insert into Text(Title, Text, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
+            
+            String sql = "Insert into Text(Title, [Text], StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
                     + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
+            
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            System.out.println("title");
+            
             ps.setString(1, txt.getTitle());
-            System.out.println("txt");
             ps.setString(2, txt.getText());
-            System.out.println("s");
             ps.setDate(3, txt.getStartDate());
-            System.out.println("e");
             ps.setDate(4, txt.getEndDate());
-            System.out.println("t");
             ps.setDouble(5, txt.getTimer());
-            System.out.println("d");
             ps.setInt(6, txt.getDisplayId());
-            System.out.println("safe");
             ps.setBoolean(7, txt.isNotSafe());
-            System.out.println("prio");
             ps.setInt(8, txt.getPriorityId());
+
+             int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new SQLException("Unable to add text.");
+            }
 
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
-            int id = keys.getInt(1);
+            int id = keys.getInt(1);  // first column in keys resultset
 
             return new Text(id, txt);
-            
-        } catch (SQLException ex) {
-            throw new BivExceptions("Unable to create text");
+
         }
     }
+    
 
     public void delete(int id) {
         try (Connection con = cm.getConnection()) {
