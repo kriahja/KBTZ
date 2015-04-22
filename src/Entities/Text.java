@@ -39,6 +39,19 @@ public class Text
         this.title = title;
     }
     
+        public Text(String title, String text, Date startDate, Date endDate, double timer, int displayId, boolean notSafe, int priorityId)
+    {
+        
+        this.displayId = displayId;
+        this.priorityId = priorityId;
+        this.timer = timer;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.notSafe = notSafe;
+        this.text = text;
+        this.title = title;
+    }
+    
     public Text(Priority pri, Display disp)
     {
         this.pri = pri;

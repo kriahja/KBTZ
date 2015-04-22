@@ -166,26 +166,34 @@ public class TextDBManager {
         }
     }
 
-    public void createText(Text txt) {
+    public Text createText(Text txt) {
         try (Connection con = cm.getConnection()) {
             String sql = "Insert into Text(Title, Text, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
-                    + "Values (?, ? , ?, ?, ?, ?, ?, ?)";
+                    + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            System.out.println("title");
             ps.setString(1, txt.getTitle());
+            System.out.println("txt");
             ps.setString(2, txt.getText());
+            System.out.println("s");
             ps.setDate(3, txt.getStartDate());
+            System.out.println("e");
             ps.setDate(4, txt.getEndDate());
+            System.out.println("t");
             ps.setDouble(5, txt.getTimer());
+            System.out.println("d");
             ps.setInt(6, txt.getDisplayId());
+            System.out.println("safe");
             ps.setBoolean(7, txt.isNotSafe());
+            System.out.println("prio");
             ps.setInt(8, txt.getPriorityId());
 
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
             int id = keys.getInt(1);
 
-            new Text(id, txt);
-
+            return new Text(id, txt);
+            
         } catch (SQLException ex) {
             throw new BivExceptions("Unable to create text");
         }
