@@ -5,17 +5,36 @@
  */
 package GUI;
 
+import BLL.TextManager;
+import GUI.TextTable.TextTable;
+import GUI.TextTable.TextTableModel;
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author a.tamas
  */
 public class ExistingText extends javax.swing.JFrame {
 
+    private TextTable textTable;
+    private TextTableModel textModel;
+    private TextManager txtMgr;
     /**
      * Creates new form ExistingText
      */
     public ExistingText() {
         initComponents();
+        TextList();
+    }
+    
+    private void TextList()
+    {
+        textModel = new TextTableModel(txtMgr.readAll());
+        
+        textTable = new TextTable(textModel);
+        
+        pnlJTable.add(new JScrollPane(textTable), BorderLayout.CENTER);
     }
 
     /**
@@ -27,17 +46,27 @@ public class ExistingText extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlJTable = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnlJTable.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlJTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlJTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -79,5 +108,6 @@ public class ExistingText extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel pnlJTable;
     // End of variables declaration//GEN-END:variables
 }
