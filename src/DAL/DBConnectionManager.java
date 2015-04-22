@@ -17,7 +17,7 @@ public class DBConnectionManager {
     {
         if(instance == null)
         {
-            instance = new DBConnectionManager("KajCarRental.cfg");
+            instance = new DBConnectionManager("Biv.cfg");
         }
         return instance;
     }
