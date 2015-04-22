@@ -18,9 +18,7 @@ import java.util.List;
  */
 public class TextManager
 {
-    PriorityManager pMgr;
-    DisplayManager dMgr;
-    
+
     private static TextManager instance = null;
 
     private static TextDBManager db;
@@ -28,9 +26,7 @@ public class TextManager
 
     private TextManager()
     {
-        pMgr = PriorityManager.getInstance();
-        dMgr = DisplayManager.getInstance();
-        
+
         cars = new ArrayList<>();
         try
         {
@@ -80,16 +76,21 @@ public class TextManager
     {
         return db.readByTitle(title);
     }
-    
+
     public void createText(Text text)
     {
         db.createText(text);
     }
-    
-    public void guiCreateText(Text text)
+
+    public void deleteText(int id)
     {
-        Text text = textModel.getText(textTable.getSelectedRow());
-        Text tx = 
+        db.delete(id);
     }
+
+//    public void guiCreateText(Text text)
+//    {
+//        String text = textModel.getText(textTable.getSelectedRow());
+//
+//    }
 
 }
