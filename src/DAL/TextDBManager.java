@@ -179,32 +179,48 @@ public class TextDBManager {
             ps.setInt(6, txt.getDisplayId());
             ps.setBoolean(7, txt.isNotSafe());
             ps.setInt(8, txt.getPriorityId());
-            
+
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
             int id = keys.getInt(1);
-            
+
             new Text(id, txt);
 
         } catch (SQLException ex) {
             throw new BivExceptions("Unable to create text");
         }
     }
-    
-        public void delete(int id)
-    {
-        try (Connection con = cm.getConnection())
-        {
+
+    public void delete(int id) {
+        try (Connection con = cm.getConnection()) {
             String sql = "DELETE FROM Text WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ps.executeUpdate();
 
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new BivExceptions("Unable to remove Text.");
+        }
+    }
+
+    public void update(Text txt) {
+        try (Connection con = cm.getConnection()) {
+            String sql = "UPDATE Text SET Title = ?, Text = ?, StartDate = ?, EndDate = ?, Timer = ?, DisplayId, "
+                    + " NotSafe = ? , PriorityId = ? WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, txt.getTitle());
+            ps.setString(2, txt.getText());
+            ps.setDate(3, txt.getStartDate());
+            ps.setDate(4, txt.getEndDate());
+            ps.setDouble(4, txt.getTimer());
+            ps.setInt(5, txt.getDisplayId());
+            ps.setBoolean(6, txt.isNotSafe());
+            ps.setInt(7, txt.getPriorityId());
+
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new BivExceptions("Unable to perform advanced update to Text data.");
         }
     }
 }
