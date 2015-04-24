@@ -35,6 +35,9 @@ public class ExistingUpdateText extends javax.swing.JFrame
     int priorityId;
     boolean notSafe = false;
     Text text;
+    int id;
+    Text tt;
+    
 
     /**
      * Creates new form ExistingUpdateText
@@ -80,7 +83,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
 
         txtTitle.setText(txt.getTitle());
         jEditText.setText(txt.getText());
-
+        tt = tMgr.getByTitle(txt.getTitle());
+        id = tt.getId();
         btnEdit.setEnabled(true);
 
     }
@@ -406,7 +410,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnUpdateActionPerformed
     {//GEN-HEADEREND:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-
+        
         title = txtTitle.getText();
         txt = jEditText.getText();
         System.out.println(title + "  " + txt);
@@ -418,7 +422,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         displayId = jDisplay.getSelectedIndex() + 1;
         priorityId = jPrior.getSelectedIndex() + 1;
         notSafe = jNotSafe.isSelected();
-        text = new Text(title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
+        text = new Text(id, title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
         System.out.println(text.getId());
         tMgr.updateText(text);
     }//GEN-LAST:event_btnUpdateActionPerformed
