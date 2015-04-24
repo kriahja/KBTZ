@@ -220,7 +220,7 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
 
-            String sql = "Insert into Image(Title, [Image], StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
+            String sql = "Insert into Image(Title, Psath, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
                     + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);

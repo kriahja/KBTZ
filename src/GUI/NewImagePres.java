@@ -5,8 +5,11 @@
  */
 package GUI;
 
+import BLL.ImageManager;
+import Entities.Image;
+import static java.awt.SystemColor.text;
 import java.io.File;
-import java.util.ArrayList;
+import java.sql.Date;
 import javax.swing.JFrame;
 
 /**
@@ -15,19 +18,34 @@ import javax.swing.JFrame;
  */
 public class NewImagePres extends javax.swing.JFrame
 {
+    String title;
+    String path;
+    Date startDate, endDate;
+    double timer;
+    int priorityId, displayId;
+    boolean notSafe;
+    Image img;
+    ImageManager iMgr;
+    
+    
 
     File shared;
-    File[] folders;
+  //  File[] folders;
+    String[] folders;
 
     /**
      * Creates new form NewImagePres
      */
     public NewImagePres()
     {
+        iMgr = ImageManager.getInstance();
+               
         initComponents();
         shared = new File("c:/Info/images");
-        folders = shared.listFiles();
-        for (File path : folders) {
+        
+        folders = shared.list();
+      //  folders = shared.listFiles();
+        for (String path : folders) {
             jFolder.addItem(path);
         }
 
@@ -273,10 +291,10 @@ public class NewImagePres extends javax.swing.JFrame
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCreateActionPerformed
     {//GEN-HEADEREND:event_btnCreateActionPerformed
         // TODO add your handling code here:
-/*
-        title = txtTitle.getText();
-        txt = jEditText.getText();
-        System.out.println(title + "  " + txt);
+
+        title = jTitle.getText();
+        path =  jFolder.getSelectedItem().toString();
+        System.out.println(title + "  " + path);
 
         startDate = new java.sql.Date(jStartDate.getDate().getTime());
         //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
@@ -285,9 +303,9 @@ public class NewImagePres extends javax.swing.JFrame
         displayId = jDisplay.getSelectedIndex() + 1;
         priorityId = jPrior.getSelectedIndex() + 1;
         notSafe = jNotSafe.isSelected();
-        text = new Text(title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
-        tMgr.createText(text);
-        */
+        img = new Image(title, path, startDate, endDate, timer, displayId, notSafe, priorityId);
+        iMgr.createImage(img);
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNextActionPerformed
