@@ -13,14 +13,15 @@ import java.sql.Date;
  */
 public class Text
 {
+
     Priority pri;
     Display disp;
-    
-    private int id; 
+
+    private int id;
     private int displayId;
     private int priorityId;
     private double timer;
-    private Date startDate; 
+    private Date startDate;
     private Date endDate;
     private boolean notSafe;
     private String text;
@@ -38,10 +39,10 @@ public class Text
         this.text = text;
         this.title = title;
     }
-    
-        public Text(String title, String text, Date startDate, Date endDate, double timer, int displayId, boolean notSafe, int priorityId)
+
+    public Text(String title, String text, Date startDate, Date endDate, double timer, int displayId, boolean notSafe, int priorityId)
     {
-        
+
         this.displayId = displayId;
         this.priorityId = priorityId;
         this.timer = timer;
@@ -51,7 +52,7 @@ public class Text
         this.text = text;
         this.title = title;
     }
-    
+
     public Text(Priority pri, Display disp)
     {
         this.pri = pri;
@@ -59,7 +60,7 @@ public class Text
         this.disp = disp;
         displayId = disp.getId();
     }
-    
+
     public Text(int id, Text txt)
     {
         this(id, txt.getTitle(), txt.getText(), txt.getStartDate(), txt.getEndDate(), txt.getTimer(), txt.getDisplayId(), txt.isNotSafe(), txt.getPriorityId());

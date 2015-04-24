@@ -83,7 +83,7 @@ public class TextTableModel extends AbstractTableModel
         return columnTypes[col];
     }
 
-    public Text getText(int row)
+    public Text getTextByRow(int row)
     {
         return texts.get(row);
     }

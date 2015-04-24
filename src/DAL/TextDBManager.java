@@ -23,43 +23,48 @@ import java.util.logging.Logger;
  *
  * @author a.tamas
  */
-public class TextDBManager {
+public class TextDBManager
+{
 
     private final DBConnectionManager cm;
 
     private static TextDBManager instance = null;
 
-    private TextDBManager() throws IOException {
+    private TextDBManager() throws IOException
+    {
         cm = DBConnectionManager.getInstance();
 
     }
 
-    public static TextDBManager getInstance() throws IOException {
-        if (instance == null) {
+    public static TextDBManager getInstance() throws IOException
+    {
+        if (instance == null)
+        {
             instance = new TextDBManager();
         }
         return instance;
     }
 
-    public ArrayList<Text> readAll() {
-        try (Connection con = cm.getConnection()) {
+    public ArrayList<Text> readAll() throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "Select * from Text";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
             return txtList;
-        } catch (SQLException ex) {
-
-            throw new BivExceptions("Unable to read all Text data.");
         }
     }
 
-    private Text getOneText(ResultSet rs) throws SQLException {
+    private Text getOneText(ResultSet rs) throws SQLException
+    {
         int id = rs.getInt("ID");
         String title = rs.getString("Title");
         String text = rs.getString("Text");
@@ -74,108 +79,131 @@ public class TextDBManager {
         return new Text(id, title, text, startDate, endDate, timer, displayId, notSafe, priorityId);
     }
 
-    public void tamas() {
-
-    }
-
-    public Text readByTitle(String title) {
-        try (Connection con = cm.getConnection()) {
+    public Text readByTitle(String title)
+    {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT * FROM Text WHERE Title = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, title);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneText(rs);
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new BivExceptions("Unable to read Text name.");
         }
         return null;
     }
 
-    public Text readById(int id) {
-        try (Connection con = cm.getConnection()) {
+    public Text readById(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT * FROM Text WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneText(rs);
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new BivExceptions("Unable to read Text id.");
         }
         return null;
     }
 
-    public ArrayList<Text> readByPriorityId(int id) {
-        try (Connection con = cm.getConnection()) {
+    public ArrayList<Text> readByPriorityId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "SELECT * FROM Text WHERE PriorityId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
 
             return txtList;
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new BivExceptions("Unable to read Text priority.");
         }
     }
 
-    public ArrayList<Text> readByDisplayId(int id) {
-        try (Connection con = cm.getConnection()) {
+    public ArrayList<Text> readByDisplayId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "SELECT * FROM Text WHERE DisplayId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
 
             return txtList;
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new BivExceptions("Unable to read Text displayid.");
         }
     }
 
-    public ArrayList<Text> readByNotSafe(boolean safe) {
-        try (Connection con = cm.getConnection()) {
+    public ArrayList<Text> readByNotSafe(boolean safe)
+    {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "SELECT * FROM Text WHERE NotSafe = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setBoolean(1, safe);
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
 
             return txtList;
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new BivExceptions("Unable to read Text safe");
         }
     }
 
-    public Text createText(Text txt) throws SQLException {
+    public Text createText(Text txt) throws SQLException
+    {
 
-        try (Connection con = cm.getConnection()) {
-            
+        try (Connection con = cm.getConnection())
+        {
+
             String sql = "Insert into Text(Title, [Text], StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
                     + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
-            
+
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            
+
             ps.setString(1, txt.getTitle());
             ps.setString(2, txt.getText());
             ps.setDate(3, txt.getStartDate());
@@ -185,7 +213,7 @@ public class TextDBManager {
             ps.setBoolean(7, txt.isNotSafe());
             ps.setInt(8, txt.getPriorityId());
 
-             int affectedRows = ps.executeUpdate();
+            int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
                 throw new SQLException("Unable to add text.");
@@ -199,23 +227,28 @@ public class TextDBManager {
 
         }
     }
-    
 
-    public void delete(int id) {
-        try (Connection con = cm.getConnection()) {
+    public void delete(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "DELETE FROM Text WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ps.executeUpdate();
 
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new BivExceptions("Unable to remove Text.");
         }
     }
 
-    public void update(Text txt) {
-        try (Connection con = cm.getConnection()) {
+    public void update(Text txt)
+    {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "UPDATE Text SET Title = ?, Text = ?, StartDate = ?, EndDate = ?, Timer = ?, DisplayId, "
                     + " NotSafe = ? , PriorityId = ? WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -229,7 +262,9 @@ public class TextDBManager {
             ps.setInt(7, txt.getPriorityId());
 
             ps.executeUpdate();
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new BivExceptions("Unable to perform advanced update to Text data.");
         }
     }

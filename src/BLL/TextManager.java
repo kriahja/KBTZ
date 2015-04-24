@@ -52,7 +52,14 @@ public class TextManager
 
     public ArrayList<Text> readAll()
     {
-        return db.readAll();
+        try
+        {
+            return db.readAll();
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("Unable to readAll Text data");
+        }
     }
 
     public Text getById(int id)

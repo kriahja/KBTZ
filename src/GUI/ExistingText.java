@@ -6,6 +6,7 @@
 package GUI;
 
 import BLL.TextManager;
+import Entities.Text;
 import GUI.TextTable.TextTable;
 import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
@@ -19,18 +20,21 @@ public class ExistingText extends javax.swing.JFrame {
 
     private TextTable textTable;
     private TextTableModel textModel;
-    private TextManager txtMgr;
+    private TextManager tMgr;
+    
+    UpdateText updateText;
     /**
      * Creates new form ExistingText
      */
     public ExistingText() {
+        tMgr = TextManager.getInstance();
         initComponents();
         TextList();
     }
     
     private void TextList()
     {
-        textModel = new TextTableModel(txtMgr.readAll());
+        textModel = new TextTableModel(tMgr.readAll());
         
         textTable = new TextTable(textModel);
         
@@ -44,33 +48,60 @@ public class ExistingText extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         pnlJTable = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnlJTable.setLayout(new java.awt.BorderLayout());
 
+        jButton1.setText("Edit");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlJTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlJTable, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlJTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(pnlJTable, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        Text txt = textModel.getTextByRow(textTable.getSelectedRow());
+//
+//        Text txTitle = tMgr.getByTitle(txt.getTitle());
+//        Text txText = tMgr.getByTitle(txt.getTextByRow());
+//
+//        updateText = new UpdateText(txTitle, txText);
+//        updateText.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,6 +139,7 @@ public class ExistingText extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel pnlJTable;
     // End of variables declaration//GEN-END:variables
 }

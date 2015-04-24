@@ -14,7 +14,9 @@ import java.text.SimpleDateFormat;
  *
  * @author a.tamas
  */
-public class Options extends javax.swing.JFrame {
+public class Options extends javax.swing.JFrame
+{
+
     public static String title;
     public static String txt;
     Date startDate;
@@ -25,10 +27,15 @@ public class Options extends javax.swing.JFrame {
     boolean notSafe = false;
     Entities.Text text;
     TextManager tMgr;
+
     /**
      * Creates new form Options
+     *
+     * @param title
+     * @param txt
      */
-    public Options(String title, String txt) {
+    public Options(String title, String txt)
+    {
         initComponents();
         this.title = title;
         this.txt = txt;
@@ -159,9 +166,9 @@ public class Options extends javax.swing.JFrame {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         System.out.println(title + "  " + txt);
-        
+
         startDate = new java.sql.Date(jStartDate.getDate().getTime());
- //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
+        //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
         endDate = new java.sql.Date(jEndDate.getDate().getTime());
         timer = Double.parseDouble(jTimer.getText());
         displayId = jDisplay.getSelectedIndex() + 1;
@@ -173,39 +180,53 @@ public class Options extends javax.swing.JFrame {
 
     private void jNotSafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNotSafeActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_jNotSafeActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }
+        catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }
+        catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }
+        catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new Options(title, txt).setVisible(true);
             }
         });
