@@ -8,6 +8,7 @@ package GUI;
 import BLL.TextManager;
 import Entities.Text;
 import java.sql.Date;
+import javax.swing.JFrame;
 
 /**
  *
@@ -34,6 +35,7 @@ public class NewTextGui extends javax.swing.JFrame
     {
         initComponents();
         tMgr = TextManager.getInstance();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

@@ -11,6 +11,7 @@ import GUI.TextTable.TextTable;
 import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
 import java.sql.Date;
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -37,7 +38,6 @@ public class ExistingUpdateText extends javax.swing.JFrame
     Text text;
     int id;
     Text tt;
-    
 
     /**
      * Creates new form ExistingUpdateText
@@ -47,6 +47,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         tMgr = TextManager.getInstance();
         initComponents();
         TextList();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     private void TextList()
@@ -79,12 +80,21 @@ public class ExistingUpdateText extends javax.swing.JFrame
 
     private void showTextData()
     {
-        Text txt = textModel.getTextByRow(textTable.convertRowIndexToModel(textTable.getSelectedRow()));
+        text = textModel.getTextByRow(textTable.convertRowIndexToModel(textTable.getSelectedRow()));
 
-        txtTitle.setText(txt.getTitle());
-        jEditText.setText(txt.getText());
-        tt = tMgr.getByTitle(txt.getTitle());
+        txtTitle.setText(text.getTitle());
+        jEditText.setText(text.getText());
+        tt = tMgr.getByTitle(text.getTitle());
         id = tt.getId();
+
+        jStartDate.setDate(text.getStartDate());
+        jEndDate.setDate(text.getEndDate());
+        //String.valueOf(double)
+        jTimer.setText(String.valueOf(text.getTimer()));
+        jDisplay.setSelectedIndex(text.getDisplayId());
+        jPrior.setSelectedIndex(text.getPriorityId());
+        jNotSafe.setSelected(text.isNotSafe());
+
         btnEdit.setEnabled(true);
 
     }
@@ -390,10 +400,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
     private void btnNext2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNext2ActionPerformed
     {//GEN-HEADEREND:event_btnNext2ActionPerformed
         // TODO add your handling code here:
-        //        exTxt = new ExistingText();
-        //        title =
-        //        option = new Options(title, text);
-        //        option.setVisible(true);
+        jTabPane.setSelectedIndex(2);
     }//GEN-LAST:event_btnNext2ActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditActionPerformed
@@ -410,7 +417,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnUpdateActionPerformed
     {//GEN-HEADEREND:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        
+
         title = txtTitle.getText();
         txt = jEditText.getText();
         System.out.println(title + "  " + txt);
