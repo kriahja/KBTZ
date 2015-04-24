@@ -5,14 +5,17 @@
  */
 package GUI;
 
+import Entities.Text;
+
 /**
  *
  * @author a.tamas
  */
 public class MainGui extends javax.swing.JFrame {
 
-    TextGui txtGui;
+    NewTextGui txtGui;
     ExistingUpdateText exUpTxt;
+    Text txt;
     /**
      * Creates new form MainGui
      */
@@ -72,7 +75,7 @@ public class MainGui extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        txtGui = new TextGui();
+        txtGui = new NewTextGui();
         txtGui.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
