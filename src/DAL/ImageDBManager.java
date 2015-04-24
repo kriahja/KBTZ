@@ -220,7 +220,7 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
 
-            String sql = "Insert into Image(Title, Psath, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
+            String sql = "Insert into Image(Title, Path, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
                     + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -270,7 +270,7 @@ public class ImageDBManager
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "UPDATE Image SET Title = ?, Image = ?, StartDate = ?, EndDate = ?, Timer = ?, DisplayId = ?, "
+            String sql = "UPDATE Image SET Title = ?, Path = ?, StartDate = ?, EndDate = ?, Timer = ?, DisplayId = ?, "
                     + " NotSafe = ?, PriorityId = ? WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, img.getTitle());
