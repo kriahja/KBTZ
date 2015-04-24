@@ -12,7 +12,6 @@ package GUI;
 public class MainGui extends javax.swing.JFrame {
 
     TextGui txtGui;
-    ExistingText exTxt;
     ExistingUpdateText exUpTxt;
     /**
      * Creates new form MainGui
