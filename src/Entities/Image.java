@@ -62,9 +62,9 @@ public class Image
         displayId = disp.getId();
     }
 
-    public Image(int id, Text txt)
+    public Image(int id, Image img)
     {
-        this(id, txt.getTitle(), txt.getText(), txt.getStartDate(), txt.getEndDate(), txt.getTimer(), txt.getDisplayId(), txt.isNotSafe(), txt.getPriorityId());
+        this(id, img.getTitle(), img.getPath(), img.getStartDate(), img.getEndDate(), img.getTimer(), img.getDisplayId(), img.isNotSafe(), img.getPriorityId());
     }
 
     /**
