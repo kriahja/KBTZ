@@ -100,6 +100,19 @@ public class TextManager
     {
         db.delete(id);
     }
+    
+    public void updateText(Text txt)
+    {
+        try
+        {
+            db.update(txt);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
 //    public void guiCreateText(Text text)
 //    {

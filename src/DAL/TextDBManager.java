@@ -216,7 +216,7 @@ public class TextDBManager
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
-                throw new SQLException("Unable to add text.");
+                throw new BivExceptions("Unable to add text.");
             }
 
             ResultSet keys = ps.getGeneratedKeys();
@@ -245,27 +245,30 @@ public class TextDBManager
         }
     }
 
-    public void update(Text txt)
+    public void update(Text txt) throws SQLException
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "UPDATE Text SET Title = ?, Text = ?, StartDate = ?, EndDate = ?, Timer = ?, DisplayId, "
-                    + " NotSafe = ? , PriorityId = ? WHERE ID = ?";
+            String sql = "UPDATE Text SET Title = ?, Text = ?, StartDate = ?, EndDate = ?, Timer = ?, DisplayId = ?, "
+                    + " NotSafe = ?, PriorityId = ? WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, txt.getTitle());
             ps.setString(2, txt.getText());
             ps.setDate(3, txt.getStartDate());
             ps.setDate(4, txt.getEndDate());
-            ps.setDouble(4, txt.getTimer());
-            ps.setInt(5, txt.getDisplayId());
-            ps.setBoolean(6, txt.isNotSafe());
-            ps.setInt(7, txt.getPriorityId());
+            ps.setDouble(5, txt.getTimer());
+            ps.setInt(6, txt.getDisplayId());
+            ps.setBoolean(7, txt.isNotSafe());
+            ps.setInt(8, txt.getPriorityId());
+            ps.setInt(9, txt.getId());
 
-            ps.executeUpdate();
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to Update text.");
+            }
+
         }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to perform advanced update to Text data.");
-        }
+
     }
 }

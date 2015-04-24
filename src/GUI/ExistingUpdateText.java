@@ -10,6 +10,7 @@ import Entities.Text;
 import GUI.TextTable.TextTable;
 import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
+import java.sql.Date;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -24,6 +25,16 @@ public class ExistingUpdateText extends javax.swing.JFrame
     private TextTable textTable;
     private TextTableModel textModel;
     private final TextManager tMgr;
+
+    String title;
+    String txt;
+    Date startDate;
+    Date endDate;
+    double timer;
+    int displayId;
+    int priorityId;
+    boolean notSafe = false;
+    Text text;
 
     /**
      * Creates new form ExistingUpdateText
@@ -62,23 +73,23 @@ public class ExistingUpdateText extends javax.swing.JFrame
             }
         });
     }
-    
+
     private void showTextData()
     {
         Text txt = textModel.getTextByRow(textTable.convertRowIndexToModel(textTable.getSelectedRow()));
-        
+
         txtTitle.setText(txt.getTitle());
         jEditText.setText(txt.getText());
-        
+
         btnEdit.setEnabled(true);
-        
+
     }
-    
+
     private void clearData()
     {
         txtTitle.setText("");
         jEditText.setText("");
-        
+
         btnEdit.setEnabled(false);
     }
 
@@ -105,6 +116,19 @@ public class ExistingUpdateText extends javax.swing.JFrame
         jEditText = new javax.swing.JEditorPane();
         jLabel2 = new javax.swing.JLabel();
         btnNext2 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jTimer = new javax.swing.JTextField();
+        jDisplay = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPrior = new javax.swing.JComboBox();
+        jNotSafe = new javax.swing.JCheckBox();
+        btnUpdate = new javax.swing.JButton();
+        jStartDate = new org.jdesktop.swingx.JXDatePicker();
+        jLabel3 = new javax.swing.JLabel();
+        jEndDate = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,7 +199,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
 
         jLabel2.setText("Text");
 
-        btnNext2.setText("Update");
+        btnNext2.setText("Next");
         btnNext2.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -240,6 +264,106 @@ public class ExistingUpdateText extends javax.swing.JFrame
 
         jTabPane.addTab("tab2", jPanel2);
 
+        jLabel4.setText("End Date");
+
+        jLabel6.setText("Timer");
+
+        jDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+
+        jLabel7.setText("Display Nr.");
+
+        jLabel5.setText("Priority");
+
+        jPrior.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "High", "Medium", "Low" }));
+
+        jNotSafe.setText("Not Safe");
+        jNotSafe.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jNotSafeActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Start Date");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(305, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jNotSafe)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUpdate)))
+                        .addGap(25, 25, 25))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(jNotSafe))
+                .addGap(21, 21, 21))
+        );
+
+        jTabPane.addTab("tab3", jPanel5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,7 +372,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addComponent(jTabPane)
         );
 
         pack();
@@ -273,6 +397,31 @@ public class ExistingUpdateText extends javax.swing.JFrame
         // TODO add your handling code here:
         jTabPane.setSelectedIndex(1);
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void jNotSafeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jNotSafeActionPerformed
+    {//GEN-HEADEREND:event_jNotSafeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNotSafeActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnUpdateActionPerformed
+    {//GEN-HEADEREND:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+
+        title = txtTitle.getText();
+        txt = jEditText.getText();
+        System.out.println(title + "  " + txt);
+
+        startDate = new java.sql.Date(jStartDate.getDate().getTime());
+        //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
+        endDate = new java.sql.Date(jEndDate.getDate().getTime());
+        timer = Double.parseDouble(jTimer.getText());
+        displayId = jDisplay.getSelectedIndex() + 1;
+        priorityId = jPrior.getSelectedIndex() + 1;
+        notSafe = jNotSafe.isSelected();
+        text = new Text(title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
+        System.out.println(text.getId());
+        tMgr.updateText(text);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,15 +475,28 @@ public class ExistingUpdateText extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnNext2;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox jDisplay;
     private javax.swing.JEditorPane jEditText;
+    private org.jdesktop.swingx.JXDatePicker jEndDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JCheckBox jNotSafe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JComboBox jPrior;
     private javax.swing.JScrollPane jScrollPane1;
+    private org.jdesktop.swingx.JXDatePicker jStartDate;
     private javax.swing.JTabbedPane jTabPane;
+    private javax.swing.JTextField jTimer;
     private javax.swing.JPanel pnlJTable;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
