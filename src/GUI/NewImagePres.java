@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author a.tamas
@@ -18,6 +20,7 @@ public class NewImagePres extends javax.swing.JFrame
     public NewImagePres()
     {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
