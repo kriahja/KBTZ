@@ -79,7 +79,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         image = imageModel.getImageByRow(imageTable.convertRowIndexToModel(imageTable.getSelectedRow()));
 
         txtTitle.setText(image.getTitle());
-        jEditText.setText(image.getPath());
+        jEditPath.setText(image.getPath());
         tt = iMgr.getByTitle(image.getTitle());
         id = tt.getId();
 
@@ -87,8 +87,8 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         jEndDate.setDate(image.getEndDate());
         //String.valueOf(double)
         jTimer.setText(String.valueOf(image.getTimer()));
-        jDisplay.setSelectedIndex(image.getDisplayId());
-        jPrior.setSelectedIndex(image.getPriorityId());
+        jDisplay.setSelectedIndex(image.getDisplayId() -1);
+        jPrior.setSelectedIndex(image.getPriorityId() -1);
         jNotSafe.setSelected(image.isNotSafe());
 
         btnEdit.setEnabled(true);
@@ -98,7 +98,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
     private void clearData()
     {
         txtTitle.setText("");
-        jEditText.setText("");
+        jEditPath.setText("");
 
         btnEdit.setEnabled(false);
     }
@@ -123,7 +123,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         txtTitle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jEditText = new javax.swing.JEditorPane();
+        jEditPath = new javax.swing.JEditorPane();
         jLabel2 = new javax.swing.JLabel();
         btnNext2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -205,7 +205,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
 
         jLabel1.setText("Title");
 
-        jScrollPane1.setViewportView(jEditText);
+        jScrollPane1.setViewportView(jEditPath);
 
         jLabel2.setText("Text");
 
@@ -411,7 +411,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         // TODO add your handling code here:
 
         title = txtTitle.getText();
-        path = jEditText.getText();
+        path = jEditPath.getText();
         System.out.println(title + "  " + path);
 
         startDate = new java.sql.Date(jStartDate.getDate().getTime());
@@ -469,7 +469,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
     private javax.swing.JButton btnNext2;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox jDisplay;
-    private javax.swing.JEditorPane jEditText;
+    private javax.swing.JEditorPane jEditPath;
     private org.jdesktop.swingx.JXDatePicker jEndDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

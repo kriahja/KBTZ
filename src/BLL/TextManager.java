@@ -111,9 +111,9 @@ public class TextManager
         {
             Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+  
 //    public void guiCreateText(Text text)
 //    {
 //        String text = textModel.getText(textTable.getSelectedRow());

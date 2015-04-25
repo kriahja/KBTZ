@@ -205,7 +205,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JEditorPane" name="jEditText">
+                    <Component class="javax.swing.JEditorPane" name="jEditPath">
                     </Component>
                   </SubComponents>
                 </Container>

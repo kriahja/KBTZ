@@ -12,6 +12,8 @@ import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
 import java.sql.Date;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -38,6 +40,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
     Text text;
     int id;
     Text tt;
+
+    JFrame frame;
 
     /**
      * Creates new form ExistingUpdateText
@@ -91,8 +95,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
         jEndDate.setDate(text.getEndDate());
         //String.valueOf(double)
         jTimer.setText(String.valueOf(text.getTimer()));
-        jDisplay.setSelectedIndex(text.getDisplayId());
-        jPrior.setSelectedIndex(text.getPriorityId());
+        jDisplay.setSelectedIndex(text.getDisplayId() - 1);
+        jPrior.setSelectedIndex(text.getPriorityId() - 1);
         jNotSafe.setSelected(text.isNotSafe());
 
         btnEdit.setEnabled(true);
@@ -122,6 +126,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
         pnlJTable = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnEdit = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        btnRemove = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtTitle = new javax.swing.JTextField();
@@ -174,6 +180,32 @@ public class ExistingUpdateText extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRemove)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -181,8 +213,10 @@ public class ExistingUpdateText extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlJTable, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
@@ -193,7 +227,9 @@ public class ExistingUpdateText extends javax.swing.JFrame
                     .addComponent(pnlJTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 176, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 125, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -233,16 +269,12 @@ public class ExistingUpdateText extends javax.swing.JFrame
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                        .addGap(35, 35, 35))
+                    .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnNext2))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(35, 35, 35))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnNext2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,7 +426,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
 
     private void txtTitleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtTitleActionPerformed
     {//GEN-HEADEREND:event_txtTitleActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtTitleActionPerformed
 
     private void btnNext2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNext2ActionPerformed
@@ -402,12 +434,6 @@ public class ExistingUpdateText extends javax.swing.JFrame
         // TODO add your handling code here:
         jTabPane.setSelectedIndex(2);
     }//GEN-LAST:event_btnNext2ActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditActionPerformed
-    {//GEN-HEADEREND:event_btnEditActionPerformed
-        // TODO add your handling code here:
-        jTabPane.setSelectedIndex(1);
-    }//GEN-LAST:event_btnEditActionPerformed
 
     private void jNotSafeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jNotSafeActionPerformed
     {//GEN-HEADEREND:event_jNotSafeActionPerformed
@@ -433,6 +459,65 @@ public class ExistingUpdateText extends javax.swing.JFrame
         System.out.println(text.getId());
         tMgr.updateText(text);
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditActionPerformed
+    {//GEN-HEADEREND:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        jTabPane.setSelectedIndex(1);
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
+    {//GEN-HEADEREND:event_btnRemoveActionPerformed
+        int row = textTable.getSelectedRow();
+
+        // fetch the text to remove from the table model.
+        Text txt = textModel.getTextByRow(row);
+        int option = JOptionPane.showConfirmDialog(
+                frame,
+                "Are you sure you want to remove: " + text.getTitle(),
+                "Remove Window",
+                JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION)
+        {
+            try
+            {
+                // remove the employee from the model and also from the table model.
+                tMgr.deleteText(id);
+
+                textModel.setTextList(tMgr.readAll());
+
+                // adjust the selection since the selected employee is now gone.
+                adjustSelection(row);
+            }
+            catch (Exception e)
+            {
+                JOptionPane.showMessageDialog(this, e.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else if (option == JOptionPane.NO_OPTION)
+        {
+            //Do Nothing here.
+        }
+
+
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void adjustSelection(int row)
+    {
+        if (textModel.getRowCount() > 0)
+        {
+            if (row == textModel.getRowCount())
+            {
+                row--;
+            }
+
+            textTable.setRowSelectionInterval(row, row);
+        }
+        else
+        {
+            textTable.getSelectionModel().clearSelection();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -486,6 +571,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnNext2;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox jDisplay;
     private javax.swing.JEditorPane jEditText;
@@ -503,6 +589,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JComboBox jPrior;
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXDatePicker jStartDate;
