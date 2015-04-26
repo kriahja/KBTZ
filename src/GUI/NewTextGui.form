@@ -269,6 +269,9 @@
               </Events>
             </Component>
             <Component class="org.jdesktop.swingx.JXDatePicker" name="jStartDate">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStartDateActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>

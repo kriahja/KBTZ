@@ -27,7 +27,7 @@ public class ImageTableModel extends AbstractTableModel
 
     private final Class[] columnTypes =
     {
-        String.class, Integer.class
+        String.class, String.class
     };
     
     private ArrayList<Image> images;

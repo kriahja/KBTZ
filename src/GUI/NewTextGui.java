@@ -27,6 +27,7 @@ public class NewTextGui extends javax.swing.JFrame
     boolean notSafe = false;
     Text text;
     TextManager tMgr;
+    
 
     /**
      * Creates new form NewTextGui
@@ -37,6 +38,8 @@ public class NewTextGui extends javax.swing.JFrame
         tMgr = TextManager.getInstance();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,6 +158,14 @@ public class NewTextGui extends javax.swing.JFrame
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 btnCreateActionPerformed(evt);
+            }
+        });
+
+        jStartDate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jStartDateActionPerformed(evt);
             }
         });
 
@@ -281,9 +292,15 @@ public class NewTextGui extends javax.swing.JFrame
         notSafe = jNotSafe.isSelected();
         text = new Text(title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
         tMgr.createText(text);
-        
+
         dispose();
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void jStartDateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jStartDateActionPerformed
+    {//GEN-HEADEREND:event_jStartDateActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jStartDateActionPerformed
 
 //    /**
 //     * @param args the command line arguments

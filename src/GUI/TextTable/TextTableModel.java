@@ -28,7 +28,7 @@ public class TextTableModel extends AbstractTableModel
 
     private final Class[] columnTypes =
     {
-        String.class, Integer.class
+        String.class, String.class
     };
     
     private ArrayList<Text> texts;
