@@ -476,7 +476,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         int row = textTable.getSelectedRow();
 
         // fetch the text to remove from the table model.
-        Text txt = textModel.getTextByRow(row);
+        text = textModel.getTextByRow(row);
         int option = JOptionPane.showConfirmDialog(
                 frame,
                 "Are you sure you want to remove: " + text.getTitle(),
