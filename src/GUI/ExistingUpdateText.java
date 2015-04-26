@@ -52,6 +52,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
         initComponents();
         TextList();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        btnEdit.setEnabled(false);
+        btnRemove.setEnabled(false);
     }
 
     private void TextList()
@@ -100,6 +102,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         jNotSafe.setSelected(text.isNotSafe());
 
         btnEdit.setEnabled(true);
+        btnRemove.setEnabled(true);
 
     }
 
