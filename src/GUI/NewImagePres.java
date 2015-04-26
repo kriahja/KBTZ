@@ -306,6 +306,7 @@ public class NewImagePres extends javax.swing.JFrame
         img = new Image(title, path, startDate, endDate, timer, displayId, notSafe, priorityId);
         iMgr.createImage(img);
         
+        dispose();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNextActionPerformed

@@ -458,6 +458,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
         text = new Text(id, title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
         System.out.println(text.getId());
         tMgr.updateText(text);
+        
+        dispose();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditActionPerformed

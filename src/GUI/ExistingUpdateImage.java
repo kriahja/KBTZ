@@ -424,6 +424,8 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         image = new Image(id, title, path, startDate, endDate, timer, displayId, notSafe, priorityId);
         System.out.println(image.getId());
         iMgr.updateImage(image);
+        
+        dispose();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**

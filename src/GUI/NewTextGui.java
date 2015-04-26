@@ -281,6 +281,8 @@ public class NewTextGui extends javax.swing.JFrame
         notSafe = jNotSafe.isSelected();
         text = new Text(title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
         tMgr.createText(text);
+        
+        dispose();
     }//GEN-LAST:event_btnCreateActionPerformed
 
 //    /**
