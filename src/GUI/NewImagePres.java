@@ -102,6 +102,14 @@ public class NewImagePres extends javax.swing.JFrame
             }
         });
 
+        jFolder.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jFolderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -314,6 +322,11 @@ public class NewImagePres extends javax.swing.JFrame
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_btnNextActionPerformed
+
+    private void jFolderActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jFolderActionPerformed
+    {//GEN-HEADEREND:event_jFolderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFolderActionPerformed
 
     /**
      * @param args the command line arguments
