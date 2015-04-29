@@ -50,6 +50,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         btnEdit.setEnabled(false);
+        setLocationRelativeTo(null);
     }
 
     private void ImageList()

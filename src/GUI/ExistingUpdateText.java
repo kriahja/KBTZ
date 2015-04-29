@@ -42,6 +42,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
     Text tt;
 
     JFrame frame;
+    
+    
 
     /**
      * Creates new form ExistingUpdateText
@@ -54,6 +56,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         btnEdit.setEnabled(false);
         btnRemove.setEnabled(false);
+        setLocationRelativeTo(null);
+        
     }
 
     private void TextList()

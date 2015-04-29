@@ -37,6 +37,8 @@ public class NewTextGui extends javax.swing.JFrame
         initComponents();
         tMgr = TextManager.getInstance();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        setLocationRelativeTo(null);
     }
     
     
