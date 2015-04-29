@@ -10,8 +10,10 @@ import Entities.Image;
 import GUI.ImageTable.ImageTable;
 import GUI.ImageTable.ImageTableModel;
 import java.awt.BorderLayout;
+import java.io.File;
 import java.sql.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -39,6 +41,11 @@ public class ExistingUpdateImage extends javax.swing.JFrame
     int id;
     Image tt;
 
+    JFrame frame;
+
+    File shared;
+    String[] folders;
+
     /**
      * Creates new form ExistingUpdateImage
      */
@@ -47,9 +54,20 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         iMgr = ImageManager.getInstance();
         initComponents();
         ImageList();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
+        shared = new File("c:/Info/images");
+
+        folders = shared.list();
+        //  folders = shared.listFiles();
+        for (String path : folders)
+        {
+            jFolder.addItem(path);
+        }
+
         btnEdit.setEnabled(false);
+        btnRemove.setEnabled(false);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }
 
@@ -66,10 +84,14 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             @Override
             public void valueChanged(ListSelectionEvent lse)
             {
-                if (!lse.getValueIsAdjusting()) {
-                    if (imageTable.getSelectedRow() != -1) {
+                if (!lse.getValueIsAdjusting())
+                {
+                    if (imageTable.getSelectedRow() != -1)
+                    {
                         showImageData();
-                    } else {
+                    }
+                    else
+                    {
                         clearData();
                     }
                 }
@@ -82,7 +104,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         image = imageModel.getImageByRow(imageTable.convertRowIndexToModel(imageTable.getSelectedRow()));
 
         txtTitle.setText(image.getTitle());
-        jEditPath.setText(image.getPath());
+        jFolder.setSelectedItem(image.getPath());
         tt = iMgr.getByTitle(image.getTitle());
         id = tt.getId();
 
@@ -90,20 +112,21 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         jEndDate.setDate(image.getEndDate());
         //String.valueOf(double)
         jTimer.setText(String.valueOf(image.getTimer()));
-        jDisplay.setSelectedIndex(image.getDisplayId() -1);
-        jPrior.setSelectedIndex(image.getPriorityId() -1);
+        jDisplay.setSelectedIndex(image.getDisplayId() - 1);
+        jPrior.setSelectedIndex(image.getPriorityId() - 1);
         jNotSafe.setSelected(image.isNotSafe());
 
         btnEdit.setEnabled(true);
+        btnRemove.setEnabled(true);
 
     }
 
     private void clearData()
     {
         txtTitle.setText("");
-        jEditPath.setText("");
 
         btnEdit.setEnabled(false);
+        btnRemove.setEnabled(false);
     }
 
     /**
@@ -119,16 +142,16 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         jTabPane = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         pnlJTable = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
         btnEdit = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtTitle = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditPath = new javax.swing.JEditorPane();
-        jLabel2 = new javax.swing.JLabel();
         btnNext2 = new javax.swing.JButton();
+        jFolder = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -156,21 +179,33 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnEdit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRemove)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -179,21 +214,20 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlJTable, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addComponent(pnlJTable, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlJTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 216, Short.MAX_VALUE)))
+                .addComponent(pnlJTable, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabPane.addTab("tab1", jPanel1);
@@ -208,10 +242,6 @@ public class ExistingUpdateImage extends javax.swing.JFrame
 
         jLabel1.setText("Title");
 
-        jScrollPane1.setViewportView(jEditPath);
-
-        jLabel2.setText("Text");
-
         btnNext2.setText("Next");
         btnNext2.addActionListener(new java.awt.event.ActionListener()
         {
@@ -221,6 +251,16 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             }
         });
 
+        jFolder.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jFolderActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Folder Name");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -228,16 +268,20 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnNext2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(35, 35, 35))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnNext2)))
+                        .addGap(35, 35, 35))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,13 +290,13 @@ public class ExistingUpdateImage extends javax.swing.JFrame
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(129, 129, 129)
                 .addComponent(btnNext2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -414,7 +458,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         // TODO add your handling code here:
 
         title = txtTitle.getText();
-        path = jEditPath.getText();
+        path = jFolder.getSelectedItem().toString();
         System.out.println(title + "  " + path);
 
         startDate = new java.sql.Date(jStartDate.getDate().getTime());
@@ -427,9 +471,66 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         image = new Image(id, title, path, startDate, endDate, timer, displayId, notSafe, priorityId);
         System.out.println(image.getId());
         iMgr.updateImage(image);
-        
+
         dispose();
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveActionPerformed
+    {//GEN-HEADEREND:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+        int row = imageTable.getSelectedRow();
+
+        // fetch the text to remove from the table model.
+        image = imageModel.getImageByRow(row);
+        int option = JOptionPane.showConfirmDialog(
+                frame,
+                "Are you sure you want to remove: " + image.getTitle(),
+                "Remove Window",
+                JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION)
+        {
+            try
+            {
+                // remove the employee from the model and also from the table model.
+                iMgr.deleteImage(id);
+
+                imageModel.setImageList(iMgr.readAll());
+
+                // adjust the selection since the selected employee is now gone.
+                adjustSelection(row);
+            }
+            catch (Exception e)
+            {
+                JOptionPane.showMessageDialog(this, e.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else if (option == JOptionPane.NO_OPTION)
+        {
+            //Do Nothing here.
+        }
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void jFolderActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jFolderActionPerformed
+    {//GEN-HEADEREND:event_jFolderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFolderActionPerformed
+
+    private void adjustSelection(int row)
+    {
+        if (imageModel.getRowCount() > 0)
+        {
+            if (row == imageModel.getRowCount())
+            {
+                row--;
+            }
+
+            imageTable.setRowSelectionInterval(row, row);
+        }
+        else
+        {
+            imageTable.getSelectionModel().clearSelection();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -441,20 +542,31 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }
+        catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(ExistingUpdateImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }
+        catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(ExistingUpdateImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }
+        catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(ExistingUpdateImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(ExistingUpdateImage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -472,25 +584,25 @@ public class ExistingUpdateImage extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnNext2;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox jDisplay;
-    private javax.swing.JEditorPane jEditPath;
     private org.jdesktop.swingx.JXDatePicker jEndDate;
+    private javax.swing.JComboBox jFolder;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JCheckBox jNotSafe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JComboBox jPrior;
-    private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXDatePicker jStartDate;
     private javax.swing.JTabbedPane jTabPane;
     private javax.swing.JTextField jTimer;
