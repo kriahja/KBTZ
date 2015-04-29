@@ -57,6 +57,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         btnEdit.setEnabled(false);
         btnRemove.setEnabled(false);
+        setLocationRelativeTo(this);
     }
 
     private void TextList()
@@ -136,23 +137,23 @@ public class ExistingUpdateText extends javax.swing.JFrame
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtTitle = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditText = new javax.swing.JEditorPane();
-        jLabel2 = new javax.swing.JLabel();
+        lblText = new javax.swing.JLabel();
         btnNext2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblEndDate = new javax.swing.JLabel();
+        lblTimer = new javax.swing.JLabel();
         jTimer = new javax.swing.JTextField();
         jDisplay = new javax.swing.JComboBox();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblDisplauNr = new javax.swing.JLabel();
+        lblPriority = new javax.swing.JLabel();
         jPrior = new javax.swing.JComboBox();
         jNotSafe = new javax.swing.JCheckBox();
         btnUpdate = new javax.swing.JButton();
         jStartDate = new org.jdesktop.swingx.JXDatePicker();
-        jLabel3 = new javax.swing.JLabel();
+        lblStartDate = new javax.swing.JLabel();
         jEndDate = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -227,11 +228,11 @@ public class ExistingUpdateText extends javax.swing.JFrame
             }
         });
 
-        jLabel1.setText("Title");
+        lblTitle.setText("Title");
 
         jScrollPane1.setViewportView(jEditText);
 
-        jLabel2.setText("Text");
+        lblText.setText("Text");
 
         btnNext2.setText("Next");
         btnNext2.addActionListener(new java.awt.event.ActionListener()
@@ -249,8 +250,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(lblTitle)
+                    .addComponent(lblText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
@@ -265,11 +266,11 @@ public class ExistingUpdateText extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblTitle)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(lblText)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNext2)
@@ -294,15 +295,15 @@ public class ExistingUpdateText extends javax.swing.JFrame
 
         jTabPane.addTab("tab2", jPanel2);
 
-        jLabel4.setText("End Date");
+        lblEndDate.setText("End Date");
 
-        jLabel6.setText("Timer");
+        lblTimer.setText("Timer");
 
         jDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
-        jLabel7.setText("Display Nr.");
+        lblDisplauNr.setText("Display Nr.");
 
-        jLabel5.setText("Priority");
+        lblPriority.setText("Priority");
 
         jPrior.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "High", "Medium", "Low" }));
 
@@ -324,7 +325,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
             }
         });
 
-        jLabel3.setText("Start Date");
+        lblStartDate.setText("Start Date");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -336,15 +337,15 @@ public class ExistingUpdateText extends javax.swing.JFrame
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(lblTimer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(lblDisplauNr)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(lblPriority)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(305, Short.MAX_VALUE))
@@ -353,11 +354,11 @@ public class ExistingUpdateText extends javax.swing.JFrame
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
+                                .addComponent(lblStartDate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))
+                                .addComponent(lblEndDate))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jNotSafe)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -369,21 +370,21 @@ public class ExistingUpdateText extends javax.swing.JFrame
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
+                    .addComponent(lblStartDate)
+                    .addComponent(lblEndDate)
                     .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblTimer)
                     .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblDisplauNr)
                     .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(lblPriority)
                     .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -562,13 +563,6 @@ public class ExistingUpdateText extends javax.swing.JFrame
     private javax.swing.JComboBox jDisplay;
     private javax.swing.JEditorPane jEditText;
     private org.jdesktop.swingx.JXDatePicker jEndDate;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JCheckBox jNotSafe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -580,6 +574,13 @@ public class ExistingUpdateText extends javax.swing.JFrame
     private org.jdesktop.swingx.JXDatePicker jStartDate;
     private javax.swing.JTabbedPane jTabPane;
     private javax.swing.JTextField jTimer;
+    private javax.swing.JLabel lblDisplauNr;
+    private javax.swing.JLabel lblEndDate;
+    private javax.swing.JLabel lblPriority;
+    private javax.swing.JLabel lblStartDate;
+    private javax.swing.JLabel lblText;
+    private javax.swing.JLabel lblTimer;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlJTable;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables

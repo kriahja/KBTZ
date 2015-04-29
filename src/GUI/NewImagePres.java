@@ -50,6 +50,7 @@ public class NewImagePres extends javax.swing.JFrame
         }
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(this);
 
     }
 
@@ -67,31 +68,31 @@ public class NewImagePres extends javax.swing.JFrame
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblFolderName = new javax.swing.JLabel();
         jTitle = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         btnNext = new javax.swing.JButton();
         jFolder = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jDisplay = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
+        lblPriority = new javax.swing.JLabel();
         jPrior = new javax.swing.JComboBox();
         jNotSafe = new javax.swing.JCheckBox();
         btnCreate = new javax.swing.JButton();
         jStartDate = new org.jdesktop.swingx.JXDatePicker();
-        jLabel3 = new javax.swing.JLabel();
+        lblStartDate = new javax.swing.JLabel();
         jEndDate = new org.jdesktop.swingx.JXDatePicker();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblEndDate = new javax.swing.JLabel();
+        lblTimer = new javax.swing.JLabel();
         jTimer = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblDisplayNr = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Folder Name");
+        lblFolderName.setText("Folder Name");
 
-        jLabel2.setText("Title");
+        lblTitle.setText("Title");
 
         btnNext.setText("Next");
         btnNext.addActionListener(new java.awt.event.ActionListener()
@@ -118,11 +119,11 @@ public class NewImagePres extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblTitle)
                         .addGap(36, 36, 36)
                         .addComponent(jTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblFolderName)
                         .addGap(18, 18, 18)
                         .addComponent(jFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -138,10 +139,10 @@ public class NewImagePres extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblTitle))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblFolderName)
                     .addComponent(jFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addComponent(btnNext)
@@ -152,7 +153,7 @@ public class NewImagePres extends javax.swing.JFrame
 
         jDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
-        jLabel5.setText("Priority");
+        lblPriority.setText("Priority");
 
         jPrior.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "High", "Medium", "Low" }));
 
@@ -174,13 +175,29 @@ public class NewImagePres extends javax.swing.JFrame
             }
         });
 
-        jLabel3.setText("Start Date");
+        jStartDate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jStartDateActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("End Date");
+        lblStartDate.setText("Start Date");
 
-        jLabel6.setText("Timer");
+        jEndDate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jEndDateActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setText("Display Nr.");
+        lblEndDate.setText("End Date");
+
+        lblTimer.setText("Timer");
+
+        lblDisplayNr.setText("Display Nr.");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -192,15 +209,15 @@ public class NewImagePres extends javax.swing.JFrame
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(lblTimer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(lblDisplayNr)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(lblPriority)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(264, Short.MAX_VALUE))
@@ -209,11 +226,11 @@ public class NewImagePres extends javax.swing.JFrame
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
+                                .addComponent(lblStartDate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))
+                                .addComponent(lblEndDate))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jNotSafe)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,21 +242,21 @@ public class NewImagePres extends javax.swing.JFrame
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
+                    .addComponent(lblStartDate)
+                    .addComponent(lblEndDate)
                     .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblTimer)
                     .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblDisplayNr)
                     .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(lblPriority)
                     .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -328,6 +345,16 @@ public class NewImagePres extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jFolderActionPerformed
 
+    private void jStartDateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jStartDateActionPerformed
+    {//GEN-HEADEREND:event_jStartDateActionPerformed
+   
+    }//GEN-LAST:event_jStartDateActionPerformed
+
+    private void jEndDateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jEndDateActionPerformed
+    {//GEN-HEADEREND:event_jEndDateActionPerformed
+      endDate.before(startDate);
+    }//GEN-LAST:event_jEndDateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,13 +419,6 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
     private javax.swing.JComboBox jDisplay;
     private org.jdesktop.swingx.JXDatePicker jEndDate;
     private javax.swing.JComboBox jFolder;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JCheckBox jNotSafe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -408,5 +428,12 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTimer;
     private javax.swing.JTextField jTitle;
+    private javax.swing.JLabel lblDisplayNr;
+    private javax.swing.JLabel lblEndDate;
+    private javax.swing.JLabel lblFolderName;
+    private javax.swing.JLabel lblPriority;
+    private javax.swing.JLabel lblStartDate;
+    private javax.swing.JLabel lblTimer;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
