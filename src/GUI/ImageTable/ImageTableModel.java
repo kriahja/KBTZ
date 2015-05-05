@@ -5,7 +5,7 @@
  */
 package GUI.ImageTable;
 
-import Entities.Image;
+import Entities.OldPres.Image;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 

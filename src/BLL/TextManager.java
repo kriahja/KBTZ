@@ -64,35 +64,49 @@ public class TextManager
 
     public Text getById(int id)
     {
-        return db.readById(id);
-    }
-
-    public ArrayList<Text> getByPriorityId(int priId)
-    {
-        return db.readByPriorityId(priId);
-    }
-
-    public ArrayList<Text> getByDisplayId(int dispId)
-    {
-        return db.readByDisplayId(dispId);
+        try
+        {
+            return db.readById(id);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("");
+        }
     }
 
     public ArrayList<Text> getBySafe()
     {
-        return db.readByNotSafe(false);
+        try
+        {
+            return db.readByNotSafe(false);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("");
+        }
     }
 
     public Text getByTitle(String title)
     {
-        return db.readByTitle(title);
+        try
+        {
+            return db.readByTitle(title);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("");
+        }
     }
 
     public void createText(Text text)
     {
-        try {
+        try
+        {
             db.createText(text);
-        } catch (SQLException ex) {
-            Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("");
         }
     }
 
@@ -100,7 +114,7 @@ public class TextManager
     {
         db.delete(id);
     }
-    
+
     public void updateText(Text txt)
     {
         try
@@ -109,15 +123,14 @@ public class TextManager
         }
         catch (SQLException ex)
         {
-            Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BivExceptions("");
         }
-        
+
     }
-  
+
 //    public void guiCreateText(Text text)
 //    {
 //        String text = textModel.getText(textTable.getSelectedRow());
 //
 //    }
-
 }

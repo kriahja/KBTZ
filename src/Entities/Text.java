@@ -21,6 +21,11 @@ public class Text extends Presentation
         super(id, presTypeId, title, startDate, endDate, timer, notSafe);
         this.text = text;
     }
+    
+    public Text(int id, Text txt)
+    {
+        this(id, txt.getPresTypeId(), txt.getTitle(), txt.getStartDate(), txt.getEndDate(), txt.getTimer(), txt.isNotSafe(), txt.getText());
+    }
 
     @Override
     protected void doShow()
