@@ -163,7 +163,7 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
 
-            String sql = "Insert into Image(Title, Path, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
+            String sql = "Insert into Image(Title, Path, StartDate, EndDate, Timer, NotSafe)"
                     + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -173,9 +173,7 @@ public class ImageDBManager
             ps.setDate(3, img.getStartDate());
             ps.setDate(4, img.getEndDate());
             ps.setDouble(5, img.getTimer());
-            ps.setInt(6, img.getDisplayId());
-            ps.setBoolean(7, img.isNotSafe());
-            ps.setInt(8, img.getPriorityId());
+            ps.setBoolean(6, img.isNotSafe());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
