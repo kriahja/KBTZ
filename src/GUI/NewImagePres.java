@@ -50,6 +50,8 @@ public class NewImagePres extends javax.swing.JFrame
         }
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        setLocationRelativeTo(null);
 
     }
 

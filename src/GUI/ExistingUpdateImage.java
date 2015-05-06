@@ -68,6 +68,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         btnRemove.setEnabled(false);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     private void ImageList()
@@ -112,7 +113,6 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         //String.valueOf(double)
         jTimer.setText(String.valueOf(image.getTimer()));
         jDisplay.setSelectedIndex(image.getDisplayId() - 1);
-        jPrior.setSelectedIndex(image.getPriorityId() - 1);
         jNotSafe.setSelected(image.isNotSafe());
 
         btnEdit.setEnabled(true);

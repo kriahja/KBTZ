@@ -11,15 +11,11 @@ import GUI.TextTable.TextTable;
 import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -57,6 +53,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         btnEdit.setEnabled(false);
         btnRemove.setEnabled(false);
+        
+        setLocationRelativeTo(null);
     }
 
     private void TextList()
@@ -101,7 +99,6 @@ public class ExistingUpdateText extends javax.swing.JFrame
         //String.valueOf(double)
         jTimer.setText(String.valueOf(text.getTimer()));
         jDisplay.setSelectedIndex(text.getDisplayId() - 1);
-        jPrior.setSelectedIndex(text.getPriorityId() - 1);
         jNotSafe.setSelected(text.isNotSafe());
 
         btnEdit.setEnabled(true);
@@ -324,6 +321,14 @@ public class ExistingUpdateText extends javax.swing.JFrame
             }
         });
 
+        jStartDate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jStartDateActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Start Date");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -439,7 +444,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         displayId = jDisplay.getSelectedIndex() + 1;
         priorityId = jPrior.getSelectedIndex() + 1;
         notSafe = jNotSafe.isSelected();
-        text = new Text(id, title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
+        text = new Text(id, priorityId, title, startDate, endDate, timer, notSafe, txt);
         System.out.println(text.getId());
         tMgr.updateText(text);
 
@@ -487,6 +492,12 @@ public class ExistingUpdateText extends javax.swing.JFrame
 
 
     }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void jStartDateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jStartDateActionPerformed
+    {//GEN-HEADEREND:event_jStartDateActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jStartDateActionPerformed
 
     private void adjustSelection(int row)
     {

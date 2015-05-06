@@ -5,11 +5,15 @@
  */
 package Entities;
 
+import Entities.DisplayCtrl.DisplayCtrl;
+
+
+
 /**
  *
  * @author notandi
  */
-class Display
+public class Display extends DisplayCtrl
 {
     private int id;
     private String screenName;

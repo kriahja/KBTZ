@@ -31,7 +31,6 @@ public class MainGui extends javax.swing.JFrame
 
         pack();
         setLocationRelativeTo(null);
-
     }
 
     /**
@@ -54,13 +53,7 @@ public class MainGui extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                formKeyPressed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Text"));
 

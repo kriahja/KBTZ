@@ -7,7 +7,6 @@ package DAL;
 
 import BLL.Exceptions.BivExceptions;
 import Entities.Image;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -16,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -50,7 +47,8 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
             ArrayList<Image> imgList = new ArrayList<>();
-            String sql = "Select * from Image";
+            String sql = "Select Presentation.* , Image.Path from Presentation, Image"
+                    + " where Presentation.ID = Image.PresentationId";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -66,24 +64,25 @@ public class ImageDBManager
     private Image getOneImage(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("ID");
+        int presTypeId = rs.getInt("PresTypeId");
         String title = rs.getString("Title");
-        String image = rs.getString("Path");
+
         Date startDate = rs.getDate("StartDate");
         Date endDate = rs.getDate("EndDate");
         Double timer = rs.getDouble("Timer");
-        int displayId = rs.getInt("DisplayId");
         boolean notSafe = rs.getBoolean("NotSafe");
-        int priorityId = rs.getInt("PriorityId");
+        String path = rs.getString("Path");
 
 //        String depName = rs.getString("Name");
-        return new Image(id, title, image, startDate, endDate, timer, displayId, notSafe, priorityId);
+        return new Image(id, presTypeId, title, startDate, endDate, timer, notSafe, path);
     }
 
-    public Image readByTitle(String title)
+    public Image readByTitle(String title) throws SQLException
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT * FROM Image WHERE Title = ?";
+            String sql = "SELECT Presentation.* , Image.Path FROM Presentation, Image "
+                    + "WHERE Title = ? and Presentation.ID = Image.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, title);
 
@@ -93,39 +92,36 @@ public class ImageDBManager
                 return getOneImage(rs);
             }
         }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to read Image name.");
-        }
-        return null;
-    }
-    
-        public Image readByPath(String path)
-    {
-        try (Connection con = cm.getConnection())
-        {
-            String sql = "SELECT * FROM Image WHERE Path = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, path);
 
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                return getOneImage(rs);
-            }
-        }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to read Image name.");
-        }
         return null;
     }
 
-    public Image readById(int id)
+//    public Image readByPath(String path)
+//    {
+//        try (Connection con = cm.getConnection())
+//        {
+//            String sql = "SELECT * FROM Image WHERE Path = ?";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setString(1, path);
+//
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next())
+//            {
+//                return getOneImage(rs);
+//            }
+//        }
+//        catch (SQLException ex)
+//        {
+//            throw new BivExceptions("Unable to read Image name.");
+//        }
+//        return null;
+//    }
+    public Image readById(int id) throws SQLException
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT * FROM Image WHERE ID = ?";
+            String sql = "SELECT Presentation.* , Image.Path FROM Presentation, Image "
+                    + "WHERE Presentation.ID = ? and Presentation.ID = Image.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
@@ -135,67 +131,17 @@ public class ImageDBManager
                 return getOneImage(rs);
             }
         }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to read Image id.");
-        }
+
         return null;
     }
 
-    public ArrayList<Image> readByPriorityId(int id)
+    public ArrayList<Image> readByNotSafe(boolean safe) throws SQLException
     {
         try (Connection con = cm.getConnection())
         {
             ArrayList<Image> imgList = new ArrayList<>();
-            String sql = "SELECT * FROM Image WHERE PriorityId = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
-                Image img = getOneImage(rs);
-                imgList.add(img);
-            }
-
-            return imgList;
-        }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to read Image priority.");
-        }
-    }
-
-    public ArrayList<Image> readByDisplayId(int id)
-    {
-        try (Connection con = cm.getConnection())
-        {
-            ArrayList<Image> imgList = new ArrayList<>();
-            String sql = "SELECT * FROM Image WHERE DisplayId = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
-                Image img = getOneImage(rs);
-                imgList.add(img);
-            }
-
-            return imgList;
-        }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to read Image displayid.");
-        }
-    }
-
-    public ArrayList<Image> readByNotSafe(boolean safe)
-    {
-        try (Connection con = cm.getConnection())
-        {
-            ArrayList<Image> imgList = new ArrayList<>();
-            String sql = "SELECT * FROM Image WHERE NotSafe = ?";
+            String sql = "SELECT Presentation.* , Image.Path FROM Presentation, Image "
+                    + "WHERE Presentation.NotSafe = ? and Presentation.ID = Image.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setBoolean(1, safe);
 
@@ -208,10 +154,7 @@ public class ImageDBManager
 
             return imgList;
         }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to read Image safe");
-        }
+
     }
 
     public Image createImage(Image img) throws SQLException
@@ -220,7 +163,7 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
 
-            String sql = "Insert into Image(Title, Path, StartDate, EndDate, Timer, DisplayId, NotSafe, PriorityId)"
+            String sql = "Insert into Image(Title, Path, StartDate, EndDate, Timer, NotSafe)"
                     + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -230,9 +173,7 @@ public class ImageDBManager
             ps.setDate(3, img.getStartDate());
             ps.setDate(4, img.getEndDate());
             ps.setDouble(5, img.getTimer());
-            ps.setInt(6, img.getDisplayId());
-            ps.setBoolean(7, img.isNotSafe());
-            ps.setInt(8, img.getPriorityId());
+            ps.setBoolean(6, img.isNotSafe());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -278,10 +219,8 @@ public class ImageDBManager
             ps.setDate(3, img.getStartDate());
             ps.setDate(4, img.getEndDate());
             ps.setDouble(5, img.getTimer());
-            ps.setInt(6, img.getDisplayId());
-            ps.setBoolean(7, img.isNotSafe());
-            ps.setInt(8, img.getPriorityId());
-            ps.setInt(9, img.getId());
+            ps.setBoolean(6, img.isNotSafe());
+            ps.setInt(7, img.getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -292,4 +231,5 @@ public class ImageDBManager
         }
 
     }
+    
 }
