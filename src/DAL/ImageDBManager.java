@@ -171,9 +171,10 @@ public class ImageDBManager
                     + "COMMIT";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-
-            ps.setString(1, img.getTitle());
-            ps.setString(2, img.getPath());
+            
+            ps.setInt(1, img.getPresTypeId());
+            ps.setString(2, img.getTitle());
+          
             ps.setDate(3, img.getStartDate());
             ps.setDate(4, img.getEndDate());
             ps.setDouble(5, img.getTimer());
@@ -201,7 +202,7 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
             String sql = "BEGIN Transaction;\n"
-                    + "  DELETE FROM Image WHERE Text.PresentationId = ?\n"
+                    + "  DELETE FROM Image WHERE Image.PresentationId = ?\n"
                     + "  DELETE FROM Presentation WHERE Presentation.ID = ?\n"
                     + " COMMIT";
             PreparedStatement ps = con.prepareStatement(sql);
