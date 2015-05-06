@@ -22,7 +22,7 @@ public class NewImagePres extends javax.swing.JFrame
     String path;
     Date startDate, endDate;
     double timer;
-    int priorityId, displayId;
+
     boolean notSafe;
     Image img;
     ImageManager iMgr;
@@ -310,10 +310,9 @@ public class NewImagePres extends javax.swing.JFrame
         //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
         endDate = new java.sql.Date(jEndDate.getDate().getTime());
         timer = Double.parseDouble(jTimer.getText());
-        displayId = jDisplay.getSelectedIndex() + 1;
-        priorityId = jPrior.getSelectedIndex() + 1;
+
         notSafe = jNotSafe.isSelected();
-        img = new Image(title, path, startDate, endDate, timer, displayId, notSafe, priorityId);
+        img = new Image( 2,title,startDate, endDate, timer, notSafe, path);
         iMgr.createImage(img);
         
         dispose();

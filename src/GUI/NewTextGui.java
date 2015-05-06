@@ -23,7 +23,7 @@ public class NewTextGui extends javax.swing.JFrame
     Date endDate;
     double timer;
     int displayId;
-    int priorityId;
+
     boolean notSafe = false;
     Text text;
     TextManager tMgr;
@@ -289,10 +289,10 @@ public class NewTextGui extends javax.swing.JFrame
         //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
         endDate = new java.sql.Date(jEndDate.getDate().getTime());
         timer = Double.parseDouble(jTimer.getText());
-        displayId = jDisplay.getSelectedIndex() + 1;
-        priorityId = jPrior.getSelectedIndex() + 1;
+
+        
         notSafe = jNotSafe.isSelected();
-        text = new Text(title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
+        text = new Text(1,title, startDate, endDate, timer, notSafe, txt);
         tMgr.createText(text);
 
         dispose();
@@ -309,7 +309,7 @@ public class NewTextGui extends javax.swing.JFrame
 //     */
 //    public static void main(String args[])
 //    {
-//        /* Set the Nimbus look and feel */
+//        /* Set the Nimbus look and feel q*/
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

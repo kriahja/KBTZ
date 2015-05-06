@@ -34,8 +34,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
     Date startDate;
     Date endDate;
     double timer;
-    int displayId;
-    int priorityId;
+
     boolean notSafe = false;
     Image image;
     int id;
@@ -112,7 +111,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         jEndDate.setDate(image.getEndDate());
         //String.valueOf(double)
         jTimer.setText(String.valueOf(image.getTimer()));
-        jDisplay.setSelectedIndex(image.getDisplayId() - 1);
+
         jNotSafe.setSelected(image.isNotSafe());
 
         btnEdit.setEnabled(true);
@@ -464,10 +463,9 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
         endDate = new java.sql.Date(jEndDate.getDate().getTime());
         timer = Double.parseDouble(jTimer.getText());
-        displayId = jDisplay.getSelectedIndex() + 1;
-        priorityId = jPrior.getSelectedIndex() + 1;
+
         notSafe = jNotSafe.isSelected();
-        image = new Image(id, title, path, startDate, endDate, timer, displayId, notSafe, priorityId);
+        image = new Image(id, 2,title, startDate, endDate, timer, notSafe, path);
         System.out.println(image.getId());
         iMgr.updateImage(image);
 

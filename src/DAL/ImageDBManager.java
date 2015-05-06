@@ -163,17 +163,24 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
 
-            String sql = "Insert into Image(Title, Path, StartDate, EndDate, Timer, NotSafe)"
-                    + "Values (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "Begin TRANSACTION;\n"
+                    + " Insert INTO Presentation\n"
+                    + " VALUES (?, ?, ?, ?, ?, ?)\n"
+                    + " Insert INTO Image\n"
+                    + " VALUES (?,  SCOPE_IDENTITY())\n"
+                    + "COMMIT";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-
-            ps.setString(1, img.getTitle());
-            ps.setString(2, img.getPath());
+            
+            ps.setInt(1, img.getPresTypeId());
+            ps.setString(2, img.getTitle());
+          
             ps.setDate(3, img.getStartDate());
             ps.setDate(4, img.getEndDate());
             ps.setDouble(5, img.getTimer());
             ps.setBoolean(6, img.isNotSafe());
+
+            ps.setString(7, img.getPath());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -190,20 +197,21 @@ public class ImageDBManager
         }
     }
 
-    public void delete(int id)
+    public void delete(int id) throws SQLException
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "DELETE FROM Image WHERE ID = ?";
+            String sql = "BEGIN Transaction;\n"
+                    + "  DELETE FROM Image WHERE Image.PresentationId = ?\n"
+                    + "  DELETE FROM Presentation WHERE Presentation.ID = ?\n"
+                    + " COMMIT";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.setInt(2, id);
+            
 
             ps.executeUpdate();
 
-        }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to remove Image.");
         }
     }
 
@@ -211,16 +219,23 @@ public class ImageDBManager
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "UPDATE Image SET Title = ?, Path = ?, StartDate = ?, EndDate = ?, Timer = ?, DisplayId = ?, "
-                    + " NotSafe = ?, PriorityId = ? WHERE ID = ?";
+            String sql = " begin transaction\n"
+                    + " update Image set Path = ? where PresentationId = ?\n"
+                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ? where ID = ?\n"
+                    + " Commit ";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, img.getTitle());
-            ps.setString(2, img.getPath());
-            ps.setDate(3, img.getStartDate());
-            ps.setDate(4, img.getEndDate());
-            ps.setDouble(5, img.getTimer());
-            ps.setBoolean(6, img.isNotSafe());
-            ps.setInt(7, img.getId());
+            ps.setString(1, img.getPath());
+            ps.setInt(2, img.getId());
+            
+            ps.setString(3, img.getTitle());
+            
+            ps.setDate(4, img.getStartDate());
+            ps.setDate(5, img.getEndDate());
+            ps.setDouble(6, img.getTimer());
+            
+            ps.setBoolean(7, img.isNotSafe());
+            
+            ps.setInt(8, img.getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -231,5 +246,5 @@ public class ImageDBManager
         }
 
     }
-    
+
 }
