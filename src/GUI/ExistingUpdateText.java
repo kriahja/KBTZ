@@ -33,8 +33,8 @@ public class ExistingUpdateText extends javax.swing.JFrame
     Date startDate;
     Date endDate;
     double timer;
-    int displayId;
-    int priorityId;
+
+
     boolean notSafe = false;
     Text text;
     int id;
@@ -98,7 +98,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         jEndDate.setDate(text.getEndDate());
         //String.valueOf(double)
         jTimer.setText(String.valueOf(text.getTimer()));
-        jDisplay.setSelectedIndex(text.getDisplayId() - 1);
+       
         jNotSafe.setSelected(text.isNotSafe());
 
         btnEdit.setEnabled(true);
@@ -441,10 +441,9 @@ public class ExistingUpdateText extends javax.swing.JFrame
         //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
         endDate = new java.sql.Date(jEndDate.getDate().getTime());
         timer = Double.parseDouble(jTimer.getText());
-        displayId = jDisplay.getSelectedIndex() + 1;
-        priorityId = jPrior.getSelectedIndex() + 1;
+
         notSafe = jNotSafe.isSelected();
-        text = new Text(id, priorityId, title, startDate, endDate, timer, notSafe, txt);
+        text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
         System.out.println(text.getId());
         tMgr.updateText(text);
 

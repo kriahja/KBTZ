@@ -18,12 +18,12 @@ public class TextTableModel extends AbstractTableModel
 {
 
     public static final int NAME_COLUMN = 0;
-    public static final int DISPLAY_COLUMN = 1;
+    public static final int PresType_COLUMN = 1;
     
 
     private final String[] headers =
     {
-        "Title", "Display"
+        "Title", "PresType"
     };
 
     private final Class[] columnTypes =
@@ -65,8 +65,8 @@ public class TextTableModel extends AbstractTableModel
         {
             case NAME_COLUMN:
                 return t.getTitle();
-            case DISPLAY_COLUMN:
-                return t.getDisplayId();
+            case PresType_COLUMN:
+                return t.getPresTypeId();
         }
         return null;
     }

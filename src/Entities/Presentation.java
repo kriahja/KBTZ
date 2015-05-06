@@ -12,7 +12,7 @@ import java.sql.Date;
  *
  * @author notandi
  */
-public abstract class Presentation extends DisplayCtrl
+public abstract class Presentation
 {
 
     private PresType pType;
@@ -47,10 +47,10 @@ public abstract class Presentation extends DisplayCtrl
         presTypeId = pType.getId();
     }
 
-    public Presentation(int id, int dispId, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
+    public Presentation(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
     {
-        this.id = id;
-        setDisplayId(dispId);
+      
+        
         this.presTypeId = presTypeId;
         this.title = title;
         this.startDate = startDate;
@@ -58,12 +58,10 @@ public abstract class Presentation extends DisplayCtrl
         this.timer = timer;
         this.notSafe = notSafe;
     }
-    //With displayId.
-    public Presentation(int id, Presentation pres)
-    {
-        this(id, pres.getDisplayId(), pres.getPresTypeId(), pres.getTitle(), pres.getStartDate(), pres.getEndDate(), pres.getTimer(), pres.isNotSafe());
-    }
     
+    
+    
+ 
 
     abstract protected void doShow();
     

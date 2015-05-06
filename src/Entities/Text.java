@@ -26,6 +26,12 @@ public class Text extends Presentation
     {
         this(id, txt.getPresTypeId(), txt.getTitle(), txt.getStartDate(), txt.getEndDate(), txt.getTimer(), txt.isNotSafe(), txt.getText());
     }
+    
+    public Text(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text)
+    {
+        super( presTypeId, title, startDate, endDate, timer, notSafe);
+        this.text = text;
+    }
 
     @Override
     protected void doShow()
