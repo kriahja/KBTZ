@@ -12,6 +12,8 @@ import Entities.Image;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -113,7 +115,14 @@ public class ImageManager
 
     public void deleteImage(int id)
     {
-        db.delete(id);
+        try
+        {
+            db.delete(id);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("");
+        }
     }
 
     public void updateImage(Image txt)
