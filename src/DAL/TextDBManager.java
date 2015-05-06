@@ -40,6 +40,12 @@ public class TextDBManager
         }
         return instance;
     }
+        /**
+     * readAll Selects all text from the Presentation and uses the text.presentationID, gets the information about the length, start-end time, etc.
+     * 
+     * @return txtList.
+     * 
+     */
 
     public ArrayList<Text> readAll() throws SQLException
     {
@@ -56,7 +62,12 @@ public class TextDBManager
             }
             return txtList;
         }
-    }
+    }   
+    /**
+     * getOneText selects one text and gets the information about the length, start-end time, etc..
+     * @returns new text.
+     * 
+     */
 
     private Text getOneText(ResultSet rs) throws SQLException
     {
@@ -75,6 +86,12 @@ public class TextDBManager
 //        String depName = rs.getString("Name");
         return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, text);
     }
+    
+     /**
+     * readByTitle Reads all the TextPresentation based on the Title.
+     * 
+     */
+
 
     public Text readByTitle(String title) throws SQLException
     {
@@ -92,6 +109,11 @@ public class TextDBManager
         }
         return null;
     }
+     /**
+     *readById Reads all the TextPresentation by ID.
+     * @return null.
+     * 
+     */
 
     public Text readById(int id) throws SQLException
     {
@@ -108,6 +130,10 @@ public class TextDBManager
         }
         return null;
     }
+     /**
+      * readByNotSafe Reads all the TextPresentation that are marked notSafe.
+      * @return txtList
+     **/
 
     public ArrayList<Text> readByNotSafe(boolean safe) throws SQLException
     {
@@ -128,6 +154,11 @@ public class TextDBManager
 
         }
     }
+     /**
+     * createText, creates the Text presentation. puts in the presTypeId, Title, Start-End Date, Timer and NotSafe.
+     * @return new Text
+     */
+
 
     public Text createText(Text txt) throws SQLException
     {
@@ -166,6 +197,9 @@ public class TextDBManager
 
         }
     }
+     /**
+     * delete, deletes the text presentation by ID 
+     */
 
     public void delete(int id) throws SQLException
     {
@@ -182,6 +216,10 @@ public class TextDBManager
 
         }
     }
+     /**
+     * update, updates the text(title, start-end date, timer, notsafe) by the ID.
+     */
+
 
     public void update(Text txt) throws SQLException
     {
