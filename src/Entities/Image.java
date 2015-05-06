@@ -15,13 +15,17 @@ public class Image extends Presentation
 {
 
     private String path;
-
+    /**
+     * This is the constructor. 
+     */
     public Image(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String path)
     {
         super(id, presTypeId, title, startDate, endDate, timer, notSafe);
         this.path = path;
     }
-
+    /**
+     * This is a helper constructor. 
+     */
     public Image(int id, Image img)
     {
         this(id, img.getPresTypeId(), img.getTitle(), img.getStartDate(), img.getEndDate(), img.getTimer(), img.isNotSafe(), img.getPath());
@@ -34,7 +38,7 @@ public class Image extends Presentation
     }
 
     /**
-     * @return the path
+     * @return the path to get 
      */
     public String getPath()
     {

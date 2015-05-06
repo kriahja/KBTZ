@@ -41,7 +41,10 @@ public class TextDBManager
         }
         return instance;
     }
-
+    /**
+     * readAll selects every Text Presentation from Presentation, Where PresentationID compares to the TextPresentationID.
+     * @return txtList
+     */
     public ArrayList<Text> readAll() throws SQLException
     {
         try (Connection con = cm.getConnection())
@@ -60,6 +63,11 @@ public class TextDBManager
             return txtList;
         }
     }
+    
+    /**
+     * getOneText Selects one text from the SQL and takes the information about how long and when it should start and end etc.
+     * @return new Text.
+     */
 
     private Text getOneText(ResultSet rs) throws SQLException
     {
@@ -78,6 +86,12 @@ public class TextDBManager
 //        String depName = rs.getString("Name");
         return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, text);
     }
+    
+    /**
+     * readByTitle gets the Title (of the text) and it selects the text from presentation where the title is picked from the text.PresentationID.
+     * @return getOneText
+     */
+    
 
     public Text readByTitle(String title) throws SQLException
     {
@@ -97,6 +111,11 @@ public class TextDBManager
         }
         return null;
     }
+    /**
+     * readById selects the text with the specific ID.
+     * @return getOneText
+     * 
+     */
 
     public Text readById(int id) throws SQLException
     {

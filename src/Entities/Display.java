@@ -12,12 +12,15 @@ import Entities.DisplayCtrl.DisplayCtrl;
 /**
  *
  * @author notandi
+ * 
  */
 public class Display extends DisplayCtrl
 {
     private int id;
     private String screenName;
-
+    /**
+     * This is the constructor. 
+     */
     public Display(int id, String screenName)
     {
         this.id = id;

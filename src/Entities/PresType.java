@@ -8,18 +8,23 @@ package Entities;
 /**
  *
  * @author notandi
+ * this is the Presintation Type. Here we can get/set the Id and Type. 
  */
 public class PresType
 {
     private int id;
     private String type;
-
+    /**
+     * This is the constructor. 
+     */
     public PresType(int id, String type)
     {
         this.id = id;
         this.type = type;
     }
-    
+    /**
+     * This is a helper constructor. 
+     */
     public PresType(int id, PresType pType)
     {
         this(id, pType.getType());

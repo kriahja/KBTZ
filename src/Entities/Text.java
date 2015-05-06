@@ -15,13 +15,17 @@ public class Text extends Presentation
 {
     private String text;
     
-    
+    /**
+     * This is the constructor. 
+     */
     public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text)
     {
         super(id, presTypeId, title, startDate, endDate, timer, notSafe);
         this.text = text;
     }
-
+    /**
+     * This is a helper constructor. 
+     */
     public Text(int id, Text txt)
     {
         this(id, txt.getPresTypeId(), txt.getTitle(), txt.getStartDate(), txt.getEndDate(), txt.getTimer(), txt.isNotSafe(), txt.getText());

@@ -24,7 +24,7 @@ public abstract class Presentation extends DisplayCtrl
     private Date endDate;
     private double timer;
     private boolean notSafe;
-
+    
     public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
     {
         this.id = id;
