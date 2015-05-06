@@ -25,12 +25,11 @@ public class TextManager
     private static TextManager instance = null;
 
     private static TextDBManager db;
-    private List<Text> cars;
 
     private TextManager()
     {
 
-        cars = new ArrayList<>();
+       
         try
         {
             db = TextDBManager.getInstance();
@@ -112,7 +111,11 @@ public class TextManager
 
     public void deleteText(int id)
     {
-        db.delete(id);
+        try {
+            db.delete(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void updateText(Text txt)
@@ -123,7 +126,7 @@ public class TextManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions("");
+            throw new BivExceptions(""); 
         }
 
     }
