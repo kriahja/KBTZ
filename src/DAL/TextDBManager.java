@@ -35,7 +35,8 @@ public class TextDBManager
 
     public static TextDBManager getInstance() throws IOException
     {
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = new TextDBManager();
         }
         return instance;
@@ -43,14 +44,16 @@ public class TextDBManager
 
     public ArrayList<Text> readAll() throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "Select Presentation.* , Text.Text from Presentation, Text"
                     + " where Presentation.ID = Text.PresentationId";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
@@ -78,14 +81,16 @@ public class TextDBManager
 
     public Text readByTitle(String title) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Title = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, title);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneText(rs);
             }
 
@@ -95,14 +100,16 @@ public class TextDBManager
 
     public Text readById(int id) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Presentation.ID = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneText(rs);
             }
         }
@@ -111,7 +118,8 @@ public class TextDBManager
 
     public ArrayList<Text> readByNotSafe(boolean safe) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Presentation.NotSafe = ? and Presentation.ID = Text.PresentationId";
@@ -119,7 +127,8 @@ public class TextDBManager
             ps.setBoolean(1, safe);
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
@@ -132,7 +141,8 @@ public class TextDBManager
     public Text createText(Text txt) throws SQLException
     {
 
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"

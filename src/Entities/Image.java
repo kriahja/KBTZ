@@ -22,6 +22,11 @@ public class Image extends Presentation
         this.path = path;
     }
 
+    public Image(int id, Image img)
+    {
+        this(id, img.getPresTypeId(), img.getTitle(), img.getStartDate(), img.getEndDate(), img.getTimer(), img.isNotSafe(), img.getPath());
+    }
+
     @Override
     protected void doShow()
     {

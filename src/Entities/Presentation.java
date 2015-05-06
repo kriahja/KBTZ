@@ -5,7 +5,7 @@
  */
 package Entities;
 
-import BE.DisplayCtrl.DisplayCtrl;
+import Entities.DisplayCtrl.DisplayCtrl;
 import java.sql.Date;
 
 /**

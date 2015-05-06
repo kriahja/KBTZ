@@ -99,7 +99,6 @@ public class ExistingUpdateText extends javax.swing.JFrame
         //String.valueOf(double)
         jTimer.setText(String.valueOf(text.getTimer()));
         jDisplay.setSelectedIndex(text.getDisplayId() - 1);
-        jPrior.setSelectedIndex(text.getPriorityId() - 1);
         jNotSafe.setSelected(text.isNotSafe());
 
         btnEdit.setEnabled(true);
@@ -445,7 +444,7 @@ public class ExistingUpdateText extends javax.swing.JFrame
         displayId = jDisplay.getSelectedIndex() + 1;
         priorityId = jPrior.getSelectedIndex() + 1;
         notSafe = jNotSafe.isSelected();
-        text = new Text(id, title, txt, startDate, endDate, timer, displayId, notSafe, priorityId);
+        text = new Text(id, priorityId, title, startDate, endDate, timer, notSafe, txt);
         System.out.println(text.getId());
         tMgr.updateText(text);
 
