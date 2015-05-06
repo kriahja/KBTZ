@@ -312,7 +312,7 @@ public class NewImagePres extends javax.swing.JFrame
         timer = Double.parseDouble(jTimer.getText());
 
         notSafe = jNotSafe.isSelected();
-        img = new Image(title, path, startDate, endDate, timer, notSafe);
+        img = new Image( 2,title,startDate, endDate, timer, notSafe, path);
         iMgr.createImage(img);
         
         dispose();
