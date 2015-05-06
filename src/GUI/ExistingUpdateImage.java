@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -69,7 +68,6 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         btnRemove.setEnabled(false);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(this);
     }
 
     private void ImageList()
@@ -149,22 +147,22 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtTitle = new javax.swing.JTextField();
-        lblTitle = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnNext2 = new javax.swing.JButton();
         jFolder = new javax.swing.JComboBox();
-        lblFolderName = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        lblEndDate = new javax.swing.JLabel();
-        lblTimer = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jTimer = new javax.swing.JTextField();
         jDisplay = new javax.swing.JComboBox();
-        lblDisplayNr = new javax.swing.JLabel();
-        lblPriority = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPrior = new javax.swing.JComboBox();
         jNotSafe = new javax.swing.JCheckBox();
         btnUpdate = new javax.swing.JButton();
         jStartDate = new org.jdesktop.swingx.JXDatePicker();
-        lblStartDate = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jEndDate = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -241,7 +239,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             }
         });
 
-        lblTitle.setText("Title");
+        jLabel1.setText("Title");
 
         btnNext2.setText("Next");
         btnNext2.addActionListener(new java.awt.event.ActionListener()
@@ -260,7 +258,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             }
         });
 
-        lblFolderName.setText("Folder Name");
+        jLabel8.setText("Folder Name");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -270,7 +268,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblTitle)
+                        .addComponent(jLabel1)
                         .addGap(6, 6, 6)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
@@ -279,7 +277,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
                                 .addComponent(btnNext2)))
                         .addGap(35, 35, 35))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblFolderName)
+                        .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(jFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -289,11 +287,11 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitle)
+                    .addComponent(jLabel1)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFolderName)
+                    .addComponent(jLabel8)
                     .addComponent(jFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(129, 129, 129)
                 .addComponent(btnNext2)
@@ -318,15 +316,15 @@ public class ExistingUpdateImage extends javax.swing.JFrame
 
         jTabPane.addTab("tab2", jPanel2);
 
-        lblEndDate.setText("End Date");
+        jLabel4.setText("End Date");
 
-        lblTimer.setText("Timer");
+        jLabel6.setText("Timer");
 
         jDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
-        lblDisplayNr.setText("Display Nr.");
+        jLabel7.setText("Display Nr.");
 
-        lblPriority.setText("Priority");
+        jLabel5.setText("Priority");
 
         jPrior.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "High", "Medium", "Low" }));
 
@@ -348,15 +346,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             }
         });
 
-        jStartDate.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jStartDateActionPerformed(evt);
-            }
-        });
-
-        lblStartDate.setText("Start Date");
+        jLabel3.setText("Start Date");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -368,15 +358,15 @@ public class ExistingUpdateImage extends javax.swing.JFrame
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lblTimer)
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lblDisplayNr)
+                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lblPriority)
+                                .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(305, Short.MAX_VALUE))
@@ -385,11 +375,11 @@ public class ExistingUpdateImage extends javax.swing.JFrame
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblStartDate)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblEndDate))
+                                .addComponent(jLabel4))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jNotSafe)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -401,21 +391,21 @@ public class ExistingUpdateImage extends javax.swing.JFrame
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStartDate)
-                    .addComponent(lblEndDate)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
                     .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTimer)
+                    .addComponent(jLabel6)
                     .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDisplayNr)
+                    .addComponent(jLabel7)
                     .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPriority)
+                    .addComponent(jLabel5)
                     .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -524,12 +514,6 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jFolderActionPerformed
 
-    private void jStartDateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jStartDateActionPerformed
-    {//GEN-HEADEREND:event_jStartDateActionPerformed
-     
-       
-    }//GEN-LAST:event_jStartDateActionPerformed
-
     private void adjustSelection(int row)
     {
         if (imageModel.getRowCount() > 0)
@@ -604,6 +588,13 @@ public class ExistingUpdateImage extends javax.swing.JFrame
     private javax.swing.JComboBox jDisplay;
     private org.jdesktop.swingx.JXDatePicker jEndDate;
     private javax.swing.JComboBox jFolder;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JCheckBox jNotSafe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -614,13 +605,6 @@ public class ExistingUpdateImage extends javax.swing.JFrame
     private org.jdesktop.swingx.JXDatePicker jStartDate;
     private javax.swing.JTabbedPane jTabPane;
     private javax.swing.JTextField jTimer;
-    private javax.swing.JLabel lblDisplayNr;
-    private javax.swing.JLabel lblEndDate;
-    private javax.swing.JLabel lblFolderName;
-    private javax.swing.JLabel lblPriority;
-    private javax.swing.JLabel lblStartDate;
-    private javax.swing.JLabel lblTimer;
-    private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlJTable;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables

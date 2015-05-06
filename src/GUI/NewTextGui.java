@@ -37,7 +37,6 @@ public class NewTextGui extends javax.swing.JFrame
         initComponents();
         tMgr = TextManager.getInstance();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(this);
     }
     
     
@@ -58,21 +57,21 @@ public class NewTextGui extends javax.swing.JFrame
         jEditText = new javax.swing.JEditorPane();
         btnNext = new javax.swing.JButton();
         txtTitle = new javax.swing.JTextField();
-        lblTitle = new javax.swing.JLabel();
-        lblText = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jDisplay = new javax.swing.JComboBox();
-        lblPriority = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPrior = new javax.swing.JComboBox();
         jNotSafe = new javax.swing.JCheckBox();
         btnCreate = new javax.swing.JButton();
         jStartDate = new org.jdesktop.swingx.JXDatePicker();
-        lblStartDate = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jEndDate = new org.jdesktop.swingx.JXDatePicker();
-        lblEndDate = new javax.swing.JLabel();
-        lblTimer = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jTimer = new javax.swing.JTextField();
-        lblDisplayNr = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,9 +94,9 @@ public class NewTextGui extends javax.swing.JFrame
             }
         });
 
-        lblTitle.setText("Title");
+        jLabel1.setText("Title");
 
-        lblText.setText("Text");
+        jLabel2.setText("Text");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,8 +110,8 @@ public class NewTextGui extends javax.swing.JFrame
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblText))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
@@ -126,10 +125,10 @@ public class NewTextGui extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitle))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblText)
+                    .addComponent(jLabel2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNext)
@@ -140,7 +139,7 @@ public class NewTextGui extends javax.swing.JFrame
 
         jDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
-        lblPriority.setText("Priority");
+        jLabel5.setText("Priority");
 
         jPrior.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "High", "Medium", "Low" }));
 
@@ -170,13 +169,13 @@ public class NewTextGui extends javax.swing.JFrame
             }
         });
 
-        lblStartDate.setText("Start Date");
+        jLabel3.setText("Start Date");
 
-        lblEndDate.setText("End Date");
+        jLabel4.setText("End Date");
 
-        lblTimer.setText("Timer");
+        jLabel6.setText("Timer");
 
-        lblDisplayNr.setText("Display Nr.");
+        jLabel7.setText("Display Nr.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -188,15 +187,15 @@ public class NewTextGui extends javax.swing.JFrame
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblTimer)
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblDisplayNr)
+                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblPriority)
+                                .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(264, Short.MAX_VALUE))
@@ -205,11 +204,11 @@ public class NewTextGui extends javax.swing.JFrame
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblStartDate)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblEndDate))
+                                .addComponent(jLabel4))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jNotSafe)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,21 +220,21 @@ public class NewTextGui extends javax.swing.JFrame
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStartDate)
-                    .addComponent(lblEndDate)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
                     .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTimer)
+                    .addComponent(jLabel6)
                     .addComponent(jTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDisplayNr)
+                    .addComponent(jLabel7)
                     .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPriority)
+                    .addComponent(jLabel5)
                     .addComponent(jPrior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -358,6 +357,13 @@ public class NewTextGui extends javax.swing.JFrame
     private javax.swing.JComboBox jDisplay;
     private javax.swing.JEditorPane jEditText;
     private org.jdesktop.swingx.JXDatePicker jEndDate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JCheckBox jNotSafe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -366,13 +372,6 @@ public class NewTextGui extends javax.swing.JFrame
     private org.jdesktop.swingx.JXDatePicker jStartDate;
     private javax.swing.JTabbedPane jTabPane;
     private javax.swing.JTextField jTimer;
-    private javax.swing.JLabel lblDisplayNr;
-    private javax.swing.JLabel lblEndDate;
-    private javax.swing.JLabel lblPriority;
-    private javax.swing.JLabel lblStartDate;
-    private javax.swing.JLabel lblText;
-    private javax.swing.JLabel lblTimer;
-    private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
 }

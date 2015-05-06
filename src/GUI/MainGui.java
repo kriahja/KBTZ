@@ -30,8 +30,7 @@ public class MainGui extends javax.swing.JFrame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         pack();
-        //setLocationRelativeTo(null);
-        setLocationRelativeTo(this);
+        setLocationRelativeTo(null);
 
     }
 
@@ -45,12 +44,12 @@ public class MainGui extends javax.swing.JFrame
     private void initComponents()
     {
 
-        pnlText = new javax.swing.JPanel();
-        btnCreateNewMessage = new javax.swing.JButton();
-        btnEditExistingMessage = new javax.swing.JButton();
-        pnlImage = new javax.swing.JPanel();
-        btnEditExitingImagePresentation = new javax.swing.JButton();
-        btnVreateNewImagePresentation = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -63,85 +62,85 @@ public class MainGui extends javax.swing.JFrame
             }
         });
 
-        pnlText.setBorder(javax.swing.BorderFactory.createTitledBorder("Text"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Text"));
 
-        btnCreateNewMessage.setText("Create new Message");
-        btnCreateNewMessage.addActionListener(new java.awt.event.ActionListener()
+        jButton1.setText("Create new Message");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnCreateNewMessageActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        btnEditExistingMessage.setText("Edit Existing Message");
-        btnEditExistingMessage.addActionListener(new java.awt.event.ActionListener()
+        jButton2.setText("Edit Existing Message");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnEditExistingMessageActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlTextLayout = new javax.swing.GroupLayout(pnlText);
-        pnlText.setLayout(pnlTextLayout);
-        pnlTextLayout.setHorizontalGroup(
-            pnlTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTextLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCreateNewMessage)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditExistingMessage)
+                .addComponent(jButton2)
                 .addContainerGap())
         );
-        pnlTextLayout.setVerticalGroup(
-            pnlTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTextLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnCreateNewMessage)
-                    .addComponent(btnEditExistingMessage))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
-        pnlImage.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
 
-        btnEditExitingImagePresentation.setText("Edit Existing Image Presentation");
-        btnEditExitingImagePresentation.addActionListener(new java.awt.event.ActionListener()
+        jButton4.setText("Edit Existing Image Presentation");
+        jButton4.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnEditExitingImagePresentationActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
-        btnVreateNewImagePresentation.setText("Create new Image Presentation");
-        btnVreateNewImagePresentation.addActionListener(new java.awt.event.ActionListener()
+        jButton3.setText("Create new Image Presentation");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnVreateNewImagePresentationActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlImageLayout = new javax.swing.GroupLayout(pnlImage);
-        pnlImage.setLayout(pnlImageLayout);
-        pnlImageLayout.setHorizontalGroup(
-            pnlImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlImageLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnVreateNewImagePresentation)
+                .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditExitingImagePresentation)
+                .addComponent(jButton4)
                 .addContainerGap())
         );
-        pnlImageLayout.setVerticalGroup(
-            pnlImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlImageLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnVreateNewImagePresentation)
-                    .addComponent(btnEditExitingImagePresentation))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -165,12 +164,13 @@ public class MainGui extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlImage, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnlText, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1))
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -183,44 +183,43 @@ public class MainGui extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(30, 30, 30)
-                .addComponent(pnlText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(pnlImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(46, 46, 46))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreateNewMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewMessageActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         txtGui = new NewTextGui();
         txtGui.setVisible(true);
-        
 
-    }//GEN-LAST:event_btnCreateNewMessageActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnEditExistingMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditExistingMessageActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         exUpTxt = new ExistingUpdateText();
         exUpTxt.setVisible(true);
 
-    }//GEN-LAST:event_btnEditExistingMessageActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnVreateNewImagePresentationActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnVreateNewImagePresentationActionPerformed
-    {//GEN-HEADEREND:event_btnVreateNewImagePresentationActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
+    {//GEN-HEADEREND:event_jButton3ActionPerformed
         // TODO add your handling code here:
         newIm = new NewImagePres();
         newIm.setVisible(true);
 
-    }//GEN-LAST:event_btnVreateNewImagePresentationActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btnEditExitingImagePresentationActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditExitingImagePresentationActionPerformed
-    {//GEN-HEADEREND:event_btnEditExitingImagePresentationActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
+    {//GEN-HEADEREND:event_jButton4ActionPerformed
         // TODO add your handling code here:
         eui = new ExistingUpdateImage();
         eui.setVisible(true);
-    }//GEN-LAST:event_btnEditExitingImagePresentationActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_formKeyPressed
     {//GEN-HEADEREND:event_formKeyPressed
@@ -277,13 +276,13 @@ public class MainGui extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreateNewMessage;
-    private javax.swing.JButton btnEditExistingMessage;
-    private javax.swing.JButton btnEditExitingImagePresentation;
-    private javax.swing.JButton btnVreateNewImagePresentation;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel pnlImage;
-    private javax.swing.JPanel pnlText;
     // End of variables declaration//GEN-END:variables
 }
