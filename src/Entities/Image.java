@@ -21,6 +21,12 @@ public class Image extends Presentation
         super(id, presTypeId, title, startDate, endDate, timer, notSafe);
         this.path = path;
     }
+    
+    public Image(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String path)
+    {
+        super(presTypeId, title, startDate, endDate, timer, notSafe);
+        this.path = path;
+    }
 
     public Image(int id, Image img)
     {
