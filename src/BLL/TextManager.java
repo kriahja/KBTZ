@@ -111,7 +111,11 @@ public class TextManager
 
     public void deleteText(int id)
     {
-        db.delete(id);
+        try {
+            db.delete(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void updateText(Text txt)
