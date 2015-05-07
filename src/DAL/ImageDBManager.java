@@ -41,8 +41,9 @@ public class ImageDBManager
         }
         return instance;
     }
-     /**
-     *@param Image ArrayList reads all the ImagePresentations. 
+
+    /**
+     * @param Image ArrayList reads all the ImagePresentations.
      * @return imgList
      */
 
@@ -64,6 +65,7 @@ public class ImageDBManager
             return imgList;
         }
     }
+
     /**
      * @param rs results of the query.
      * @return imgList
@@ -80,14 +82,16 @@ public class ImageDBManager
         Double timer = rs.getDouble("Timer");
         boolean notSafe = rs.getBoolean("NotSafe");
         boolean disable = rs.getBoolean("Disable");
-        
+
         String path = rs.getString("Path");
 
 //        String depName = rs.getString("Name");
         return new Image(id, presTypeId, title, startDate, endDate, timer, notSafe, path);
     }
+
     /**
-     * @param title title of the image is used to locate a specific ImagePresentation. 
+     * @param title title of the image is used to locate a specific
+     * ImagePresentation.
      * @return getOneImage or null.
      */
 
@@ -130,7 +134,6 @@ public class ImageDBManager
 //        }
 //        return null;
 //    }
-   
     /**
      * @param id ImagePresentations are read by id.
      * @return null
@@ -153,6 +156,7 @@ public class ImageDBManager
 
         return null;
     }
+
     /**
      * @param safe Lists the ImagePresentations by notSafe.
      * @return imgList.
@@ -179,8 +183,9 @@ public class ImageDBManager
         }
 
     }
-     /**
-     * @param img creates ImagesPresentation. 
+
+    /**
+     * @param img creates ImagesPresentation.
      * @return Image
      */
 
@@ -198,10 +203,10 @@ public class ImageDBManager
                     + "COMMIT";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            
+
             ps.setInt(1, img.getPresTypeId());
             ps.setString(2, img.getTitle());
-          
+
             ps.setDate(3, img.getStartDate());
             ps.setDate(4, img.getEndDate());
             ps.setDouble(5, img.getTimer());
@@ -224,8 +229,9 @@ public class ImageDBManager
 
         }
     }
-     /**
-     * @param id deletes the image based on the imagePresentationId. 
+
+    /**
+     * @param id deletes the image based on the imagePresentationId.
      */
 
     public void delete(int id) throws SQLException
@@ -239,14 +245,14 @@ public class ImageDBManager
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.setInt(2, id);
-            
 
             ps.executeUpdate();
 
         }
     }
-     /**
-      * @param img updates the imagePresentations based on the presentationID.
+
+    /**
+     * @param img updates the imagePresentations based on the presentationID.
      */
 
     public void update(Image img) throws SQLException
@@ -260,16 +266,16 @@ public class ImageDBManager
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, img.getPath());
             ps.setInt(2, img.getId());
-            
+
             ps.setString(3, img.getTitle());
-            
+
             ps.setDate(4, img.getStartDate());
             ps.setDate(5, img.getEndDate());
             ps.setDouble(6, img.getTimer());
-            
+
             ps.setBoolean(7, img.isNotSafe());
             ps.setBoolean(8, img.isDisable());
-            
+
             ps.setInt(9, img.getId());
 
             int affectedRows = ps.executeUpdate();
@@ -280,6 +286,25 @@ public class ImageDBManager
 
         }
 
+    }
+
+    public void updateDisable(Image img) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "update Presentation set Disable = ? where ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setBoolean(1, img.isDisable());
+            ps.setInt(2, img.getId());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to Update image.");
+            }
+
+        }
     }
 
 }

@@ -35,32 +35,37 @@ public class TextDBManager
 
     public static TextDBManager getInstance() throws IOException
     {
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = new TextDBManager();
         }
         return instance;
     }
+
     /**
-     *@param Text ArrayList reads all the TextPresentations. 
+     * @param Text ArrayList reads all the TextPresentations.
      * @return txtList
      */
 
     public ArrayList<Text> readAll() throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "Select Presentation.* , Text.Text from Presentation, Text"
                     + " where Presentation.ID = Text.PresentationId";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
             return txtList;
         }
-    }   
+    }
+
     /**
      * @param rs results of the query.
      * @return new Text
@@ -84,56 +89,65 @@ public class TextDBManager
 //        String depName = rs.getString("Name");
         return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, text);
     }
-    
+
     /**
-     * @param title title of the Text is used to locate a specific TextPresentation. 
+     * @param title title of the Text is used to locate a specific
+     * TextPresentation.
      * @return getOneText or null.
      */
     public Text readByTitle(String title) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Title = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, title);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneText(rs);
             }
 
         }
         return null;
     }
-     /**
-     *@param id TextPresentation are read by ID.
-     * @return  getOneText or null.
-     * 
+
+    /**
+     * @param id TextPresentation are read by ID.
+     * @return getOneText or null.
+     *
      */
 
     public Text readById(int id) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Presentation.ID = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneText(rs);
             }
         }
         return null;
     }
-     /**
-      * @param safe Lists the TextPresentations by notSafe.
-      * @return txtList
-     **/
+
+    /**
+     * @param safe Lists the TextPresentations by notSafe.
+     * @return txtList
+     *
+     */
 
     public ArrayList<Text> readByNotSafe(boolean safe) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Presentation.NotSafe = ? and Presentation.ID = Text.PresentationId";
@@ -141,7 +155,8 @@ public class TextDBManager
             ps.setBoolean(1, safe);
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
@@ -150,16 +165,17 @@ public class TextDBManager
 
         }
     }
-     /**
-      * @param txt creates mew Text Presentations.
+
+    /**
+     * @param txt creates mew Text Presentations.
      * @return new Text
      */
-
 
     public Text createText(Text txt) throws SQLException
     {
 
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
@@ -182,7 +198,8 @@ public class TextDBManager
             ps.setString(8, txt.getText());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0) {
+            if (affectedRows == 0)
+            {
                 throw new BivExceptions("Unable to add pres.");
             }
 
@@ -194,13 +211,15 @@ public class TextDBManager
 
         }
     }
-     /**
-      * @param id deletes textPresentations by ID
+
+    /**
+     * @param id deletes textPresentations by ID
      */
 
     public void delete(int id) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "BEGIN Transaction;\n"
                     + "  DELETE FROM [Text] WHERE Text.PresentationId = ?\n"
                     + "  DELETE FROM Presentation WhERE Presentation.ID = ?\n"
@@ -213,14 +232,16 @@ public class TextDBManager
 
         }
     }
-     /**
-     * update, updates the text(title, start-end date, timer, notsafe) by the ID.
-     */
 
+    /**
+     * update, updates the text(title, start-end date, timer, notsafe) by the
+     * ID.
+     */
 
     public void update(Text txt) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             String sql = " begin transaction\n"
                     + " update Text set Text = ? where PresentationId = ?\n"
                     + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ?, Disable = ? where ID = ?\n"
@@ -228,9 +249,9 @@ public class TextDBManager
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, txt.getText());
             ps.setInt(2, txt.getId());
-            
+
             ps.setString(3, txt.getTitle());
-            
+
             ps.setDate(4, txt.getStartDate());
             ps.setDate(5, txt.getEndDate());
             ps.setDouble(6, txt.getTimer());
@@ -241,12 +262,32 @@ public class TextDBManager
             ps.setInt(9, txt.getId());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0) {
+            if (affectedRows == 0)
+            {
                 throw new BivExceptions("Unable to Update text.");
             }
 
         }
 
+    }
+
+    public void updateDisable(Text txt) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "update Presentation set Disable = ? where ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setBoolean(1, txt.isDisable());
+            ps.setInt(2, txt.getId());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to Update Text.");
+            }
+
+        }
     }
 
 }
