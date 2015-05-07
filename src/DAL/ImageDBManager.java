@@ -41,6 +41,10 @@ public class ImageDBManager
         }
         return instance;
     }
+     /**
+     * readAll Reads all the ImagePresentation 
+     * @return imgList
+     */
 
     public ArrayList<Image> readAll() throws SQLException
     {
@@ -60,6 +64,10 @@ public class ImageDBManager
             return imgList;
         }
     }
+    /**
+     * getOneImage selects one text and gets the information about the length, start-end time, etc..
+     * @return imgList
+     */
 
     private Image getOneImage(ResultSet rs) throws SQLException
     {
@@ -76,6 +84,10 @@ public class ImageDBManager
 //        String depName = rs.getString("Name");
         return new Image(id, presTypeId, title, startDate, endDate, timer, notSafe, path);
     }
+    /**
+     * readByTitle Reads all the ImagePresentation based on the Title.
+     * 
+     */
 
     public Image readByTitle(String title) throws SQLException
     {
@@ -116,6 +128,10 @@ public class ImageDBManager
 //        }
 //        return null;
 //    }
+    /**
+     * readById Reads all the ImagePresentation based on the Id.
+     * @return null
+     */
     public Image readById(int id) throws SQLException
     {
         try (Connection con = cm.getConnection())
@@ -134,6 +150,10 @@ public class ImageDBManager
 
         return null;
     }
+    /**
+     * readByNotSafe Reads all the ImagesPresentation based on if they are marked NotSafe.
+     * @return imgList.
+     */
 
     public ArrayList<Image> readByNotSafe(boolean safe) throws SQLException
     {
@@ -156,6 +176,10 @@ public class ImageDBManager
         }
 
     }
+       /**
+     * createImage creates the ImagePresentation based on what the user puts in about  timer, end-start time etc.
+     * @return Image.
+     */
 
     public Image createImage(Image img) throws SQLException
     {
@@ -196,6 +220,9 @@ public class ImageDBManager
 
         }
     }
+     /**
+     * delete deletes the Image based on the imagepresentationId or the presentationId is something specific.
+     */
 
     public void delete(int id) throws SQLException
     {
@@ -214,6 +241,9 @@ public class ImageDBManager
 
         }
     }
+     /**
+     * update, updates the ImagePresentation based on the presentationID and updates what the user wants to change.
+     */
 
     public void update(Image img) throws SQLException
     {
