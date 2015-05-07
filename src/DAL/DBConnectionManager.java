@@ -21,6 +21,10 @@ public class DBConnectionManager {
         }
         return instance;
     }
+    
+    /**
+     * DBConnectionManager connects us to the SQL(database)server with port,user,password.
+     */
 
    private DBConnectionManager(String fileName) throws IOException
     {       
