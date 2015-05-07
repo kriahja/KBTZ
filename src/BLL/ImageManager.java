@@ -12,13 +12,10 @@ import Entities.Image;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author notandi
- * manages information from DAL(ImageDBManager) to the GUI
+ * @author notandi manages information from DAL(ImageDBManager) to the GUI
  */
 public class ImageManager
 {
@@ -48,8 +45,10 @@ public class ImageManager
         }
         return instance;
     }
+
     /**
-     *@param Image Reads the Information in the ReadAll method in ImageDBManager.
+     * @param Image Reads the Information in the ReadAll method in
+     * ImageDBManager.
      */
     public ArrayList<Image> readAll()
     {
@@ -62,8 +61,9 @@ public class ImageManager
             throw new BivExceptions("Unable to readAll Image data");
         }
     }
+
     /**
-     *@param id Reads the Information in the getById method in ImageDBManager.
+     * @param id Reads the Information in the getById method in ImageDBManager.
      */
 
     public Image getById(int id)
@@ -77,8 +77,10 @@ public class ImageManager
             throw new BivExceptions("Unable to get Images by ID");
         }
     }
+
     /**
-     *@param Image Reads the Information in the getByNotSafe method in ImageDBManager.
+     * @param Image Reads the Information in the getByNotSafe method in
+     * ImageDBManager.
      */
 
     public ArrayList<Image> getBySafe()
@@ -92,8 +94,10 @@ public class ImageManager
             throw new BivExceptions("Unable to get Iformation by not safe");
         }
     }
+
     /**
-     *@param title Reads the Information in the getByTitle method in ImageDBManager.
+     * @param title Reads the Information in the getByTitle method in
+     * ImageDBManager.
      */
 
     public Image getByTitle(String title)
@@ -113,7 +117,8 @@ public class ImageManager
 //        return db.readByPath(path);
 //    }
     /**
-     *@param img Reads the Information in the createImage method in ImageDBManager.
+     * @param img Reads the Information in the createImage method in
+     * ImageDBManager.
      */
     public void createImage(Image img)
     {
@@ -127,8 +132,9 @@ public class ImageManager
         }
 
     }
-/**
-     *@param id Reads the Information in the delete method in ImageDBManager.
+
+    /**
+     * @param id Reads the Information in the delete method in ImageDBManager.
      */
     public void deleteImage(int id)
     {
@@ -141,8 +147,10 @@ public class ImageManager
             throw new BivExceptions("Unable to delte ImagePresentation ");
         }
     }
-/**
-     *@param img Reads the Information in the UpdateImage method in ImageDBManager.
+
+    /**
+     * @param img Reads the Information in the UpdateImage method in
+     * ImageDBManager.
      */
     public void updateImage(Image img)
     {
@@ -155,6 +163,18 @@ public class ImageManager
             throw new BivExceptions("Unable to Update ImagePresentation");
         }
 
+    }
+
+    public void updateDisable(Image img)
+    {
+        try
+        {
+            db.updateDisable(img);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("Unable to Update the Image");
+        }
     }
 
 //    public void guiCreateImage(Image text)
