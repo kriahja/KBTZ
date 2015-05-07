@@ -42,7 +42,7 @@ public class ImageDBManager
         return instance;
     }
      /**
-     * readAll Reads all the ImagePresentation 
+     *@param Image ArrayList read all the ImagePresentations. 
      * @return imgList
      */
 
@@ -65,6 +65,7 @@ public class ImageDBManager
         }
     }
     /**
+     * @param rs results of the query.
      * getOneImage selects one text and gets the information about the length, start-end time, etc..
      * @return imgList
      */
@@ -87,8 +88,8 @@ public class ImageDBManager
         return new Image(id, presTypeId, title, startDate, endDate, timer, notSafe, path);
     }
     /**
-     * readByTitle Reads all the ImagePresentation based on the Title.
-     * 
+     * @param title title of the image is used to locate a specific ImagePresentation. 
+     * @return getOneImage or null.
      */
 
     public Image readByTitle(String title) throws SQLException
