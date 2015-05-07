@@ -42,12 +42,6 @@ public class Image extends Presentation
         this(id, img.getPresTypeId(), img.getTitle(), img.getStartDate(), img.getEndDate(), img.getTimer(), img.isNotSafe(), img.getPath());
     }
 
-    @Override
-    protected void doShow()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * @return the path to get
      */

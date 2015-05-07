@@ -92,8 +92,6 @@ public abstract class Presentation
         this.notSafe = notSafe;
         this.disable = disable;
     }
-    
-    abstract protected void doShow();
 
     /**
      * @return the id

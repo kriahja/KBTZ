@@ -66,12 +66,6 @@ public class Text extends Presentation
         this.text = text;
     }
 
-    @Override
-    protected void doShow()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * @return the text
      */
