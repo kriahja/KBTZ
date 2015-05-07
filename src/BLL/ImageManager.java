@@ -109,8 +109,9 @@ public class ImageManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions("");
+            Logger.getLogger(ImageManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public void deleteImage(int id)
