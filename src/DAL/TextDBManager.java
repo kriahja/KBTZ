@@ -40,11 +40,9 @@ public class TextDBManager
         }
         return instance;
     }
-        /**
-     * readAll Selects all text from the Presentation and uses the text.presentationID, gets the information about the length, start-end time, etc.
-     * 
-     * @return txtList.
-     * 
+    /**
+     *@param Text ArrayList reads all the TextPresentations. 
+     * @return txtList
      */
 
     public ArrayList<Text> readAll() throws SQLException
@@ -64,9 +62,8 @@ public class TextDBManager
         }
     }   
     /**
-     * getOneText selects one text and gets the information about the length, start-end time, etc..
-     * @returns new text.
-     * 
+     * @param rs results of the query.
+     * @return new Text
      */
 
     private Text getOneText(ResultSet rs) throws SQLException
@@ -87,12 +84,10 @@ public class TextDBManager
         return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, text);
     }
     
-     /**
-     * readByTitle Reads all the TextPresentation based on the Title.
-     * 
+    /**
+     * @param title title of the Text is used to locate a specific TextPresentation. 
+     * @return getOneText or null.
      */
-
-
     public Text readByTitle(String title) throws SQLException
     {
         try (Connection con = cm.getConnection()) {
@@ -110,8 +105,8 @@ public class TextDBManager
         return null;
     }
      /**
-     *readById Reads all the TextPresentation by ID.
-     * @return null.
+     *@param id TextPresentation are read by ID.
+     * @return  getOneText or null.
      * 
      */
 
@@ -131,7 +126,7 @@ public class TextDBManager
         return null;
     }
      /**
-      * readByNotSafe Reads all the TextPresentation that are marked notSafe.
+      * @param safe Lists the TextPresentations by notSafe.
       * @return txtList
      **/
 
@@ -155,7 +150,7 @@ public class TextDBManager
         }
     }
      /**
-     * createText, creates the Text presentation. puts in the presTypeId, Title, Start-End Date, Timer and NotSafe.
+      * @param txt creates mew Text Presentations.
      * @return new Text
      */
 
@@ -198,7 +193,7 @@ public class TextDBManager
         }
     }
      /**
-     * delete, deletes the text presentation by ID 
+      * @param id deletes textPresentations by ID
      */
 
     public void delete(int id) throws SQLException
