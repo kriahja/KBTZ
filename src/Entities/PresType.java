@@ -8,7 +8,7 @@ package Entities;
 /**
  *
  * @author notandi
- * this is the Presintation Type. Here we can get/set the Id and Type. 
+ * 
  */
 public class PresType
 {
@@ -16,6 +16,8 @@ public class PresType
     private String type;
     /**
      * This is the constructor. 
+     * @param id
+     * @param type
      */
     public PresType(int id, String type)
     {
@@ -24,6 +26,8 @@ public class PresType
     }
     /**
      * This is a helper constructor. 
+     * @param id
+     * @param pType
      */
     public PresType(int id, PresType pType)
     {

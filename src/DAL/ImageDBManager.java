@@ -42,7 +42,7 @@ public class ImageDBManager
         return instance;
     }
      /**
-     *@param Image ArrayList read all the ImagePresentations. 
+     *@param Image ArrayList reads all the ImagePresentations. 
      * @return imgList
      */
 
@@ -66,7 +66,6 @@ public class ImageDBManager
     }
     /**
      * @param rs results of the query.
-     * getOneImage selects one text and gets the information about the length, start-end time, etc..
      * @return imgList
      */
 
@@ -131,8 +130,9 @@ public class ImageDBManager
 //        }
 //        return null;
 //    }
+   
     /**
-     * readById Reads all the ImagePresentation based on the Id.
+     * @param id ImagePresentations are read by id.
      * @return null
      */
     public Image readById(int id) throws SQLException
@@ -154,7 +154,7 @@ public class ImageDBManager
         return null;
     }
     /**
-     * readByNotSafe Reads all the ImagesPresentation based on if they are marked NotSafe.
+     * @param safe Lists the ImagePresentations by notSafe.
      * @return imgList.
      */
 
@@ -179,9 +179,9 @@ public class ImageDBManager
         }
 
     }
-       /**
-     * createImage creates the ImagePresentation based on what the user puts in about  timer, end-start time etc.
-     * @return Image.
+     /**
+     * @param img creates ImagesPresentation. 
+     * @return Image
      */
 
     public Image createImage(Image img) throws SQLException
@@ -225,7 +225,7 @@ public class ImageDBManager
         }
     }
      /**
-     * delete deletes the Image based on the imagepresentationId or the presentationId is something specific.
+     * @param id deletes the image based on the imagePresentationId. 
      */
 
     public void delete(int id) throws SQLException
@@ -246,7 +246,7 @@ public class ImageDBManager
         }
     }
      /**
-     * update, updates the ImagePresentation based on the presentationID and updates what the user wants to change.
+      * @param img updates the imagePresentations based on the presentationID.
      */
 
     public void update(Image img) throws SQLException

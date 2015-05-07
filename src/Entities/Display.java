@@ -18,8 +18,11 @@ public class Display extends DisplayCtrl
 {
     private int id;
     private String screenName;
+    
+    
     /**
-     * This is the constructor. 
+     *@param id for the display
+     * @param screenName for the Display.
      */
     public Display(int id, String screenName)
     {

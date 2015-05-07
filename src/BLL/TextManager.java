@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author notandi
+ * manages information from DAL(TextDBManager) to the GUI
  */
 public class TextManager
 {
@@ -47,7 +48,10 @@ public class TextManager
         }
         return instance;
     }
-
+     
+    /**
+     *@param Text gets the Information in readAll method from TextDBManager
+     */
     public ArrayList<Text> readAll()
     {
         try
@@ -59,6 +63,10 @@ public class TextManager
             throw new BivExceptions("Unable to readAll Text data");
         }
     }
+        /**
+     *@param id gets the Information in readById method from TextDBManager
+     */
+
 
     public Text getById(int id)
     {
@@ -68,9 +76,12 @@ public class TextManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions("");
+            throw new BivExceptions("Unable to Read By Id");
         }
     }
+    /**
+     *@param getBySafe reads all the information in ReadByNotSafe method in TextDBManager. 
+     */
 
     public ArrayList<Text> getBySafe()
     {
@@ -80,9 +91,12 @@ public class TextManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions("");
+            throw new BivExceptions("Unable to Read By NotSafe");
         }
     }
+    /**
+     *@param title  reads all the information in the getByTitle method in  TextDBManager.
+     */
 
     public Text getByTitle(String title)
     {
@@ -92,9 +106,12 @@ public class TextManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions("");
+            throw new BivExceptions("Unable to Read By Title");
         }
     }
+    /**
+     *@param text reads all the information in createText Method in  TextDBManager.
+     */
 
     public void createText(Text text)
     {
@@ -104,9 +121,12 @@ public class TextManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions("");
+            throw new BivExceptions("Unable to Create Text");
         }
     }
+    /**
+     *@param id  Deletes the text in the TextDBManager.
+     */
 
     public void deleteText(int id)
     {
@@ -116,6 +136,9 @@ public class TextManager
             Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /**
+     *@param txt updates the TextPresentations in the  TextDBManager
+     */
 
     public void updateText(Text txt)
     {
@@ -125,7 +148,7 @@ public class TextManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions(""); 
+            throw new BivExceptions("Unable to Update the Text"); 
         }
 
     }

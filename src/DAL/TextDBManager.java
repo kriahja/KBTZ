@@ -35,47 +35,37 @@ public class TextDBManager
 
     public static TextDBManager getInstance() throws IOException
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new TextDBManager();
         }
         return instance;
     }
-
     /**
-     * readAll Selects all text from the Presentation and uses the
-     * text.presentationID, gets the information about the length, start-end
-     * time, etc.
-     *
-     * @return txtList.
-     *
+     *@param Text ArrayList reads all the TextPresentations. 
+     * @return txtList
      */
+
     public ArrayList<Text> readAll() throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "Select Presentation.* , Text.Text from Presentation, Text"
                     + " where Presentation.ID = Text.PresentationId";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
             return txtList;
         }
-    }
-
+    }   
     /**
-     * getOneText selects one text and gets the information about the length,
-     * start-end time, etc..
-     *
-     * @returns new text.
-     *
+     * @param rs results of the query.
+     * @return new Text
      */
+
     private Text getOneText(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("ID");
@@ -87,71 +77,62 @@ public class TextDBManager
         Double timer = rs.getDouble("Timer");
 
         boolean notSafe = rs.getBoolean("NotSafe");
-        boolean disable = rs.getBoolean("Disable");
 
         String text = rs.getString("Text");
 
 //        String depName = rs.getString("Name");
         return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, text);
     }
-
+    
     /**
-     * readByTitle Reads all the TextPresentation based on the Title.
-     *
+     * @param title title of the Text is used to locate a specific TextPresentation. 
+     * @return getOneText or null.
      */
     public Text readByTitle(String title) throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Title = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, title);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 return getOneText(rs);
             }
 
         }
         return null;
     }
-
-    /**
-     * readById Reads all the TextPresentation by ID.
-     *
-     * @return null.
-     *
+     /**
+     *@param id TextPresentation are read by ID.
+     * @return  getOneText or null.
+     * 
      */
+
     public Text readById(int id) throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Presentation.ID = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 return getOneText(rs);
             }
         }
         return null;
     }
+     /**
+      * @param safe Lists the TextPresentations by notSafe.
+      * @return txtList
+     **/
 
-    /**
-     * readByNotSafe Reads all the TextPresentation that are marked notSafe.
-     *
-     * @return txtList
-     *
-     */
     public ArrayList<Text> readByNotSafe(boolean safe) throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             ArrayList<Text> txtList = new ArrayList<>();
             String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
                     + "WHERE Presentation.NotSafe = ? and Presentation.ID = Text.PresentationId";
@@ -159,8 +140,7 @@ public class TextDBManager
             ps.setBoolean(1, safe);
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
@@ -169,22 +149,20 @@ public class TextDBManager
 
         }
     }
-
-    /**
-     * createText, creates the Text presentation. puts in the presTypeId, Title,
-     * Start-End Date, Timer and NotSafe.
-     *
+     /**
+      * @param txt creates mew Text Presentations.
      * @return new Text
      */
+
+
     public Text createText(Text txt) throws SQLException
     {
 
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?)\n"
+                    + " VALUES (?, ?, ?, ?, ?, ?)\n"
                     + " Insert INTO [Text]\n"
                     + " VALUES (?,  SCOPE_IDENTITY())\n"
                     + "COMMIT";
@@ -198,13 +176,11 @@ public class TextDBManager
             ps.setDate(4, txt.getEndDate());
             ps.setDouble(5, txt.getTimer());
             ps.setBoolean(6, txt.isNotSafe());
-            ps.setBoolean(7, txt.isDisable());
 
-            ps.setString(8, txt.getText());
+            ps.setString(7, txt.getText());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
+            if (affectedRows == 0) {
                 throw new BivExceptions("Unable to add pres.");
             }
 
@@ -216,14 +192,13 @@ public class TextDBManager
 
         }
     }
-
-    /**
-     * delete, deletes the text presentation by ID
+     /**
+      * @param id deletes textPresentations by ID
      */
+
     public void delete(int id) throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             String sql = "BEGIN Transaction;\n"
                     + "  DELETE FROM [Text] WHERE Text.PresentationId = ?\n"
                     + "  DELETE FROM Presentation WhERE Presentation.ID = ?\n"
@@ -236,37 +211,34 @@ public class TextDBManager
 
         }
     }
-
-    /**
-     * update, updates the text(title, start-end date, timer, notsafe) by the
-     * ID.
+     /**
+     * update, updates the text(title, start-end date, timer, notsafe) by the ID.
      */
+
+
     public void update(Text txt) throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             String sql = " begin transaction\n"
                     + " update Text set Text = ? where PresentationId = ?\n"
-                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ?, Disable = ? where ID = ?\n"
+                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ? where ID = ?\n"
                     + " Commit ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, txt.getText());
             ps.setInt(2, txt.getId());
-
+            
             ps.setString(3, txt.getTitle());
-
+            
             ps.setDate(4, txt.getStartDate());
             ps.setDate(5, txt.getEndDate());
             ps.setDouble(6, txt.getTimer());
 
             ps.setBoolean(7, txt.isNotSafe());
-            ps.setBoolean(8, txt.isDisable());
 
-            ps.setInt(9, txt.getId());
+            ps.setInt(8, txt.getId());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
+            if (affectedRows == 0) {
                 throw new BivExceptions("Unable to Update text.");
             }
 

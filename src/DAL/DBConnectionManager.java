@@ -23,8 +23,8 @@ public class DBConnectionManager {
     }
     
     /**
-     * DBConnectionManager connects us to the SQL(database)server with port,user,password.
-     */
+     * @param fileName connects us to the SQL database server.
+    */
 
    private DBConnectionManager(String fileName) throws IOException
     {       
