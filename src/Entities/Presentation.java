@@ -23,7 +23,7 @@ public abstract class Presentation
     private Date endDate;
     private double timer;
     private boolean notSafe;
-    
+    private boolean disable;   
     /**
      *
      * @param id auto generated id for a specific  
@@ -34,7 +34,7 @@ public abstract class Presentation
      * @param timer timer for a specific presentation
      * @param notSafe mark for not safe(not costumerFriendly) for a specific text presentation
      */
-    private boolean disable;
+ 
 
     public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
     {

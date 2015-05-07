@@ -77,6 +77,7 @@ public class TextDBManager
         Double timer = rs.getDouble("Timer");
 
         boolean notSafe = rs.getBoolean("NotSafe");
+        boolean disable = rs.getBoolean("Disable");
 
         String text = rs.getString("Text");
 
@@ -162,7 +163,7 @@ public class TextDBManager
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
-                    + " VALUES (?, ?, ?, ?, ?, ?)\n"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?)\n"
                     + " Insert INTO [Text]\n"
                     + " VALUES (?,  SCOPE_IDENTITY())\n"
                     + "COMMIT";
@@ -176,8 +177,9 @@ public class TextDBManager
             ps.setDate(4, txt.getEndDate());
             ps.setDouble(5, txt.getTimer());
             ps.setBoolean(6, txt.isNotSafe());
+            ps.setBoolean(7, txt.isDisable());
 
-            ps.setString(7, txt.getText());
+            ps.setString(8, txt.getText());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
@@ -221,7 +223,7 @@ public class TextDBManager
         try (Connection con = cm.getConnection()) {
             String sql = " begin transaction\n"
                     + " update Text set Text = ? where PresentationId = ?\n"
-                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ? where ID = ?\n"
+                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ?, Disable = ? where ID = ?\n"
                     + " Commit ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, txt.getText());
@@ -234,8 +236,9 @@ public class TextDBManager
             ps.setDouble(6, txt.getTimer());
 
             ps.setBoolean(7, txt.isNotSafe());
+            ps.setBoolean(8, txt.isDisable());
 
-            ps.setInt(8, txt.getId());
+            ps.setInt(9, txt.getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
