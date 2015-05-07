@@ -42,7 +42,7 @@ public class ImageDBManager
         return instance;
     }
      /**
-     *@param Image ArrayList read all the ImagePresentations. 
+     *@param Image ArrayList reads all the ImagePresentations. 
      * @return imgList
      */
 
@@ -66,7 +66,6 @@ public class ImageDBManager
     }
     /**
      * @param rs results of the query.
-     * getOneImage selects one text and gets the information about the length, start-end time, etc..
      * @return imgList
      */
 

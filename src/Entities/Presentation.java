@@ -25,6 +25,16 @@ public abstract class Presentation
     private double timer;
     private boolean notSafe;
     
+    /**
+     *
+     * @param id auto generated id for a specific  
+     * @param presTypeId this determents the type of a specific presentation
+     * @param title title for the specific presentation
+     * @param startDate start Date for a specific presentation
+     * @param endDate end Date for a specific presentation
+     * @param timer timer for a specific presentation
+     * @param notSafe mark for not safe(not costumerFriendly) for a specific text presentation
+     */
     public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
     {
         this.id = id;
@@ -41,12 +51,24 @@ public abstract class Presentation
 //        this(id, pres.getPresTypeId(), pres.getTitle(), pres.getStartDate(), pres.getEndDate(), pres.getTimer(), pres.isNotSafe());
 //    }
 
+    /**
+     *
+     * @param pType
+     */
     public Presentation(PresType pType)
     {
         this.pType = pType;
         presTypeId = pType.getId();
     }
 
+    /**
+* @param presTypeId this determents the type of a specific presentation
+     * @param title title for the specific presentation
+     * @param startDate start Date for a specific presentation
+     * @param endDate end Date for a specific presentation
+     * @param timer timer for a specific presentation
+     * @param notSafe mark for not safe(not costumerFriendly) for a specific text presentation
+     */
     public Presentation(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
     {
       

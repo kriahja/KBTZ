@@ -8,6 +8,7 @@ package Entities.DisplayCtrl;
 /**
  *
  * @author notandi
+ * 
  */
 public interface IDisplayCtrl
 {
