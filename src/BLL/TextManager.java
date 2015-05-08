@@ -50,7 +50,7 @@ public class TextManager
     }
      
     /**
-     *@param Text gets the Information in readAll method from TextDBManager
+     * @return all the Text in TextDBManager
      */
     public ArrayList<Text> readAll()
     {
@@ -63,11 +63,12 @@ public class TextManager
             throw new BivExceptions("Unable to readAll Text data");
         }
     }
-        /**
-     *@param id gets the Information in readById method from TextDBManager
+     
+    /**
+     *
+     * @param id gets the Information in readById method from TextDBManager
+     * @return all the text by Id from TextDBManager
      */
-
-
     public Text getById(int id)
     {
         try
@@ -79,10 +80,12 @@ public class TextManager
             throw new BivExceptions("Unable to Read By Id");
         }
     }
-    /**
-     *@param getBySafe reads all the information in ReadByNotSafe method in TextDBManager. 
-     */
+   
 
+    /**
+     *
+     * @return all the text that is marked notSafe in TextDBManager
+     */
     public ArrayList<Text> getBySafe()
     {
         try
@@ -98,6 +101,11 @@ public class TextManager
      *@param title  reads all the information in the getByTitle method in  TextDBManager.
      */
 
+    /**
+     *
+     * @param title reads all the information in the getByTitle method in  TextDBManager.
+     * @return the Text By Title from TextDBManager
+     */
     public Text getByTitle(String title)
     {
         try

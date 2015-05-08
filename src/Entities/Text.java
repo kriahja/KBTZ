@@ -40,6 +40,11 @@ public class Text extends Presentation
         this.text = text;
     }
 
+    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, boolean disable)
+    {
+        super(id, presTypeId, title, startDate, endDate, timer, notSafe, disable);
+    }
+
     /**
      * @param id
      * @param txt

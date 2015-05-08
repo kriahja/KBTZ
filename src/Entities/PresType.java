@@ -16,8 +16,8 @@ public class PresType
     private String type;
     /**
      * This is the constructor. 
-     * @param id
-     * @param type
+     * @param id for the specific presentation type
+     * @param type for the presType
      */
     public PresType(int id, String type)
     {
@@ -26,8 +26,8 @@ public class PresType
     }
     /**
      * This is a helper constructor. 
-     * @param id
-     * @param pType
+     * @param id for a specific presentation type
+     * @param pType presentation type
      */
     public PresType(int id, PresType pType)
     {

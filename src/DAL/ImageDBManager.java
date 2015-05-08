@@ -45,6 +45,7 @@ public class ImageDBManager
     /**
      * @param Image ArrayList reads all the ImagePresentations.
      * @return imgList
+     * @throws java.sql.SQLException
      */
 
     public ArrayList<Image> readAll() throws SQLException
@@ -69,6 +70,7 @@ public class ImageDBManager
     /**
      * @param rs results of the query.
      * @return imgList
+     * @throws SQLException
      */
 
     private Image getOneImage(ResultSet rs) throws SQLException
@@ -90,9 +92,9 @@ public class ImageDBManager
     }
 
     /**
-     * @param title title of the image is used to locate a specific
-     * ImagePresentation.
-     * @return getOneImage or null.
+     * @param title title of the image is used to locate a specific ImagePresentation.
+     * @return getOneImage or null
+     * @throws java.sql.SQLException
      */
 
     public Image readByTitle(String title) throws SQLException
@@ -137,6 +139,7 @@ public class ImageDBManager
     /**
      * @param id ImagePresentations are read by id.
      * @return null
+     * @throws java.sql.SQLException
      */
     public Image readById(int id) throws SQLException
     {
@@ -160,6 +163,7 @@ public class ImageDBManager
     /**
      * @param safe Lists the ImagePresentations by notSafe.
      * @return imgList.
+     * @throws java.sql.SQLException
      */
 
     public ArrayList<Image> readByNotSafe(boolean safe) throws SQLException
@@ -187,6 +191,7 @@ public class ImageDBManager
     /**
      * @param img creates ImagesPresentation.
      * @return Image
+     * @throws java.sql.SQLException
      */
 
     public Image createImage(Image img) throws SQLException
@@ -231,6 +236,7 @@ public class ImageDBManager
 
     /**
      * @param id deletes the image based on the imagePresentationId.
+     * @throws java.sql.SQLException
      */
 
     public void delete(int id) throws SQLException
@@ -252,6 +258,7 @@ public class ImageDBManager
 
     /**
      * @param img updates the imagePresentations based on the presentationID.
+     * @throws java.sql.SQLException
      */
 
     public void update(Image img) throws SQLException
@@ -286,6 +293,10 @@ public class ImageDBManager
         }
 
     }
+     /**
+     * @param img disables or enables the imagePresentations
+     * @throws java.sql.SQLException
+     */
 
     public void updateDisable(Image img) throws SQLException
     {

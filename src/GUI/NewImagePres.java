@@ -7,7 +7,6 @@ package GUI;
 
 import BLL.ImageManager;
 import Entities.Image;
-import static java.awt.SystemColor.text;
 import java.io.File;
 import java.sql.Date;
 import javax.swing.JFrame;

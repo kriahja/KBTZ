@@ -7,7 +7,6 @@ package GUI.TextTable;
 
 import Entities.Text;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -18,12 +17,12 @@ public class TextTableModel extends AbstractTableModel
 {
 
     public static final int NAME_COLUMN = 0;
-    public static final int PresType_COLUMN = 1;
+
     
 
     private final String[] headers =
     {
-        "Title", "PresType"
+        "Title"
     };
 
     private final Class[] columnTypes =
@@ -65,8 +64,8 @@ public class TextTableModel extends AbstractTableModel
         {
             case NAME_COLUMN:
                 return t.getTitle();
-            case PresType_COLUMN:
-                return t.getPresTypeId();
+//            case PresType_COLUMN:
+//                return t.getPresTypeId();
         }
         return null;
     }

@@ -33,6 +33,11 @@ public class TextDBManager
 
     }
 
+    /**
+     *
+     * @return instance
+     * @throws IOException
+     */
     public static TextDBManager getInstance() throws IOException
     {
         if (instance == null)
@@ -43,10 +48,10 @@ public class TextDBManager
     }
 
     /**
-     * @param Text ArrayList reads all the TextPresentations.
+     *
      * @return txtList
+     * @throws SQLException
      */
-
     public ArrayList<Text> readAll() throws SQLException
     {
         try (Connection con = cm.getConnection())
@@ -66,10 +71,7 @@ public class TextDBManager
         }
     }
 
-    /**
-     * @param rs results of the query.
-     * @return new Text
-     */
+    
 
     private Text getOneText(ResultSet rs) throws SQLException
     {
@@ -91,9 +93,9 @@ public class TextDBManager
     }
 
     /**
-     * @param title title of the Text is used to locate a specific
-     * TextPresentation.
+     * @param title title of the Text is used to locate a specific TextPresentation.
      * @return getOneText or null.
+     * @throws SQLException
      */
     public Text readByTitle(String title) throws SQLException
     {
@@ -117,7 +119,7 @@ public class TextDBManager
     /**
      * @param id TextPresentation are read by ID.
      * @return getOneText or null.
-     *
+     * @throws SQLException
      */
 
     public Text readById(int id) throws SQLException
@@ -141,7 +143,7 @@ public class TextDBManager
     /**
      * @param safe Lists the TextPresentations by notSafe.
      * @return txtList
-     *
+     * @throws SQLException
      */
 
     public ArrayList<Text> readByNotSafe(boolean safe) throws SQLException
@@ -169,6 +171,7 @@ public class TextDBManager
     /**
      * @param txt creates mew Text Presentations.
      * @return new Text
+     * @throws SQLException
      */
 
     public Text createText(Text txt) throws SQLException
@@ -213,6 +216,7 @@ public class TextDBManager
 
     /**
      * @param id deletes textPresentations by ID
+     * @throws SQLException
      */
 
     public void delete(int id) throws SQLException
@@ -233,8 +237,8 @@ public class TextDBManager
     }
 
     /**
-     * update, updates the text(title, start-end date, timer, notsafe) by the
-     * ID.
+     *@param txt updates the text by the Id
+     * @throws SQLException
      */
 
     public void update(Text txt) throws SQLException
@@ -270,6 +274,10 @@ public class TextDBManager
 
     }
 
+       /**
+     * @param txt+ disables or enables the imagePresentations
+     * @throws java.sql.SQLException
+     */
     public void updateDisable(Text txt) throws SQLException
     {
         try (Connection con = cm.getConnection())
