@@ -8,6 +8,7 @@ package GUI;
 import BLL.DisplayCtrlManager;
 import BLL.ImageManager;
 import BLL.TextManager;
+import Entities.DisplayCtrl;
 import Entities.Image;
 import Entities.Text;
 import GUI.PresentationTable.PresentationTable;
@@ -39,6 +40,7 @@ public class GuiMain2 extends javax.swing.JFrame
     private PresentationTable presTable;
     private PresentationTableModel presModel;
     private final DisplayCtrlManager dcMgr;
+    DisplayCtrl pres;
 
     private final TextManager tMgr;
     private final ImageManager iMgr;
@@ -95,7 +97,7 @@ public class GuiMain2 extends javax.swing.JFrame
                 {
                     if (presTable.getSelectedRow() != -1)
                     {
-                        showTextData();
+                        showPresData();
                     }
                     else
                     {
@@ -104,6 +106,11 @@ public class GuiMain2 extends javax.swing.JFrame
                 }
             }
         });
+    }
+
+    private void showPresData()
+    {
+        pres = presModel.getDisplayCtrlByRow(presTable.convertRowIndexToModel(presTable.getSelectedRow()));
     }
 
     private void TextList()
@@ -1371,6 +1378,11 @@ public class GuiMain2 extends javax.swing.JFrame
         cbxChooseDisplay.setSelectedIndex(0);
         dpEditEndDate.setDate(null);
         dpEditStartDate.setDate(null);
+    }
+    
+    public void clearPresData()
+    {
+        pnlPresentationTableCont.setVisible(false);
     }
 
     /**
