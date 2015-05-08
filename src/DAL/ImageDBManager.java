@@ -197,7 +197,7 @@ public class ImageDBManager
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?)\n"
+                    + " VALUES (?, ?, ?, ?, ?, ?, 'false')\n"
                     + " Insert INTO Image\n"
                     + " VALUES (?,  SCOPE_IDENTITY())\n"
                     + "COMMIT";
@@ -211,9 +211,8 @@ public class ImageDBManager
             ps.setDate(4, img.getEndDate());
             ps.setDouble(5, img.getTimer());
             ps.setBoolean(6, img.isNotSafe());
-            ps.setBoolean(7, img.isDisable());
 
-            ps.setString(8, img.getPath());
+            ps.setString(7, img.getPath());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
