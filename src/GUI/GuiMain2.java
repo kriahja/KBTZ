@@ -5,15 +5,15 @@
  */
 package GUI;
 
+import BLL.ImageManager;
 import BLL.TextManager;
+import Entities.Image;
 import Entities.Text;
 import GUI.TextTable.TextTable;
 import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -32,6 +32,7 @@ public class GuiMain2 extends javax.swing.JFrame {
     private TextTable textTable;
     private TextTableModel textModel;
     private final TextManager tMgr;
+    private final ImageManager iMgr;
     
     String title;
     String txt;
@@ -39,8 +40,10 @@ public class GuiMain2 extends javax.swing.JFrame {
     Date endDate;
     double timer;
     int displayId;
-    int priorityId;
+    int index;    
+    int presTypeId;
     boolean notSafe = false;
+    Image image;
     Text text;
     Text tt;
     int id;
@@ -53,6 +56,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         pnlCreateFolder.setVisible(false);
                 
         tMgr = TextManager.getInstance();
+        iMgr = ImageManager.getInstance();
         
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int)screensize.getWidth();
@@ -154,14 +158,11 @@ public class GuiMain2 extends javax.swing.JFrame {
         pnlClean = new javax.swing.JPanel();
         pnlCreate = new javax.swing.JPanel();
         txtCreateTitle = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtCreateTextArea = new javax.swing.JTextArea();
         createHeading = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         closeCreate = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -175,6 +176,10 @@ public class GuiMain2 extends javax.swing.JFrame {
         pnlCreateFolder = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         cbxCreateFolder = new javax.swing.JComboBox();
+        pnlTextArea = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtCreateTextArea = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
         pnlEdit = new javax.swing.JPanel();
         editHeader = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -277,7 +282,7 @@ public class GuiMain2 extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 586, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -319,7 +324,7 @@ public class GuiMain2 extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addGroup(presentationCardLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 110, Short.MAX_VALUE))
+                .addGap(0, 247, Short.MAX_VALUE))
             .addGroup(presentationCardLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +344,7 @@ public class GuiMain2 extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
 
@@ -498,11 +503,11 @@ public class GuiMain2 extends javax.swing.JFrame {
         pnlClean.setLayout(pnlCleanLayout);
         pnlCleanLayout.setHorizontalGroup(
             pnlCleanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 709, Short.MAX_VALUE)
+            .addGap(0, 846, Short.MAX_VALUE)
         );
         pnlCleanLayout.setVerticalGroup(
             pnlCleanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
 
         CardLayoutSet.add(pnlClean, "card4");
@@ -514,10 +519,6 @@ public class GuiMain2 extends javax.swing.JFrame {
                 txtCreateTitleActionPerformed(evt);
             }
         });
-
-        txtCreateTextArea.setColumns(20);
-        txtCreateTextArea.setRows(5);
-        jScrollPane1.setViewportView(txtCreateTextArea);
 
         createHeading.setBackground(new java.awt.Color(67, 74, 84));
 
@@ -576,9 +577,6 @@ public class GuiMain2 extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         jLabel9.setText("Title:");
-
-        jLabel10.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
-        jLabel10.setText("Text:");
 
         jLabel11.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         jLabel11.setText("Start Date:");
@@ -643,7 +641,33 @@ public class GuiMain2 extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbxCreateFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
+        );
+
+        pnlTextArea.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtCreateTextArea.setColumns(20);
+        txtCreateTextArea.setRows(5);
+        jScrollPane1.setViewportView(txtCreateTextArea);
+
+        jLabel10.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        jLabel10.setText("Text:");
+
+        javax.swing.GroupLayout pnlTextAreaLayout = new javax.swing.GroupLayout(pnlTextArea);
+        pnlTextArea.setLayout(pnlTextAreaLayout);
+        pnlTextAreaLayout.setHorizontalGroup(
+            pnlTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTextAreaLayout.createSequentialGroup()
+                .addComponent(jLabel10)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+        );
+        pnlTextAreaLayout.setVerticalGroup(
+            pnlTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTextAreaLayout.createSequentialGroup()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlCreateLayout = new javax.swing.GroupLayout(pnlCreate);
@@ -653,10 +677,8 @@ public class GuiMain2 extends javax.swing.JFrame {
             .addComponent(createHeading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlCreateLayout.createSequentialGroup()
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
                     .addGroup(pnlCreateLayout.createSequentialGroup()
-                        .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCreateTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
@@ -677,8 +699,9 @@ public class GuiMain2 extends javax.swing.JFrame {
                         .addComponent(btnCreateNew)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelCreate))
-                    .addComponent(pnlCreateFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 223, Short.MAX_VALUE))
+                    .addComponent(pnlCreateFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 360, Short.MAX_VALUE))
         );
         pnlCreateLayout.setVerticalGroup(
             pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -693,11 +716,9 @@ public class GuiMain2 extends javax.swing.JFrame {
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCreateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cxCreateNotSafe))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(pnlTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12))
@@ -705,13 +726,13 @@ public class GuiMain2 extends javax.swing.JFrame {
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dpCreateStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dpCreateEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCreateTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
                 .addComponent(pnlCreateFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateNew)
                     .addComponent(btnCancelCreate))
@@ -820,7 +841,7 @@ public class GuiMain2 extends javax.swing.JFrame {
                 .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRemoveChosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEditChosen, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 632, Short.MAX_VALUE))
+                .addGap(0, 769, Short.MAX_VALUE))
         );
         pnlEditCard1Layout.setVerticalGroup(
             pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -832,7 +853,7 @@ public class GuiMain2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemoveChosen))
                     .addComponent(pnlTableContEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(501, Short.MAX_VALUE))
+                .addContainerGap(503, Short.MAX_VALUE))
         );
 
         pnlEditCardContainer.add(pnlEditCard1, "card3");
@@ -950,7 +971,7 @@ public class GuiMain2 extends javax.swing.JFrame {
                             .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel21)
                                 .addComponent(dpEditEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 223, Short.MAX_VALUE))
+                .addGap(0, 360, Short.MAX_VALUE))
             .addGroup(pnlEditCard2Layout.createSequentialGroup()
                 .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEditTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1168,23 +1189,48 @@ public class GuiMain2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxChooseDisplayActionPerformed
 
     private void btnCreateNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewActionPerformed
+       int selection = cbxPresentationType.getSelectedIndex();
+       switch(selection){
+           case 1:
+                saveTextPresentation(); 
+                break;
+           case 2:
+                saveImagePresentation();
+                break; 
+       }
+        
+        clearCreateData();
+    }//GEN-LAST:event_btnCreateNewActionPerformed
+
+    private void saveTextPresentation() throws NumberFormatException {
         title = txtCreateTitle.getText();
         txt = txtCreateTextArea.getText();
         System.out.println(title + "  " + txt);
-
+        presTypeId = cbxPresentationType.getSelectedIndex()+1;
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
-        //       startDate = (java.sql.Date) jStartDate.getDate().getTime();
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
-//        priorityId = jPrior.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
-//        text = new Text(title, txt, startDate, endDate, timer, displayId, notSafe);
+        
+        text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
         tMgr.createText(text);
-        clearCreateData();
+    }
+    
+    private void saveImagePresentation() throws NumberFormatException {
+        title = txtCreateTitle.getText();
         
+        System.out.println(title + "  " + txt);
+        presTypeId = cbxPresentationType.getSelectedIndex()+1;
+        startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
+        endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
+        timer = Double.parseDouble(txtCreateTimer.getText());
+        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        notSafe = cxCreateNotSafe.isSelected();
         
-    }//GEN-LAST:event_btnCreateNewActionPerformed
+        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+       
+    }
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
         pnlCreate.setVisible(false);
@@ -1205,9 +1251,11 @@ public class GuiMain2 extends javax.swing.JFrame {
         if(cbxPresentationType.getSelectedItem() == "Image"){
             pnlEditFolder.setVisible(true);
             pnlCreateFolder.setVisible(true);
+            pnlTextArea.setVisible(false);
         }else {
             pnlEditFolder.setVisible(false);
             pnlCreateFolder.setVisible(false);
+            pnlTextArea.setVisible(true);
         }
        
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
@@ -1355,6 +1403,7 @@ public class GuiMain2 extends javax.swing.JFrame {
     private javax.swing.JPanel pnlLeftSettings;
     private javax.swing.JPanel pnlPresentationTableCont;
     private javax.swing.JPanel pnlTableContEdit;
+    private javax.swing.JPanel pnlTextArea;
     private javax.swing.JPanel presentationCard;
     private javax.swing.JPanel settingsCard;
     private javax.swing.JTextArea txtCreateTextArea;
