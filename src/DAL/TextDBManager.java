@@ -179,7 +179,7 @@ public class TextDBManager
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?)\n"
+                    + " VALUES (?, ?, ?, ?, ?, ?, 'false')\n"
                     + " Insert INTO [Text]\n"
                     + " VALUES (?,  SCOPE_IDENTITY())\n"
                     + "COMMIT";
@@ -193,9 +193,8 @@ public class TextDBManager
             ps.setDate(4, txt.getEndDate());
             ps.setDouble(5, txt.getTimer());
             ps.setBoolean(6, txt.isNotSafe());
-            ps.setBoolean(7, txt.isDisable());
 
-            ps.setString(8, txt.getText());
+            ps.setString(7, txt.getText());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
