@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author notandi manages information from DAL(ImageDBManager) to the GUI
+ * @author notandi 
+ * manages information from DAL(ImageDBManager) to the GUI
  */
 public class ImageManager
 {
@@ -47,8 +48,7 @@ public class ImageManager
     }
 
     /**
-     * @param Image Reads the Information in the ReadAll method in
-     * ImageDBManager.
+     * @return all the Images in ImageDBManager
      */
     public ArrayList<Image> readAll()
     {
@@ -64,6 +64,7 @@ public class ImageManager
 
     /**
      * @param id Reads the Information in the getById method in ImageDBManager.
+     * @return the Id in ImageDBManager
      */
 
     public Image getById(int id)
@@ -79,8 +80,7 @@ public class ImageManager
     }
 
     /**
-     * @param Image Reads the Information in the getByNotSafe method in
-     * ImageDBManager.
+     * @return Images that are marked notSafe in ImageDBManager
      */
 
     public ArrayList<Image> getBySafe()
@@ -98,6 +98,7 @@ public class ImageManager
     /**
      * @param title Reads the Information in the getByTitle method in
      * ImageDBManager.
+     * @return returns the images that by Title
      */
 
     public Image getByTitle(String title)
