@@ -19,10 +19,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Date;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 /**
  *
@@ -106,6 +109,20 @@ public class GuiMain2 extends javax.swing.JFrame
                 }
             }
         });
+        presModel.addTableModelListener(new TableModelListener()
+        {
+            @Override
+            public void tableChanged(TableModelEvent tme)
+            {
+                // Clearing and setting back the selection triggers the 
+                // selection listener of the JTable 
+                presTable.clearSelection();
+                //  presTable.setRowSelectionInterval(0, 0);
+                presTable.setRowSelectionInterval(tme.getFirstRow(), tme.getFirstRow());
+            }
+        });
+        
+        ((JComponent) presTable.getDefaultRenderer(Boolean.class)).setOpaque(true);
     }
 
     private void showPresData()
@@ -1379,7 +1396,7 @@ public class GuiMain2 extends javax.swing.JFrame
         dpEditEndDate.setDate(null);
         dpEditStartDate.setDate(null);
     }
-    
+
     public void clearPresData()
     {
         pnlPresentationTableCont.setVisible(false);
