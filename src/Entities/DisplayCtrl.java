@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.sql.Date;
+
 /**
  *
  * @author notandi
@@ -22,6 +24,9 @@ public class DisplayCtrl
     private String presType;
     private String screenName;
     private boolean disable;
+    
+    private Date startDate;
+    private Date endDate;
 
     public DisplayCtrl(int presId, int dispId)
     {
@@ -36,6 +41,12 @@ public class DisplayCtrl
         this.screenName = screenName;
         this.disable = disable;
         
+    }
+    
+    public DisplayCtrl(Date startDate, Date endDate)
+    {
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     /**
@@ -116,6 +127,38 @@ public class DisplayCtrl
     public void setDisable(boolean disable)
     {
         this.disable = disable;
+    }
+
+    /**
+     * @return the startDate
+     */
+    public Date getStartDate()
+    {
+        return startDate;
+    }
+
+    /**
+     * @param startDate the startDate to set
+     */
+    public void setStartDate(Date startDate)
+    {
+        this.startDate = startDate;
+    }
+
+    /**
+     * @return the endDate
+     */
+    public Date getEndDate()
+    {
+        return endDate;
+    }
+
+    /**
+     * @param endDate the endDate to set
+     */
+    public void setEndDate(Date endDate)
+    {
+        this.endDate = endDate;
     }
 
 }

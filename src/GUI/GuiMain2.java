@@ -85,7 +85,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private void PresentationList()
     {
-        presModel = new PresentationTableModel(dcMgr.readAllPres());
+        presModel = new PresentationTableModel(dcMgr.runningPresentations());
 
         presTable = new PresentationTable(presModel);
 

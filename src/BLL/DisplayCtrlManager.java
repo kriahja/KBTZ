@@ -9,9 +9,12 @@ import BLL.Exceptions.BivExceptions;
 import DAL.DisplayCtrlDBManager;
 import Entities.DisplayCtrl;
 import Entities.Image;
+import Entities.Presentation;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,5 +63,31 @@ public class DisplayCtrlManager
         }
         return null;
 
+    }
+
+    public ArrayList<DisplayCtrl> runningPresentations()
+    {
+        try
+        {
+            ArrayList<DisplayCtrl> all = new ArrayList<>();
+            ArrayList<DisplayCtrl> current = new ArrayList<>();
+            all = db.readAllPres();
+            Date now = new Date(System.currentTimeMillis());
+            Calendar c = Calendar.getInstance();
+
+            for (int i = 0; i < all.size(); ++i)
+            {
+                if ((all.get(i).getStartDate().before(now) || all.get(i).getStartDate() == now)
+                        && (all.get(i).getEndDate().after(now) || all.get(i).getEndDate() == now))
+                {
+                    current.add(all.get(i));
+                }
+            }
+            return current;
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("unable to load texts");
+        }
     }
 }

@@ -75,8 +75,8 @@ public class PresentationTableModel extends AbstractTableModel
         }
         return null;
     }
-    
-     @Override
+
+    @Override
     public String getColumnName(int col)
     {
         return headers[col];
@@ -88,6 +88,27 @@ public class PresentationTableModel extends AbstractTableModel
         return columnTypes[col];
     }
 
+    @Override
+    public boolean isCellEditable(int row, int col)
+    {
+        return (col != TITLE_COLUMN && col != TYPE_COLUMN && col != DISAPLY_COLUMN);
+    }
+
+    @Override
+    public void setValueAt(Object value, int row, int col)
+    {
+        DisplayCtrl dc = pres.get(row);
+        switch (col)
+        {
+
+            case DISABLE_COLUMN:
+                dc.setDisable(Boolean.valueOf(value.toString()));
+                break;
+        }
+        // Fire this event to trigger the tableModelListener.
+        fireTableRowsUpdated(row, row);
+    }
+
     public DisplayCtrl getDisplayCtrlByRow(int row)
     {
         return pres.get(row);
@@ -97,6 +118,6 @@ public class PresentationTableModel extends AbstractTableModel
     {
         pres = txtList;
         fireTableDataChanged();
-    } 
+    }
 
 }
