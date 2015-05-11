@@ -21,6 +21,7 @@ import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.sql.Date;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -66,6 +67,12 @@ public class GuiMain2 extends javax.swing.JFrame {
     Text tt;
     Image img;
     int id;
+    boolean disable;
+    String path;
+    
+     File shared;
+  //  File[] folders;
+    String[] folders;
 
     public GuiMain2() {
         initComponents();
@@ -82,6 +89,16 @@ public class GuiMain2 extends javax.swing.JFrame {
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
         PresentationList();
+        
+        
+         shared = new File("c:/Info/images");
+        
+        folders = shared.list();
+      //  folders = shared.listFiles();
+        for (String paths : folders) {
+            cbxFolder.addItem(paths);
+            cbxCreateFolder.addItem(paths);
+        }
 
         pnlTableCardText.setVisible(false);
         pnlTableCardImage.setVisible(false);
@@ -219,7 +236,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         txtEditTimer.setText(String.valueOf(image.getTimer()));
 
         cxEditNotSafe.setSelected(image.isNotSafe());
-
+        cbxFolder.setSelectedItem(image.getPath());
         btnEdit.setEnabled(true);
         btnRemoveChosen.setEnabled(true);
 
@@ -782,8 +799,6 @@ public class GuiMain2 extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         jLabel16.setText("Folder:");
 
-        cbxCreateFolder.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout pnlCreateFolderLayout = new javax.swing.GroupLayout(pnlCreateFolder);
         pnlCreateFolder.setLayout(pnlCreateFolderLayout);
         pnlCreateFolderLayout.setHorizontalGroup(
@@ -1108,11 +1123,7 @@ public class GuiMain2 extends javax.swing.JFrame {
             }
         });
 
-        pnlEditFolder.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel7.setText("Folder:");
-
-        cbxFolder.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout pnlEditFolderLayout = new javax.swing.GroupLayout(pnlEditFolder);
         pnlEditFolder.setLayout(pnlEditFolderLayout);
@@ -1332,6 +1343,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         cbxChooseDisplay.setSelectedIndex(0);
         pnlCreateTypeAndDisplay.setVisible(true);
         cbxChooseDisplay.setEnabled(false);
+
         btnCreate.setSelected(false);
         btnEdit.setSelected(true);
         pnlEdit.setVisible(true);
@@ -1344,8 +1356,6 @@ public class GuiMain2 extends javax.swing.JFrame {
         pnlEdit.setVisible(false);
         btnCreate.setSelected(false);
         btnEdit.setSelected(false);
-        clearEditData();
-        pnlCreateTypeAndDisplay.setVisible(false);
 
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -1359,11 +1369,9 @@ public class GuiMain2 extends javax.swing.JFrame {
         
         if (cbxPresentationType.getSelectedIndex() == 1) {          
           showTextData();
-          cbxPresentationType.setEnabled(false);
         }
         else if (cbxPresentationType.getSelectedIndex() == 2) {           
            showImageData();
-           cbxPresentationType.setEnabled(false);
         }
 
     }//GEN-LAST:event_btnEditChosenActionPerformed
@@ -1376,7 +1384,6 @@ public class GuiMain2 extends javax.swing.JFrame {
     private void btnCancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelUpdateActionPerformed
         pnlEditCard2.setVisible(false);
         pnlEditCard1.setVisible(true);
-        cbxPresentationType.setEnabled(true);
         clearEditData();
     }//GEN-LAST:event_btnCancelUpdateActionPerformed
 
@@ -1407,9 +1414,10 @@ public class GuiMain2 extends javax.swing.JFrame {
          else if(cbxPresentationType.getSelectedIndex() == 2)
          {
              updateImage();
-         }  
+         }
         
-        clearEditData();
+        
+        //  clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void cbxChooseDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxChooseDisplayActionPerformed
@@ -1458,7 +1466,7 @@ public class GuiMain2 extends javax.swing.JFrame {
 
     private void saveImagePresentation() throws NumberFormatException {
         title = txtCreateTitle.getText();
-
+        path = cbxFolder.getSelectedItem().toString();
         System.out.println(title + "  " + txt);
         presTypeId = cbxPresentationType.getSelectedIndex() + 1;
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
@@ -1467,7 +1475,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
 
-        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
 
     }
     
@@ -1491,6 +1499,8 @@ public class GuiMain2 extends javax.swing.JFrame {
     {
         title = txtEditTitle.getText();
 
+        path = cbxFolder.getSelectedItem().toString();
+        
         System.out.println(title + "  " + txt);
         presTypeId = cbxPresentationType.getSelectedIndex() + 1;
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
@@ -1532,7 +1542,6 @@ public class GuiMain2 extends javax.swing.JFrame {
             pnlTableCardText.setVisible(true);
             pnlTableCardImage.setVisible(false);
             pnlTableClearLayout.setVisible(false);
-            pnlTextAreaCont.setVisible(true);
             TextList();
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
@@ -1541,7 +1550,6 @@ public class GuiMain2 extends javax.swing.JFrame {
             pnlEditFolder.setVisible(true);
             pnlCreateFolder.setVisible(true);
             pnlTextArea.setVisible(false);
-            pnlTextAreaCont.setVisible(false);
             pnlTableCardImage.setVisible(true);
             pnlTableCardText.setVisible(false);
             pnlTableClearLayout.setVisible(false);
