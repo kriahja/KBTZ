@@ -1434,7 +1434,8 @@ public class GuiMain2 extends javax.swing.JFrame {
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
         System.out.println(presTypeId +  title + " "+ startDate + " "+  endDate + " "+  timer + " "+  notSafe + " "+  txt);
-        text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+//        text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
         tMgr.updateText(text);
     }
     
@@ -1450,7 +1451,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
 
-        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        image = new Image(id, 2, title, startDate, endDate, timer, notSafe, txt);
         iMgr.updateImage(image);
     }
 
