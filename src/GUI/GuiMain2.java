@@ -1358,9 +1358,7 @@ public class GuiMain2 extends javax.swing.JFrame {
          else if(cbxPresentationType.getSelectedIndex() == 2)
          {
              updateImage();
-         }
-        
-        
+         }  
         
         clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
