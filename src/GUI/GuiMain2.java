@@ -214,7 +214,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         txtEditTitle.setText(image.getTitle());
         cbxFolder.setSelectedItem(image.getPath());
         img = iMgr.getByTitle(image.getTitle());
-        id = tt.getId();
+        id = img.getId();
 
         dpEditStartDate.setDate(image.getStartDate());
         dpEditEndDate.setDate(image.getEndDate());
@@ -1322,6 +1322,16 @@ public class GuiMain2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cxEditNotSafeActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+         if(cbxPresentationType.getSelectedIndex() == 1){   
+             updateText();
+         }
+         else if(cbxPresentationType.getSelectedIndex() == 2)
+         {
+             updateImage();
+         }
+        
+        
+        
         clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -1382,6 +1392,38 @@ public class GuiMain2 extends javax.swing.JFrame {
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, txt);
 
+    }
+    
+    private void updateText()
+    {
+        title = txtEditTitle.getText();
+        txt = txtEditTextArea.getText();
+        System.out.println(title + "  " + txt);
+        presTypeId = cbxPresentationType.getSelectedIndex();
+        startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
+        endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
+        timer = Double.parseDouble(txtEditTimer.getText());
+        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        notSafe = cxCreateNotSafe.isSelected();
+        System.out.println(presTypeId +  title + " "+ startDate + " "+  endDate + " "+  timer + " "+  notSafe + " "+  txt);
+        text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        tMgr.updateText(text);
+    }
+    
+    private void updateImage()
+    {
+        title = txtEditTitle.getText();
+
+        System.out.println(title + "  " + txt);
+        presTypeId = cbxPresentationType.getSelectedIndex() + 1;
+        startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
+        endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
+        timer = Double.parseDouble(txtEditTimer.getText());
+        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        notSafe = cxCreateNotSafe.isSelected();
+
+        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        iMgr.updateImage(image);
     }
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
