@@ -161,4 +161,20 @@ public class DisplayCtrl
         this.endDate = endDate;
     }
 
+    /**
+     * @return the pres
+     */
+    public Presentation getPres()
+    {
+        return pres;
+    }
+
+    /**
+     * @param pres the pres to set
+     */
+    public void setPres(Presentation pres)
+    {
+        this.pres = pres;
+    }
+
 }

@@ -6,6 +6,7 @@
 package GUI.PresentationTable;
 
 import BLL.DisplayCtrlManager;
+import BLL.TextManager;
 import Entities.DisplayCtrl;
 import Entities.Presentation;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class PresentationTableModel extends AbstractTableModel
     public static final int DISABLE_COLUMN = 3;
 
     DisplayCtrlManager dcMgr;
+    TextManager tMgr;
     Presentation present;
 
     private final String[] headers =
@@ -48,6 +50,7 @@ public class PresentationTableModel extends AbstractTableModel
     {
         pres = new ArrayList<>();
         dcMgr = DisplayCtrlManager.getInstance();
+        tMgr = TextManager.getInstance();
 
     }
 
@@ -104,7 +107,6 @@ public class PresentationTableModel extends AbstractTableModel
     public void setValueAt(Object value, int row, int col)
     {
         DisplayCtrl dc = pres.get(row);
-        
         switch (col)
         {
 
