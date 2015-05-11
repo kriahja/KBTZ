@@ -5,11 +5,14 @@
  */
 package DAL;
 
+import BLL.Exceptions.BivExceptions;
 import Entities.DisplayCtrl;
+import Entities.Presentation;
 import Entities.Text;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -98,5 +101,28 @@ public class DisplayCtrlDBManager
             return dcList;
         }
     }
+    
+       /**
+     * @param pres  disables or enables the  selected Presentations
+     * @throws java.sql.SQLException
+     */
+    public void updateDisable(Presentation pres) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "update Presentation set Disable = ? where ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setBoolean(1, pres.isDisable());
+            ps.setInt(2, pres.getId());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to Update Presentation.");
+            }
+
+        }
+    }    
 
 }
