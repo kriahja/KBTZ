@@ -804,10 +804,11 @@ public class GuiMain2 extends javax.swing.JFrame {
         pnlCreateFolderLayout.setHorizontalGroup(
             pnlCreateFolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCreateFolderLayout.createSequentialGroup()
-                .addGroup(pnlCreateFolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(cbxCreateFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 44, Short.MAX_VALUE))
+                .addComponent(jLabel16)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pnlCreateFolderLayout.createSequentialGroup()
+                .addComponent(cbxCreateFolder, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlCreateFolderLayout.setVerticalGroup(
             pnlCreateFolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -859,22 +860,22 @@ public class GuiMain2 extends javax.swing.JFrame {
                         .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cxCreateNotSafe)
                             .addComponent(jLabel14)))
-                    .addGroup(pnlCreateLayout.createSequentialGroup()
-                        .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dpCreateStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(36, 36, 36)
-                        .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(dpCreateEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtCreateTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addGroup(pnlCreateLayout.createSequentialGroup()
                         .addComponent(btnCreateNew)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelCreate))
-                    .addComponent(pnlCreateFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlCreateLayout.createSequentialGroup()
+                        .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pnlCreateFolder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dpCreateStartDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(36, 36, 36)
+                        .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(dpCreateEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 483, Short.MAX_VALUE))
         );
         pnlCreateLayout.setVerticalGroup(
@@ -1123,6 +1124,8 @@ public class GuiMain2 extends javax.swing.JFrame {
             }
         });
 
+        pnlEditFolder.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel7.setText("Folder:");
 
         javax.swing.GroupLayout pnlEditFolderLayout = new javax.swing.GroupLayout(pnlEditFolder);
@@ -1356,6 +1359,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         pnlEdit.setVisible(false);
         btnCreate.setSelected(false);
         btnEdit.setSelected(false);
+        pnlCreateTypeAndDisplay.setVisible(false);
 
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -1369,9 +1373,11 @@ public class GuiMain2 extends javax.swing.JFrame {
         
         if (cbxPresentationType.getSelectedIndex() == 1) {          
           showTextData();
+          cbxPresentationType.setEnabled(false);
         }
         else if (cbxPresentationType.getSelectedIndex() == 2) {           
            showImageData();
+           cbxPresentationType.setEnabled(false);
         }
 
     }//GEN-LAST:event_btnEditChosenActionPerformed
@@ -1384,6 +1390,7 @@ public class GuiMain2 extends javax.swing.JFrame {
     private void btnCancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelUpdateActionPerformed
         pnlEditCard2.setVisible(false);
         pnlEditCard1.setVisible(true);
+        cbxPresentationType.setEnabled(true);
         clearEditData();
     }//GEN-LAST:event_btnCancelUpdateActionPerformed
 
@@ -1410,10 +1417,14 @@ public class GuiMain2 extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
          if(cbxPresentationType.getSelectedIndex() == 1){   
              updateText();
+             pnlEditCard2.setVisible(false);
+             cbxPresentationType.setEnabled(true);
          }
          else if(cbxPresentationType.getSelectedIndex() == 2)
          {
              updateImage();
+             pnlEditCard2.setVisible(false);
+             cbxPresentationType.setEnabled(true);
          }
         
         
@@ -1439,9 +1450,11 @@ public class GuiMain2 extends javax.swing.JFrame {
             switch (selection) {
                 case 1:
                     saveTextPresentation();
+                    cbxPresentationType.setEnabled(false);
                     break;
                 case 2:
                     saveImagePresentation();
+                    cbxPresentationType.setEnabled(false);
                     break;
             }
             clearCreateData();
@@ -1542,6 +1555,7 @@ public class GuiMain2 extends javax.swing.JFrame {
             pnlTableCardText.setVisible(true);
             pnlTableCardImage.setVisible(false);
             pnlTableClearLayout.setVisible(false);
+            pnlTextAreaCont.setVisible(true);
             TextList();
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
@@ -1553,6 +1567,7 @@ public class GuiMain2 extends javax.swing.JFrame {
             pnlTableCardImage.setVisible(true);
             pnlTableCardText.setVisible(false);
             pnlTableClearLayout.setVisible(false);
+            pnlTextAreaCont.setVisible(false);
             ImageList();
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
