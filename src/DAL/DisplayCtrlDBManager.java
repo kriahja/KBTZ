@@ -101,34 +101,9 @@ public class DisplayCtrlDBManager
             return dcList;
         }
     }
-
-//    /**
-//     * @param pres title of the Text is used to locate a specific
-//     * TextPresentation.
-//     * @return getOneText or null.
-//     * @throws SQLException
-//     */
-//    public Text readByTitle(String pres) throws SQLException
-//    {
-//        try (Connection con = cm.getConnection())
-//        {
-//            String sql = "SELECT * FROM Presentation\n"
-//                    + "WHERE Title = ?";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, pres);
-//
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next())
-//            {
-//                return getOneText(rs);
-//            }
-//
-//        }
-//        return null;
-//    }
-
-    /**
-     * @param pres disables or enables the selected Presentations
+    
+       /**
+     * @param pres  disables or enables the  selected Presentations
      * @throws java.sql.SQLException
      */
     public void updateDisable(Presentation pres) throws SQLException
@@ -148,6 +123,6 @@ public class DisplayCtrlDBManager
             }
 
         }
-    }
+    }    
 
 }
