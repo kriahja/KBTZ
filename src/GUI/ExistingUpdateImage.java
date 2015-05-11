@@ -456,7 +456,7 @@ public class ExistingUpdateImage extends javax.swing.JFrame
         // TODO add your handling code here:
 
         title = txtTitle.getText();
-        path = jFolder.getSelectedItem().toString();
+            path = jFolder.getSelectedItem().toString();
         System.out.println(title + "  " + path);
 
         startDate = new java.sql.Date(jStartDate.getDate().getTime());
