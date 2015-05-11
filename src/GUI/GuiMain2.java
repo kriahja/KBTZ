@@ -85,7 +85,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private void PresentationList()
     {
-        presModel = new PresentationTableModel(dcMgr.runningPresentations());
+        presModel = new PresentationTableModel(dcMgr.readAllPres());
 
         presTable = new PresentationTable(presModel);
 
@@ -128,6 +128,7 @@ public class GuiMain2 extends javax.swing.JFrame
     private void showPresData()
     {
         pres = presModel.getDisplayCtrlByRow(presTable.convertRowIndexToModel(presTable.getSelectedRow()));
+        
     }
 
     private void TextList()
@@ -204,6 +205,8 @@ public class GuiMain2 extends javax.swing.JFrame
         lblPresentationSubtitle = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         pnlPresentationTableCont = new javax.swing.JPanel();
+        btnReload = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         settingsCard = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         lblSettingsSubtitle = new javax.swing.JLabel();
@@ -376,6 +379,16 @@ public class GuiMain2 extends javax.swing.JFrame
 
         pnlPresentationTableCont.setLayout(new java.awt.BorderLayout());
 
+        btnReload.setBackground(new java.awt.Color(67, 74, 84));
+        btnReload.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
+        btnReload.setForeground(java.awt.Color.white);
+        btnReload.setText("Reload");
+
+        jButton3.setBackground(new java.awt.Color(67, 74, 84));
+        jButton3.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
+        jButton3.setForeground(java.awt.Color.white);
+        jButton3.setText("Edit");
+
         javax.swing.GroupLayout presentationCardLayout = new javax.swing.GroupLayout(presentationCard);
         presentationCard.setLayout(presentationCardLayout);
         presentationCardLayout.setHorizontalGroup(
@@ -390,7 +403,11 @@ public class GuiMain2 extends javax.swing.JFrame
                     .addComponent(lblPresentationSubtitle)
                     .addComponent(lblPresentationTitle)
                     .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(473, 473, 473))
+                .addGap(18, 18, 18)
+                .addGroup(presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnReload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(376, 376, 376))
         );
         presentationCardLayout.setVerticalGroup(
             presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,9 +419,16 @@ public class GuiMain2 extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(355, 355, 355)
-                .addComponent(jLabel3))
+                .addGroup(presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(presentationCardLayout.createSequentialGroup()
+                        .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                        .addGap(355, 355, 355)
+                        .addComponent(jLabel3))
+                    .addGroup(presentationCardLayout.createSequentialGroup()
+                        .addComponent(btnReload)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         cardContainer.add(presentationCard, "card2");
@@ -1460,6 +1484,7 @@ public class GuiMain2 extends javax.swing.JFrame
     private javax.swing.JButton btnCreateNew;
     private javax.swing.JToggleButton btnEdit;
     private javax.swing.JButton btnEditChosen;
+    private javax.swing.JButton btnReload;
     private javax.swing.JButton btnRemoveChosen;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel cardContainer;
@@ -1478,6 +1503,7 @@ public class GuiMain2 extends javax.swing.JFrame
     private javax.swing.JPanel editHeader;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

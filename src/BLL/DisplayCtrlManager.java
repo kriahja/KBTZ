@@ -90,4 +90,16 @@ public class DisplayCtrlManager
             throw new BivExceptions("unable to load texts");
         }
     }
+    
+        public void updateDisable(Presentation pres)
+    {
+        try
+        {
+            db.updateDisable(pres);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("Unable to Update the Text"); 
+        }
+    }
 }
