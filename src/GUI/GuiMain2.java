@@ -66,6 +66,8 @@ public class GuiMain2 extends javax.swing.JFrame {
     Text tt;
     Image img;
     int id;
+    boolean disable;
+    String path;
 
     public GuiMain2() {
         initComponents();
@@ -1331,8 +1333,7 @@ public class GuiMain2 extends javax.swing.JFrame {
          }
         
         
-        
-        clearEditData();
+        //  clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void cbxChooseDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxChooseDisplayActionPerformed
@@ -1381,7 +1382,7 @@ public class GuiMain2 extends javax.swing.JFrame {
 
     private void saveImagePresentation() throws NumberFormatException {
         title = txtCreateTitle.getText();
-
+        path = cbxFolder.getSelectedItem().toString();
         System.out.println(title + "  " + txt);
         presTypeId = cbxPresentationType.getSelectedIndex() + 1;
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
@@ -1390,7 +1391,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
 
-        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
 
     }
     
@@ -1406,7 +1407,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
         System.out.println(presTypeId +  title + " "+ startDate + " "+  endDate + " "+  timer + " "+  notSafe + " "+  txt);
-        text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
         tMgr.updateText(text);
     }
     
@@ -1414,6 +1415,8 @@ public class GuiMain2 extends javax.swing.JFrame {
     {
         title = txtEditTitle.getText();
 
+        path = cbxFolder.getSelectedItem().toString();
+        
         System.out.println(title + "  " + txt);
         presTypeId = cbxPresentationType.getSelectedIndex() + 1;
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
@@ -1422,7 +1425,7 @@ public class GuiMain2 extends javax.swing.JFrame {
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
 
-        image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+        image = new Image(id, 2, title, startDate, endDate, timer, notSafe, txt);
         iMgr.updateImage(image);
     }
 
