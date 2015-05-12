@@ -126,11 +126,10 @@ public class TextManager
         try
         {
             db.createText(text);
+        } catch (SQLException ex) {
+            Logger.getLogger(TextManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to Create Text");
-        }
+      
     }
     /**
      *@param id  Deletes the text in the TextDBManager.

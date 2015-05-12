@@ -127,11 +127,10 @@ public class ImageManager
         try
         {
             db.createImage(img);
+        } catch (SQLException ex) {
+            Logger.getLogger(ImageManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to create Image.");
-        }
+
 
     }
 
