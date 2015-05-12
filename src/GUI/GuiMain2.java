@@ -1351,6 +1351,8 @@ public class GuiMain2 extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         presentationCard.setVisible(true);
         settingsCard.setVisible(false);
+        presModel.setDisplayCtrlList(dcMgr.readAllPres());
+        presTable.setModel(presModel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1551,6 +1553,9 @@ public class GuiMain2 extends javax.swing.JFrame
 
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
         tMgr.createText(text);
+        textModel.setTextList(tMgr.readAll());
+        textTable.setModel(textModel);
+        
     }
 
     private void saveImagePresentation() throws NumberFormatException
@@ -1567,6 +1572,8 @@ public class GuiMain2 extends javax.swing.JFrame
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
         iMgr.createImage(image);
+        imageModel.setImageList(iMgr.readAll());
+        imageTable.setModel(imageModel);
 
     }
 
@@ -1584,6 +1591,8 @@ public class GuiMain2 extends javax.swing.JFrame
         System.out.println(presTypeId + title + " " + startDate + " " + endDate + " " + timer + " " + notSafe + " " + txt);
         text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
         tMgr.updateText(text);
+        textModel.setTextList(tMgr.readAll());
+        textTable.setModel(textModel);
     }
 
     private void updateImage()
@@ -1602,7 +1611,9 @@ public class GuiMain2 extends javax.swing.JFrame
 
         image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
         iMgr.updateImage(image);
-
+        imageModel.setImageList(iMgr.readAll());
+        imageTable.setModel(imageModel);
+        
     }
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
