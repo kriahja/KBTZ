@@ -25,8 +25,8 @@ import java.io.File;
 import java.sql.Date;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
@@ -1487,7 +1487,7 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlEditCard2.setVisible(false);
             cbxPresentationType.setEnabled(true);
         }
-        
+
         //  clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -1526,7 +1526,8 @@ public class GuiMain2 extends javax.swing.JFrame
             }
             clearCreateData();
         }
-         
+        
+
     }//GEN-LAST:event_btnCreateNewActionPerformed
 
     private void saveTextPresentation() throws NumberFormatException
@@ -1538,26 +1539,29 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = cbxChooseDisplay.getSelectedIndex();
+        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
 
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
         tMgr.createText(text);
+        textTable.setModel(textModel);
     }
 
     private void saveImagePresentation() throws NumberFormatException
     {
         title = txtCreateTitle.getText();
-        path = cbxFolder.getSelectedItem().toString();
-        System.out.println(title + "  " + txt);
+        path = cbxCreateFolder.getSelectedItem().toString();
+        System.out.println(title + "  " + path);
         presTypeId = cbxPresentationType.getSelectedIndex();
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = cbxChooseDisplay.getSelectedIndex();
+        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
+        iMgr.createImage(image);
+        imageTable.setModel(imageModel);
 
     }
 
