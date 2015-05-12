@@ -224,12 +224,14 @@ public class TextDBManager
         try (Connection con = cm.getConnection())
         {
             String sql = "BEGIN Transaction;\n"
-                    + "  DELETE FROM [Text] WHERE Text.PresentationId = ?\n"
-                    + "  DELETE FROM Presentation WhERE Presentation.ID = ?\n"
+                    + " DELETE FROM DisplayCtrl where PresentationId = ?\n"
+                    + " DELETE FROM [Text] WHERE Text.PresentationId = ?\n"
+                    + " DELETE FROM Presentation WhERE Presentation.ID = ?\n"
                     + " COMMIT";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.setInt(2, id);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
 
