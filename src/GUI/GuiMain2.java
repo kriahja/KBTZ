@@ -25,8 +25,8 @@ import java.io.File;
 import java.sql.Date;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
@@ -1487,7 +1487,7 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlEditCard2.setVisible(false);
             cbxPresentationType.setEnabled(true);
         }
-
+        
         //  clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -1526,7 +1526,7 @@ public class GuiMain2 extends javax.swing.JFrame
             }
             clearCreateData();
         }
-
+         
     }//GEN-LAST:event_btnCreateNewActionPerformed
 
     private void saveTextPresentation() throws NumberFormatException
@@ -1534,11 +1534,11 @@ public class GuiMain2 extends javax.swing.JFrame
         title = txtCreateTitle.getText();
         txt = txtCreateTextArea.getText();
         System.out.println(title + "  " + txt);
-        presTypeId = cbxPresentationType.getSelectedIndex() + 1;
+        presTypeId = cbxPresentationType.getSelectedIndex();
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        displayId = cbxChooseDisplay.getSelectedIndex();
         notSafe = cxCreateNotSafe.isSelected();
 
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
@@ -1550,11 +1550,11 @@ public class GuiMain2 extends javax.swing.JFrame
         title = txtCreateTitle.getText();
         path = cbxFolder.getSelectedItem().toString();
         System.out.println(title + "  " + txt);
-        presTypeId = cbxPresentationType.getSelectedIndex() + 1;
+        presTypeId = cbxPresentationType.getSelectedIndex();
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        displayId = cbxChooseDisplay.getSelectedIndex();
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
