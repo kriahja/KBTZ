@@ -1583,7 +1583,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
         path = cbxFolder.getSelectedItem().toString();
 
-        System.out.println(title + "  " + txt);
+        System.out.println(title + "  " + path);
         presTypeId = cbxPresentationType.getSelectedIndex() + 1;
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
@@ -1591,8 +1591,9 @@ public class GuiMain2 extends javax.swing.JFrame
         displayId = cbxChooseDisplay.getSelectedIndex() + 1;
         notSafe = cxCreateNotSafe.isSelected();
 
-        image = new Image(id, 2, title, startDate, endDate, timer, notSafe, txt);
+        image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
         iMgr.updateImage(image);
+        
     }
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
