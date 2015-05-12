@@ -8,6 +8,7 @@ package GUI;
 import BLL.DisplayCtrlManager;
 import BLL.ImageManager;
 import BLL.TextManager;
+import Entities.Display;
 import Entities.DisplayCtrl;
 import Entities.Image;
 import Entities.Text;
@@ -23,9 +24,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -74,7 +75,9 @@ public class GuiMain2 extends javax.swing.JFrame
 
     File shared;
     //  File[] folders;
+//    DisplayManager dm;
     String[] folders;
+//    ArrayList<Display> dispList = new ArrayList<>();
 
     JFrame frame;
 
@@ -86,6 +89,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlEditFolder.setVisible(false);
         pnlCreateFolder.setVisible(false);
 
+        
         tMgr = TextManager.getInstance();
         iMgr = ImageManager.getInstance();
         dcMgr = DisplayCtrlManager.getInstance();
@@ -104,6 +108,11 @@ public class GuiMain2 extends javax.swing.JFrame
             cbxFolder.addItem(paths);
             cbxCreateFolder.addItem(paths);
         }
+//        dispList = dm.readAll();
+//        for (Display disp : dispList)
+//        {
+//            cbxChooseDisplay.addItem(disp.getScreenName());
+//        }
 
         pnlTableCardText.setVisible(false);
         pnlTableCardImage.setVisible(false);
@@ -514,7 +523,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreateTypeAndDisplay.setBackground(new java.awt.Color(230, 233, 237));
 
         cbxChooseDisplay.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
-        cbxChooseDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose Display:", "1", "2", "3", "4" }));
+        cbxChooseDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose Display:", "Production Area", "Lobby", "IT Department", "CEO" }));
         cbxChooseDisplay.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -1414,21 +1423,20 @@ public class GuiMain2 extends javax.swing.JFrame
 
             // fetch the text to remove from the table model.
             text = textModel.getTextByRow(row);
-                    // remove the employee from the model and also from the table model.
-                    tMgr.deleteText(id);
+            // remove the employee from the model and also from the table model.
+            tMgr.deleteText(id);
 
-                    textModel.setTextList(tMgr.readAll());
+            textModel.setTextList(tMgr.readAll());
 
-                    // adjust the selection since the selected employee is now gone.
-                    adjustSelection(row);
-                
+            // adjust the selection since the selected employee is now gone.
+            adjustSelection(row);
 
         }
         else if (cbxPresentationType.getSelectedIndex() == 2)
         {
 
         }
-        
+
     }//GEN-LAST:event_btnRemoveChosenActionPerformed
 
     private void adjustSelection(int row)
@@ -1534,11 +1542,11 @@ public class GuiMain2 extends javax.swing.JFrame
         title = txtCreateTitle.getText();
         txt = txtCreateTextArea.getText();
         System.out.println(title + "  " + txt);
-        presTypeId = cbxPresentationType.getSelectedIndex() + 1;
+        presTypeId = cbxPresentationType.getSelectedIndex();
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        displayId = cbxChooseDisplay.getSelectedIndex();
         notSafe = cxCreateNotSafe.isSelected();
 
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
@@ -1550,11 +1558,11 @@ public class GuiMain2 extends javax.swing.JFrame
         title = txtCreateTitle.getText();
         path = cbxFolder.getSelectedItem().toString();
         System.out.println(title + "  " + txt);
-        presTypeId = cbxPresentationType.getSelectedIndex() + 1;
+        presTypeId = cbxPresentationType.getSelectedIndex();
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        displayId = cbxChooseDisplay.getSelectedIndex();
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
@@ -1593,7 +1601,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
         image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
         iMgr.updateImage(image);
-        
+
     }
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
