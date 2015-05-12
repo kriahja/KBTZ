@@ -1556,8 +1556,8 @@ public class GuiMain2 extends javax.swing.JFrame
     private void saveImagePresentation() throws NumberFormatException
     {
         title = txtCreateTitle.getText();
-        path = cbxFolder.getSelectedItem().toString();
-        System.out.println(title + "  " + txt);
+        path = cbxCreateFolder.getSelectedItem().toString();
+        System.out.println(title + "  " + path);
         presTypeId = cbxPresentationType.getSelectedIndex();
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
@@ -1566,6 +1566,7 @@ public class GuiMain2 extends javax.swing.JFrame
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
+        iMgr.createImage(image);
 
     }
 
