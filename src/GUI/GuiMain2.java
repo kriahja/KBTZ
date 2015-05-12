@@ -1579,7 +1579,7 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
         timer = Double.parseDouble(txtEditTimer.getText());
-        displayId = cbxChooseDisplay.getSelectedIndex() + 1;
+        displayId = cbxChooseDisplay.getSelectedIndex();
         notSafe = cxCreateNotSafe.isSelected();
         System.out.println(presTypeId + title + " " + startDate + " " + endDate + " " + timer + " " + notSafe + " " + txt);
         text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
