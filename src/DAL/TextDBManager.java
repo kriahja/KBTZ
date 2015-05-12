@@ -245,9 +245,9 @@ public class TextDBManager
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = " begin transaction\n"
-                    + " update Text set Text = ? where PresentationId = ?\n"
-                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ?, Disable = ? where ID = ?\n"
+            String sql = " begin transaction "
+                    + " update Text set Text = ? where PresentationId = ? "
+                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ? where ID = ? "
                     + " Commit ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, txt.getText());
@@ -260,9 +260,9 @@ public class TextDBManager
             ps.setDouble(6, txt.getTimer());
 
             ps.setBoolean(7, txt.isNotSafe());
-            ps.setBoolean(8, txt.isDisable());
+            
 
-            ps.setInt(9, txt.getId());
+            ps.setInt(8, txt.getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
