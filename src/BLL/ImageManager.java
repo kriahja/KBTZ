@@ -165,17 +165,17 @@ public class ImageManager
 
     }
 
-    public void updateDisable(Image img)
-    {
-        try
-        {
-            db.updateDisable(img);
-        }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to Update the Image");
-        }
-    }
+//    public void updateDisable(Image img)
+//    {
+//        try
+//        {
+//            db.updateDisable(img);
+//        }
+//        catch (SQLException ex)
+//        {
+//            throw new BivExceptions("Unable to Update the Image");
+//        }
+//    }
 
 //    public void guiCreateImage(Image text)
 //    {

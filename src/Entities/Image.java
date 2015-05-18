@@ -22,11 +22,7 @@ public class Image extends Presentation
         this.path = path;
     }
 
-    public Image(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, boolean disable, String path)
-    {
-        super(id, presTypeId, title, startDate, endDate, timer, notSafe, disable);
-        this.path = path;
-    }
+ 
 
     public Image(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String path)
     {

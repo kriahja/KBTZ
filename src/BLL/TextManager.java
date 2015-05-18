@@ -160,17 +160,17 @@ public class TextManager
 
     }
     
-    public void updateDisable(Text txt)
-    {
-        try
-        {
-            db.updateDisable(txt);
-        }
-        catch (SQLException ex)
-        {
-            throw new BivExceptions("Unable to Update the Text"); 
-        }
-    }
+//    public void updateDisable(Text txt)
+//    {
+//        try
+//        {
+//            db.updateDisable(txt);
+//        }
+//        catch (SQLException ex)
+//        {
+//            throw new BivExceptions("Unable to Update the Text"); 
+//        }
+//    }
 
 //    public void guiCreateText(Text text)
 //    {

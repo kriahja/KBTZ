@@ -84,7 +84,7 @@ public class TextDBManager
         Double timer = rs.getDouble("Timer");
 
         boolean notSafe = rs.getBoolean("NotSafe");
-        boolean disable = rs.getBoolean("Disable");
+        
 
         String text = rs.getString("Text");
 
@@ -280,23 +280,23 @@ public class TextDBManager
      * @param txt+ disables or enables the imagePresentations
      * @throws java.sql.SQLException
      */
-    public void updateDisable(Text txt) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
-            String sql = "update Presentation set Disable = ? where ID = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-
-            ps.setBoolean(1, txt.isDisable());
-            ps.setInt(2, txt.getId());
-
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
-                throw new BivExceptions("Unable to Update Text.");
-            }
-
-        }
-    }
+//    public void updateDisable(Text txt) throws SQLException
+//    {
+//        try (Connection con = cm.getConnection())
+//        {
+//            String sql = "update Presentation set Disable = ? where ID = ?";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//
+//            ps.setBoolean(1, txt.isDisable());
+//            ps.setInt(2, txt.getId());
+//
+//            int affectedRows = ps.executeUpdate();
+//            if (affectedRows == 0)
+//            {
+//                throw new BivExceptions("Unable to Update Text.");
+//            }
+//
+//        }
+//    }
 
 }
