@@ -234,7 +234,7 @@ public class GuiMain2 extends javax.swing.JFrame
     {
         
 //        text =  textModel.getTextByRow(textTable.convertRowIndexToModel(textTable.getSelectedRow()));
-        
+        System.out.println(presTitle);
         text = tMgr.getByTitle(presTitle);
         
         txtEditTitle.setText(text.getTitle());
@@ -1443,8 +1443,10 @@ public class GuiMain2 extends javax.swing.JFrame
         
         int selectedRow = editTable.getSelectedRow();
         selectedRow = editTable.convertRowIndexToModel(selectedRow);
-        String val1 = (String) editTable.getModel().getValueAt(selectedRow, 2);
-        String title = (String) editTable.getModel().getValueAt(selectedRow, 1);
+        String val1 = (String) editTable.getModel().getValueAt(selectedRow, 1);
+        String title = (String) editTable.getModel().getValueAt(selectedRow, 0);
+        
+        System.out.println(val1 + " " + title);
         
         if (val1.equals("Text"))
         {
