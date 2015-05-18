@@ -83,7 +83,7 @@ public class ImageDBManager
         Date endDate = rs.getDate("EndDate");
         Double timer = rs.getDouble("Timer");
         boolean notSafe = rs.getBoolean("NotSafe");
-        boolean disable = rs.getBoolean("Disable");
+        
 
         String path = rs.getString("Path");
 
@@ -267,7 +267,7 @@ public class ImageDBManager
         {
             String sql = " begin transaction\n"
                     + " update Image set Path = ? where PresentationId = ?\n"
-                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ?, Disable = ? where ID = ?\n"
+                    + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ? where ID = ?\n"
                     + " Commit ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, img.getPath());
@@ -280,7 +280,7 @@ public class ImageDBManager
             ps.setDouble(6, img.getTimer());
 
             ps.setBoolean(7, img.isNotSafe());
-            ps.setBoolean(8, img.isDisable());
+            
 
             ps.setInt(9, img.getId());
 
@@ -298,23 +298,23 @@ public class ImageDBManager
      * @throws java.sql.SQLException
      */
 
-    public void updateDisable(Image img) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
-            String sql = "update Presentation set Disable = ? where ID = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-
-            ps.setBoolean(1, img.isDisable());
-            ps.setInt(2, img.getId());
-
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
-                throw new BivExceptions("Unable to Update image.");
-            }
-
-        }
-    }
+//    public void updateDisable(Image img) throws SQLException
+//    {
+//        try (Connection con = cm.getConnection())
+//        {
+//            String sql = "update Presentation set Disable = ? where ID = ?";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//
+//            ps.setBoolean(1, img.isDisable());
+//            ps.setInt(2, img.getId());
+//
+//            int affectedRows = ps.executeUpdate();
+//            if (affectedRows == 0)
+//            {
+//                throw new BivExceptions("Unable to Update image.");
+//            }
+//
+//        }
+//    }
 
 }

@@ -64,7 +64,7 @@ public class DisplayCtrlDBManager
         String PresName = rs.getString("ScreenName");
 
 //        String depName = rs.getString("Name");
-        return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, disable);
+        return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe);
 
     }
 
@@ -106,23 +106,23 @@ public class DisplayCtrlDBManager
      * @param pres  disables or enables the  selected Presentations
      * @throws java.sql.SQLException
      */
-    public void updateDisable(Presentation pres) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
-            String sql = "update Presentation set Disable = ? where ID = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-
-            ps.setBoolean(1, pres.isDisable());
-            ps.setInt(2, pres.getId());
-
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
-                throw new BivExceptions("Unable to Update Presentation.");
-            }
-
-        }
-    }    
+//    public void updateDisable(Presentation pres) throws SQLException
+//    {
+//        try (Connection con = cm.getConnection())
+//        {
+//            String sql = "update Presentation set Disable = ? where ID = ?";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//
+//            ps.setBoolean(1, pres.isDisable());
+//            ps.setInt(2, pres.getId());
+//
+//            int affectedRows = ps.executeUpdate();
+//            if (affectedRows == 0)
+//            {
+//                throw new BivExceptions("Unable to Update Presentation.");
+//            }
+//
+//        }
+//    }    
 
 }

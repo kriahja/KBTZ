@@ -23,7 +23,7 @@ public abstract class Presentation
     private Date endDate;
     private double timer;
     private boolean notSafe;
-    private boolean disable;   
+    
     /**
      *
      * @param id auto generated id for a specific  
@@ -90,17 +90,17 @@ public abstract class Presentation
      * @param timer timer for a specific presentation
      * @param notSafe mark for not safe(not costumerFriendly) for a specific text presentation
      */
-    public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, boolean disable)
-    {
-        this.id = id;
-        this.presTypeId = presTypeId;
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.timer = timer;
-        this.notSafe = notSafe;
-        this.disable = disable;
-    }
+//    public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
+//    {
+//        this.id = id;
+//        this.presTypeId = presTypeId;
+//        this.title = title;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.timer = timer;
+//        this.notSafe = notSafe;
+//       
+//    }
 
     /**
      * @return the id
@@ -206,19 +206,5 @@ public abstract class Presentation
         this.presTypeId = presTypeId;
     }
 
-    /**
-     * @return the disable
-     */
-    public boolean isDisable()
-    {
-        return disable;
-    }
-
-    /**
-     * @param disable the disable to set
-     */
-    public void setDisable(boolean disable)
-    {
-        this.disable = disable;
-    }
+  
 }

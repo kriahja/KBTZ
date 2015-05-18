@@ -514,7 +514,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreateTypeAndDisplay.setBackground(new java.awt.Color(230, 233, 237));
 
         cbxChooseDisplay.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
-        cbxChooseDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose Display:", "1", "2", "3", "4" }));
+        cbxChooseDisplay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose Display:", "Production Area", "Lobby", "IT Department", "CEO" }));
         cbxChooseDisplay.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
