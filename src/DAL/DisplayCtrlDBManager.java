@@ -37,8 +37,7 @@ public class DisplayCtrlDBManager
 
     public static DisplayCtrlDBManager getInstance() throws IOException
     {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new DisplayCtrlDBManager();
         }
         return instance;
@@ -82,47 +81,44 @@ public class DisplayCtrlDBManager
 
     public ArrayList<DisplayCtrl> readAllPres() throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             ArrayList<DisplayCtrl> dcList = new ArrayList<>();
-            String sql = "Select Presentation.Title, PresType.[Type], Presentation.[Disable], Display.ScreenName \n"
-                    + "from DisplayCtrl\n"
-                    + "Inner JOIN Presentation ON DisplayCtrl.PresentationId = Presentation.ID\n"
-                    + "Inner JOIN PresType ON Presentation.PresTypeId = PresType.ID\n"
-                    + "Inner JOIN Display ON DisplayCtrl.DisplayId = Display.ID";
+            String sql = "Select Presentation.Title, PresType.[Type], DisplayCtrl.[Disable], Display.ScreenName \n"
+                    + "       from DisplayCtrl\n"
+                    + "       Inner JOIN Presentation ON DisplayCtrl.PresentationId = Presentation.ID\n"
+                    + "       Inner JOIN PresType ON Presentation.PresTypeId = PresType.ID\n"
+                    + "       Inner JOIN Display ON DisplayCtrl.DisplayId = Display.ID";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 DisplayCtrl dc = getOnedc(rs);
                 dcList.add(dc);
             }
             return dcList;
         }
     }
-    
-       /**
-     * @param pres  disables or enables the  selected Presentations
+
+    /**
+     * @param pres disables or enables the selected Presentations
      * @throws java.sql.SQLException
      */
-//    public void updateDisable(Presentation pres) throws SQLException
-//    {
-//        try (Connection con = cm.getConnection())
-//        {
-//            String sql = "update Presentation set Disable = ? where ID = ?";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//
-//            ps.setBoolean(1, pres.isDisable());
-//            ps.setInt(2, pres.getId());
-//
-//            int affectedRows = ps.executeUpdate();
-//            if (affectedRows == 0)
-//            {
-//                throw new BivExceptions("Unable to Update Presentation.");
-//            }
-//
-//        }
-//    }    
+    public void updateDisable(DisplayCtrl dc) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "update DisplayCtrl set Disable = ? where PresentationId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
 
+            ps.setBoolean(1, dc.isDisable());
+            ps.setInt(2, dc.getPresId());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to Update Dispctrl.");
+            }
+
+        }
+    }    
 }

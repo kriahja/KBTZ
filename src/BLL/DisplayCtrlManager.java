@@ -91,15 +91,15 @@ public class DisplayCtrlManager
         }
     }
     
-//        public void updateDisable(Presentation pres)
-//    {
-//        try
-//        {
-//            db.updateDisable(pres);
-//        }
-//        catch (SQLException ex)
-//        {
-//            throw new BivExceptions("Unable to Update the Text"); 
-//        }
-//    }
+        public void updateDisable(DisplayCtrl dc)
+    {
+        try
+        {
+            db.updateDisable(dc);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("Unable to Update the Text"); 
+        }
+    }
 }
