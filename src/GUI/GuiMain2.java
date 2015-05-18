@@ -131,7 +131,7 @@ public class GuiMain2 extends javax.swing.JFrame
             {
                 if (!lse.getValueIsAdjusting())
                 {
-                    if (presTable.getSelectedRow() != -1)
+                    if (presTable.getSelectedRow() > -1)
                     {
                         showPresData();
                     }
@@ -176,18 +176,18 @@ public class GuiMain2 extends javax.swing.JFrame
 
         pnlTableCardText.add(new JScrollPane(textTable), BorderLayout.CENTER);
 
-//        textTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//            @Override
-//            public void valueChanged(ListSelectionEvent lse) {
-//                if (!lse.getValueIsAdjusting()) {
-//                    if (textTable.getSelectedRow() != -1) {
-//                        showTextData();
-//                    } else {
-//                        clearEditData();
-//                    }
-//                }
-//            }
-//        });
+        textTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                if (!lse.getValueIsAdjusting()) {
+                    if (textTable.getSelectedRow() > -1) {
+                        showTextData();
+                    } else {
+                        clearEditData();
+                    }
+                }
+            }
+        });
     }
 
     private void showTextData()
@@ -221,24 +221,24 @@ public class GuiMain2 extends javax.swing.JFrame
 
         pnlTableCardImage.add(new JScrollPane(imageTable), BorderLayout.CENTER);
 
-//        imageTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-//        {
-//            @Override
-//            public void valueChanged(ListSelectionEvent lse)
-//            {
-//                if (!lse.getValueIsAdjusting())
-//                {
-//                    if (imageTable.getSelectedRow() != -1)
-//                    {
-//                        showImageData();
-//                    }
-//                    else
-//                    {
-//                        clearEditData();
-//                    }
-//                }
-//            }
-//        });
+        imageTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent lse)
+            {
+                if (!lse.getValueIsAdjusting())
+                {
+                    if (imageTable.getSelectedRow() > -1)
+                    {
+                        showImageData();
+                    }
+                    else
+                    {
+                        clearEditData();
+                    }
+                }
+            }
+        });
     }
 
     private void showImageData()
@@ -1342,6 +1342,8 @@ public class GuiMain2 extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         presentationCard.setVisible(true);
         settingsCard.setVisible(false);
+        presModel.setDisplayCtrlList(dcMgr.readAllPres());
+        presTable.setModel(presModel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1526,7 +1528,6 @@ public class GuiMain2 extends javax.swing.JFrame
             }
             clearCreateData();
         }
-        
 
     }//GEN-LAST:event_btnCreateNewActionPerformed
 
@@ -1544,7 +1545,9 @@ public class GuiMain2 extends javax.swing.JFrame
 
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
         tMgr.createText(text);
+        textModel.setTextList(tMgr.readAll());
         textTable.setModel(textModel);
+        
     }
 
     private void saveImagePresentation() throws NumberFormatException
@@ -1561,6 +1564,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
         iMgr.createImage(image);
+        imageModel.setImageList(iMgr.readAll());
         imageTable.setModel(imageModel);
 
     }
@@ -1579,6 +1583,8 @@ public class GuiMain2 extends javax.swing.JFrame
         System.out.println(presTypeId + title + " " + startDate + " " + endDate + " " + timer + " " + notSafe + " " + txt);
         text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
         tMgr.updateText(text);
+        textModel.setTextList(tMgr.readAll());
+        textTable.setModel(textModel);
     }
 
     private void updateImage()
@@ -1597,6 +1603,8 @@ public class GuiMain2 extends javax.swing.JFrame
 
         image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
         iMgr.updateImage(image);
+        imageModel.setImageList(iMgr.readAll());
+        imageTable.setModel(imageModel);
         
     }
 
@@ -1611,18 +1619,6 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_MinimizeEditMouseClicked
 
     private void cbxPresentationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPresentationTypeActionPerformed
-//        if (cbxPresentationType.getSelectedItem() == "Image") {
-//            pnlEditFolder.setVisible(true);
-//            pnlCreateFolder.setVisible(true);
-//            pnlTextArea.setVisible(false);
-//        } else {
-//            pnlEditFolder.setVisible(false);
-//            pnlCreateFolder.setVisible(false);
-//            pnlTextArea.setVisible(true);
-//        }
-//        if (cbxPresentationType.getSelectedIndex() != 0) {
-//            lblCreateWarningType.setVisible(false);
-//        }
 
         if (cbxPresentationType.getSelectedIndex() == 1)
         {
@@ -1631,7 +1627,7 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlTableCardImage.setVisible(false);
             pnlTableClearLayout.setVisible(false);
             pnlTextAreaCont.setVisible(true);
-            TextList();
+            
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
 
@@ -1645,7 +1641,7 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlTableCardText.setVisible(false);
             pnlTableClearLayout.setVisible(false);
             pnlTextAreaCont.setVisible(false);
-            ImageList();
+            
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
 
@@ -1661,12 +1657,24 @@ public class GuiMain2 extends javax.swing.JFrame
             btnEditChosen.setEnabled(false);
             btnRemoveChosen.setEnabled(false);
         }
+      
 
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
 
     private void cbxPresentationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxPresentationTypeItemStateChanged
 //        pnlTableCardMain.setVisible(true);
+          if (cbxPresentationType.getSelectedIndex() == 1)
+        {
 
+           TextList();
+
+        }
+        if (cbxPresentationType.getSelectedIndex() == 2)
+        {
+           ImageList();
+
+        }
+       
 
     }//GEN-LAST:event_cbxPresentationTypeItemStateChanged
 
