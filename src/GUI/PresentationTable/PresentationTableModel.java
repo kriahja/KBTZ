@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -41,7 +41,7 @@ public class PresentationTableModel extends AbstractTableModel
     public PresentationTableModel(ArrayList<DisplayCtrl> initialPresentations)
     {
         pres = initialPresentations;
-
+        dcMgr = DisplayCtrlManager.getInstance();
     }
 
     public PresentationTableModel()
@@ -104,13 +104,13 @@ public class PresentationTableModel extends AbstractTableModel
     public void setValueAt(Object value, int row, int col)
     {
         DisplayCtrl dc = pres.get(row);
-        
+        System.out.println(dc.getPresTitle());
         switch (col)
         {
 
             case DISABLE_COLUMN:
                 dc.setDisable(Boolean.valueOf(value.toString()));
-            //    dcMgr.updateDisable(present);
+                dcMgr.updateDisable(dc);
                 break;
         }
         // Fire this event to trigger the tableModelListener.

@@ -36,12 +36,14 @@ public class DisplayCtrl
         this.dispId = dispId;
     }
 
-    public DisplayCtrl(String presTitle, String presType, String screenName, boolean disable)
+    public DisplayCtrl(String presTitle, String presType, String screenName, boolean disable, int presId, int dispId)
     {
         this.presTitle = presTitle;
         this.presType = presType;
         this.screenName = screenName;
         this.disable = disable;
+        this.presId = presId;
+        this.dispId = dispId;
         
     }
     

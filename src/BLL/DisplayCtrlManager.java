@@ -91,11 +91,11 @@ public class DisplayCtrlManager
         }
     }
     
-        public void updateDisable(Presentation pres)
+        public void updateDisable(DisplayCtrl dc)
     {
         try
         {
-            db.updateDisable(pres);
+            db.updateDisable(dc);
         }
         catch (SQLException ex)
         {
