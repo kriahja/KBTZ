@@ -8,12 +8,13 @@ package GUI;
 import BLL.DisplayCtrlManager;
 import BLL.ImageManager;
 import BLL.TextManager;
-import Entities.Display;
 import Entities.DisplayCtrl;
 import Entities.Image;
 import Entities.Text;
+import GUI.EditTable.EditTableModel;
 import GUI.ImageTable.ImageTable;
 import GUI.ImageTable.ImageTableModel;
+import GUI.PresentationTable.EditTable;
 import GUI.PresentationTable.PresentationTable;
 import GUI.PresentationTable.PresentationTableModel;
 
@@ -24,7 +25,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.sql.Date;
-import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -49,6 +49,9 @@ public class GuiMain2 extends javax.swing.JFrame
     private ImageTableModel imageModel;
     private PresentationTable presTable;
     private PresentationTableModel presModel;
+
+    private EditTable editTable;
+    private EditTableModel editModel;
 
     private final DisplayCtrlManager dcMgr;
     DisplayCtrl pres;
@@ -89,7 +92,6 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlEditFolder.setVisible(false);
         pnlCreateFolder.setVisible(false);
 
-        
         tMgr = TextManager.getInstance();
         iMgr = ImageManager.getInstance();
         dcMgr = DisplayCtrlManager.getInstance();
@@ -197,6 +199,34 @@ public class GuiMain2 extends javax.swing.JFrame
 //                }
 //            }
 //        });
+    }
+
+    private void EditList()
+    {
+        editModel = new EditTableModel(tMgr.readAll());
+
+        editTable = new EditTable(editModel);
+
+        pnlTableCardText.add(new JScrollPane(editTable), BorderLayout.CENTER);
+
+        editTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent lse)
+            {
+                if (!lse.getValueIsAdjusting())
+                {
+                    if (editTable.getSelectedRow() != -1)
+                    {
+                        showTextData();
+                    }
+                    else
+                    {
+                        clearEditData();
+                    }
+                }
+            }
+        });
     }
 
     private void showTextData()
@@ -1402,6 +1432,22 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlEditCard2.setVisible(true);
         pnlEditCard1.setVisible(false);
 
+//        int colId = 2;
+//        editTable.getSelectedRow(editTable.getSelectedColumn(editTable.getValueAt(2)));
+
+        int selectedRow = editTable.getSelectedRow();
+        selectedRow = editTable.convertRowIndexToModel(selectedRow);
+        String val1 = (String) editTable.getModel().getValueAt(selectedRow, 2);
+
+        if (val1.equals("Text"))
+        {
+            showTextData();
+        }
+        if (val1.equals("Image"))
+        {
+            showImageData();
+        }
+
         if (cbxPresentationType.getSelectedIndex() == 1)
         {
             showTextData();
@@ -1555,7 +1601,7 @@ public class GuiMain2 extends javax.swing.JFrame
         tMgr.createText(text);
         textModel.setTextList(tMgr.readAll());
         textTable.setModel(textModel);
-        
+
     }
 
     private void saveImagePresentation() throws NumberFormatException
@@ -1613,7 +1659,7 @@ public class GuiMain2 extends javax.swing.JFrame
         iMgr.updateImage(image);
         imageModel.setImageList(iMgr.readAll());
         imageTable.setModel(imageModel);
-        
+
     }
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked

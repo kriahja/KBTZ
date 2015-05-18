@@ -27,6 +27,8 @@ public class DisplayCtrl
     
     private Date startDate;
     private Date endDate;
+    
+    private Double timer;
 
     public DisplayCtrl(int presId, int dispId)
     {
@@ -43,10 +45,11 @@ public class DisplayCtrl
         
     }
     
-    public DisplayCtrl(Date startDate, Date endDate)
+    public DisplayCtrl(Date startDate, Date endDate, Double timer)
     {
         this.startDate = startDate;
         this.endDate = endDate;
+        this.timer = timer;
     }
 
     /**
@@ -175,6 +178,22 @@ public class DisplayCtrl
     public void setPres(Presentation pres)
     {
         this.pres = pres;
+    }
+
+    /**
+     * @return the timer
+     */
+    public Double getTimer()
+    {
+        return timer;
+    }
+
+    /**
+     * @param timer the timer to set
+     */
+    public void setTimer(Double timer)
+    {
+        this.timer = timer;
     }
 
 }
