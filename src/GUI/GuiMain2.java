@@ -210,30 +210,33 @@ public class GuiMain2 extends javax.swing.JFrame
 
         pnlTableCardText.add(new JScrollPane(editTable), BorderLayout.CENTER);
 
-        editTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-        {
-            @Override
-            public void valueChanged(ListSelectionEvent lse)
-            {
-                if (!lse.getValueIsAdjusting())
-                {
-                    if (editTable.getSelectedRow() != -1)
-                    {
-                        showTextData();
-                    }
-                    else
-                    {
-                        clearEditData();
-                    }
-                }
-            }
-        });
+//        editTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+//        {
+//            @Override
+//            public void valueChanged(ListSelectionEvent lse)
+//            {
+//                if (!lse.getValueIsAdjusting())
+//                {
+//                    if (editTable.getSelectedRow() != -1)
+//                    {
+//                        showTextData();
+//                    }
+//                    else
+//                    {
+//                        clearEditData();
+//                    }
+//                }
+//            }
+//        });
     }
 
-    private void showTextData()
+    private void showTextData(String presTitle)
     {
-        text = textModel.getTextByRow(textTable.convertRowIndexToModel(textTable.getSelectedRow()));
-
+        
+//        text =  textModel.getTextByRow(textTable.convertRowIndexToModel(textTable.getSelectedRow()));
+        
+        text = tMgr.getByTitle(presTitle);
+        
         txtEditTitle.setText(text.getTitle());
         txtEditTextArea.setText(text.getText());
         tt = tMgr.getByTitle(text.getTitle());
@@ -281,10 +284,12 @@ public class GuiMain2 extends javax.swing.JFrame
 //        });
     }
 
-    private void showImageData()
+    private void showImageData(String presTitle)
     {
-        image = imageModel.getImageByRow(imageTable.convertRowIndexToModel(imageTable.getSelectedRow()));
-
+//        image = imageModel.getImageByRow(imageTable.convertRowIndexToModel(imageTable.getSelectedRow()));
+        
+        image = iMgr.getByTitle(presTitle);
+        
         txtEditTitle.setText(image.getTitle());
         cbxFolder.setSelectedItem(image.getPath());
         img = iMgr.getByTitle(image.getTitle());
@@ -1435,30 +1440,31 @@ public class GuiMain2 extends javax.swing.JFrame
 
 //        int colId = 2;
 //        editTable.getSelectedRow(editTable.getSelectedColumn(editTable.getValueAt(2)));
-
+        
         int selectedRow = editTable.getSelectedRow();
         selectedRow = editTable.convertRowIndexToModel(selectedRow);
         String val1 = (String) editTable.getModel().getValueAt(selectedRow, 2);
-
+        String title = (String) editTable.getModel().getValueAt(selectedRow, 1);
+        
         if (val1.equals("Text"))
         {
-            showTextData();
+            showTextData(title);
         }
         if (val1.equals("Image"))
         {
-            showImageData();
+            showImageData(title);
         }
 
-        if (cbxPresentationType.getSelectedIndex() == 1)
-        {
-            showTextData();
-            cbxPresentationType.setEnabled(false);
-        }
-        else if (cbxPresentationType.getSelectedIndex() == 2)
-        {
-            showImageData();
-            cbxPresentationType.setEnabled(false);
-        }
+//        if (cbxPresentationType.getSelectedIndex() == 1)
+//        {
+//            showTextData();
+//            cbxPresentationType.setEnabled(false);
+//        }
+//        else if (cbxPresentationType.getSelectedIndex() == 2)
+//        {
+//            showImageData();
+//            cbxPresentationType.setEnabled(false);
+//        }
 
     }//GEN-LAST:event_btnEditChosenActionPerformed
 
