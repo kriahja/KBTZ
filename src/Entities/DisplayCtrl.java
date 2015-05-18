@@ -24,10 +24,10 @@ public class DisplayCtrl
     private String presType;
     private String screenName;
     private boolean disable;
-    
+
     private Date startDate;
     private Date endDate;
-    
+
     private Double timer;
 
     public DisplayCtrl(int presId, int dispId)
@@ -44,14 +44,19 @@ public class DisplayCtrl
         this.disable = disable;
         this.presId = presId;
         this.dispId = dispId;
-        
+
     }
-    
-    public DisplayCtrl(Date startDate, Date endDate, Double timer)
+
+    public DisplayCtrl(String presTitle, String presType, String screenName, Date startDate, Date endDate, Double timer, int presId, int dispId)
     {
+        this.presTitle = presTitle;
+        this.presType = presType;
+        this.screenName = screenName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.timer = timer;
+        this.presId = presId;
+        this.dispId = dispId;
     }
 
     /**

@@ -64,6 +64,20 @@ public class DisplayCtrlManager
         return null;
 
     }
+    
+    public ArrayList<DisplayCtrl> readAllEditPres()
+    {
+        try
+        {
+            return db.readAllEditPres();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }    
 
     public ArrayList<DisplayCtrl> runningPresentations()
     {

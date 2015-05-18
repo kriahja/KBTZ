@@ -37,7 +37,8 @@ public class DisplayCtrlDBManager
 
     public static DisplayCtrlDBManager getInstance() throws IOException
     {
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = new DisplayCtrlDBManager();
         }
         return instance;
@@ -80,9 +81,26 @@ public class DisplayCtrlDBManager
         return dc;
     }
 
+    public DisplayCtrl getOnedcEditPres(ResultSet rs) throws SQLException
+    {
+        String presTitle = rs.getString("Title");
+        String presType = rs.getString("Type");
+        String screenName = rs.getString("ScreenName");
+        Date startDate = rs.getDate("StartDate");
+        Date endDate = rs.getDate("EndDate");
+        Double timer = rs.getDouble("Timer");
+        int presId = rs.getInt("PresentationId");
+        int dispId = rs.getInt("DisplayId");
+
+        DisplayCtrl dc = new DisplayCtrl(presTitle, presType, screenName, startDate, endDate, timer, presId, dispId);
+
+        return dc;
+    }
+
     public ArrayList<DisplayCtrl> readAllPres() throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<DisplayCtrl> dcList = new ArrayList<>();
             String sql = "Select Presentation.Title, PresType.[Type], DisplayCtrl.[Disable], Display.ScreenName , DisplayCtrl.PresentationId , DisplayCtrl.DisplayId\n"
                     + "                    from DisplayCtrl\n"
@@ -92,8 +110,31 @@ public class DisplayCtrlDBManager
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 DisplayCtrl dc = getOnedc(rs);
+                dcList.add(dc);
+            }
+            return dcList;
+        }
+    }
+
+    public ArrayList<DisplayCtrl> readAllEditPres() throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<DisplayCtrl> dcList = new ArrayList<>();
+            String sql = "Select Presentation.Title, PresType.[Type], Display.ScreenName, Presentation.StartDate, Presentation.EndDate, Presentation.Timer, DisplayCtrl.PresentationId, DisplayCtrl.DisplayId\n"
+                    + "                    from DisplayCtrl\n"
+                    + "                    Inner JOIN Presentation ON DisplayCtrl.PresentationId = Presentation.ID\n"
+                    + "                    Inner JOIN PresType ON Presentation.PresTypeId = PresType.ID\n"
+                    + "                    Inner JOIN Display ON DisplayCtrl.DisplayId = Display.ID";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+            {
+                DisplayCtrl dc = getOnedcEditPres(rs);
                 dcList.add(dc);
             }
             return dcList;
@@ -106,7 +147,8 @@ public class DisplayCtrlDBManager
      */
     public void updateDisable(DisplayCtrl dc) throws SQLException
     {
-        try (Connection con = cm.getConnection()) {
+        try (Connection con = cm.getConnection())
+        {
             System.out.println(dc.isDisable() + "" + dc.getPresId());
             String sql = "update DisplayCtrl set Disable = ? where PresentationId = ? and DisplayId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -116,7 +158,8 @@ public class DisplayCtrlDBManager
             ps.setInt(3, dc.getDispId());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0) {
+            if (affectedRows == 0)
+            {
                 throw new BivExceptions("Unable to Update Dispctrl.");
             }
 

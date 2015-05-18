@@ -11,10 +11,10 @@ import BLL.TextManager;
 import Entities.DisplayCtrl;
 import Entities.Image;
 import Entities.Text;
+import GUI.EditTable.EditTable;
 import GUI.EditTable.EditTableModel;
 import GUI.ImageTable.ImageTable;
 import GUI.ImageTable.ImageTableModel;
-import GUI.PresentationTable.EditTable;
 import GUI.PresentationTable.PresentationTable;
 import GUI.PresentationTable.PresentationTableModel;
 
@@ -100,6 +100,7 @@ public class GuiMain2 extends javax.swing.JFrame
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
         PresentationList();
+        EditList();
 
         shared = new File("c:/Info/images");
 
@@ -203,7 +204,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private void EditList()
     {
-        editModel = new EditTableModel(tMgr.readAll());
+        editModel = new EditTableModel(dcMgr.readAllEditPres());
 
         editTable = new EditTable(editModel);
 
