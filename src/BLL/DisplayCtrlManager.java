@@ -64,6 +64,20 @@ public class DisplayCtrlManager
         return null;
 
     }
+    
+    public ArrayList<DisplayCtrl> readAllEditPres()
+    {
+        try
+        {
+            return db.readAllEditPres();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }    
 
     public ArrayList<DisplayCtrl> runningPresentations()
     {
@@ -91,15 +105,15 @@ public class DisplayCtrlManager
         }
     }
     
-//        public void updateDisable(Presentation pres)
-//    {
-//        try
-//        {
-//            db.updateDisable(pres);
-//        }
-//        catch (SQLException ex)
-//        {
-//            throw new BivExceptions("Unable to Update the Text"); 
-//        }
-//    }
+        public void updateDisable(DisplayCtrl dc)
+    {
+        try
+        {
+            db.updateDisable(dc);
+        }
+        catch (SQLException ex)
+        {
+            throw new BivExceptions("Unable to Update the Text"); 
+        }
+    }
 }

@@ -1,13 +1,14 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.PresentationTable;
+package GUI.EditTable;
 
 import BLL.DisplayCtrlManager;
 import Entities.DisplayCtrl;
 import Entities.Presentation;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -15,36 +16,38 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author notandi
  */
-public class PresentationTableModel extends AbstractTableModel
+public class EditTableModel extends AbstractTableModel
 {
 
     public static final int TITLE_COLUMN = 0;
     public static final int TYPE_COLUMN = 1;
-    public static final int DISAPLY_COLUMN = 2;
-    public static final int DISABLE_COLUMN = 3;
+    public static final int DISPLAY_COLUMN = 2;
+    public static final int START_COLUMN = 3;
+    public static final int END_COLUMN = 4;
+    public static final int TIMER_COLUMN = 5;
 
     DisplayCtrlManager dcMgr;
     Presentation present;
 
     private final String[] headers =
     {
-        "Title", "Type", "Display", "Disable / Enable"
+        "Title", "Type", "Display", "Start date", "End date", "Minutes"
     };
 
     private final Class[] columnTypes =
     {
-        String.class, String.class, String.class, Boolean.class
+        String.class, String.class, String.class, Date.class, Date.class, Double.class
     };
 
     private ArrayList<DisplayCtrl> pres;
 
-    public PresentationTableModel(ArrayList<DisplayCtrl> initialPresentations)
+    public EditTableModel(ArrayList<DisplayCtrl> initialPresentations)
     {
         pres = initialPresentations;
-        dcMgr = DisplayCtrlManager.getInstance();
+
     }
 
-    public PresentationTableModel()
+    public EditTableModel()
     {
         pres = new ArrayList<>();
         dcMgr = DisplayCtrlManager.getInstance();
@@ -74,10 +77,14 @@ public class PresentationTableModel extends AbstractTableModel
                 return dc.getPresTitle();
             case TYPE_COLUMN:
                 return dc.getPresType();
-            case DISAPLY_COLUMN:
+            case DISPLAY_COLUMN:
                 return dc.getScreenName();
-            case DISABLE_COLUMN:
-                return dc.isDisable();
+            case START_COLUMN:
+                return dc.getStartDate();
+            case END_COLUMN:
+                return dc.getEndDate();
+            case TIMER_COLUMN:
+                return dc.getTimer();
         }
         return null;
     }
@@ -92,31 +99,6 @@ public class PresentationTableModel extends AbstractTableModel
     public Class<?> getColumnClass(int col)
     {
         return columnTypes[col];
-    }
-
-    @Override
-    public boolean isCellEditable(int row, int col)
-    {
-        return (col != TITLE_COLUMN && col != TYPE_COLUMN && col != DISAPLY_COLUMN);
-    }
-
-    @Override
-    public void setValueAt(Object value, int row, int col)
-    {
-        DisplayCtrl dc = pres.get(row);
-        System.out.println(dc.getPresTitle());
-        switch (col)
-        {
-
-            case DISABLE_COLUMN:
-                dc.setDisable(Boolean.valueOf(value.toString()));
-                dcMgr.updateDisable(dc);
-                break;
-        }
-        // Fire this event to trigger the tableModelListener.
-//        fireTableRowsUpdated(row, row);
-        fireTableCellUpdated(row, col);
-
     }
 
     public DisplayCtrl getDisplayCtrlByRow(int row)
