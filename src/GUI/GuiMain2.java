@@ -1433,7 +1433,7 @@ public class GuiMain2 extends javax.swing.JFrame
             lblCreateWarningType.setVisible(true);
             lblCreateWarningDisplay.setVisible(false);
         }
-        else if (lstDisplay.getSelectedIndex() <= 0)
+        else if (lstDisplay.getSelectedIndex() < 0)
         {
             lblCreateWarningType.setVisible(false);
             lblCreateWarningDisplay.setVisible(true);
@@ -1537,7 +1537,45 @@ public class GuiMain2 extends javax.swing.JFrame
     }
 
     private void cbxPresentationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPresentationTypeActionPerformed
+        if (cbxPresentationType.getSelectedItem() == "Image") {
+            pnlEditFolder.setVisible(true);
+            pnlCreateFolder.setVisible(true);
+            pnlTextArea.setVisible(false);
+        } else {
+            pnlEditFolder.setVisible(false);
+            pnlCreateFolder.setVisible(false);
+            pnlTextArea.setVisible(true);
+        }
+        if (cbxPresentationType.getSelectedIndex() != 0) {
+            lblCreateWarningType.setVisible(false);
+        }
 
+        if (cbxPresentationType.getSelectedIndex() == 1)
+        {
+
+            pnlTableCardText.setVisible(true);
+            pnlTableClearLayout.setVisible(false);
+            pnlTextAreaCont.setVisible(true);
+            TextList();
+            btnEditChosen.setEnabled(true);
+            btnRemoveChosen.setEnabled(true);
+
+        }
+        else if (cbxPresentationType.getSelectedIndex() == 2)
+        {
+            pnlEditFolder.setVisible(true);
+            pnlCreateFolder.setVisible(true);
+            pnlTextArea.setVisible(false);
+            pnlTableCardText.setVisible(false);
+            pnlTableClearLayout.setVisible(false);
+            pnlTextAreaCont.setVisible(false);
+           
+            btnEditChosen.setEnabled(true);
+            btnRemoveChosen.setEnabled(true);
+
+        }
+        else
+        {
             pnlEditFolder.setVisible(false);
             pnlCreateFolder.setVisible(false);
             pnlTextArea.setVisible(true);
@@ -1546,9 +1584,9 @@ public class GuiMain2 extends javax.swing.JFrame
             btnRemoveChosen.setEnabled(false);
 
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
-
+    }
     private void cbxPresentationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxPresentationTypeItemStateChanged
-
+      
     }//GEN-LAST:event_cbxPresentationTypeItemStateChanged
 
     private void cbxCreateFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCreateFolderActionPerformed

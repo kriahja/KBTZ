@@ -182,7 +182,7 @@ public class TextDBManager
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
-                    + " VALUES (?, ?, ?, ?, ?, ?, 'false')\n"
+                    + " VALUES (?, ?, ?, ?, ?, ?)\n"
                     + " Insert INTO [Text]\n"
                     + " VALUES (?,  SCOPE_IDENTITY())\n"
                     + "COMMIT";
