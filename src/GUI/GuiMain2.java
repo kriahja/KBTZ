@@ -6,8 +6,10 @@
 package GUI;
 
 import BLL.DisplayCtrlManager;
+import BLL.DisplayManager;
 import BLL.ImageManager;
 import BLL.TextManager;
+import Entities.Display;
 import Entities.DisplayCtrl;
 import Entities.Image;
 import Entities.Text;
@@ -25,6 +27,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -59,13 +62,17 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private final TextManager tMgr;
     private final ImageManager iMgr;
+    
+    private final DisplayManager dMgr;
 
+    ArrayList<String> dispList;
+    
     String title;
     String txt;
     Date startDate;
     Date endDate;
     double timer;
-    List displayId;
+    int[] displayId;
     int index;
     int presTypeId;
     boolean notSafe = false;
@@ -96,7 +103,10 @@ public class GuiMain2 extends javax.swing.JFrame
         tMgr = TextManager.getInstance();
         iMgr = ImageManager.getInstance();
         dcMgr = DisplayCtrlManager.getInstance();
+        dMgr = DisplayManager.getInstance();
 
+        dispList = new ArrayList<>();
+        
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
@@ -1278,6 +1288,15 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreate.setVisible(true);
         pnlClean.setVisible(false);
         pnlEdit.setVisible(false);
+        
+        dispList = dMgr.readAllPres();
+        
+        for(int i = 0; i < dispList.size(); ++i)
+        {
+            lstDisplay.setListData(dispList.toArray());
+            
+        }
+        
 
 
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -1292,6 +1311,15 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreate.setVisible(false);
         pnlClean.setVisible(false);
         TextList();
+        
+        dispList = dMgr.readAllPres();
+        
+        for(int i = 0; i < dispList.size(); ++i)
+        {
+            lstDisplay.setListData(dispList.toArray());
+            
+        }
+        
 //        pnlCreateTypeAndDisplay.setVisible(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -1448,8 +1476,10 @@ public class GuiMain2 extends javax.swing.JFrame
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
 //        displayId = cbxChooseDisplay.getSelectedIndex();
-        displayId = lstDisplay.getSelectedValuesList();
+        
         notSafe = cxCreateNotSafe.isSelected();
+        
+        displayId = lstDisplay.getSelectedIndices();
         
         System.out.println(displayId);
         
@@ -1459,9 +1489,11 @@ public class GuiMain2 extends javax.swing.JFrame
         
         int id = tMgr.getByTitle(title).getId();
         
-//        for (int i = 0; i < displayId.size(); ++i) {
-//            dcMgr.create(id, );
-//        }
+       
+        
+        for (int i = 0; i < displayId.length; ++i) {
+            dcMgr.create(id, displayId[i] + 1);
+        }
 
         textModel.setTextList(tMgr.readAll());
         textTable.setModel(textModel);
@@ -1477,7 +1509,7 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = lstDisplay.getSelectedValuesList();
+        displayId = lstDisplay.getSelectedIndices();
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
@@ -1496,7 +1528,7 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
         timer = Double.parseDouble(txtEditTimer.getText());
-        displayId = lstDisplay.getSelectedValuesList();
+        displayId = lstDisplay.getSelectedIndices();
         notSafe = cxCreateNotSafe.isSelected();
         System.out.println(presTypeId + title + " " + startDate + " " + endDate + " " + timer + " " + notSafe + " " + txt);
         text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
@@ -1516,7 +1548,7 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
         timer = Double.parseDouble(txtEditTimer.getText());
-        displayId = lstDisplay.getSelectedValuesList();
+        displayId = lstDisplay.getSelectedIndices();
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
