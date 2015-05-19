@@ -652,7 +652,7 @@ public class GuiMain2 extends javax.swing.JFrame
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
         pnlLeftSettingsLayout.setVerticalGroup(
             pnlLeftSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1117,25 +1117,19 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlTextAreaCont.setLayout(pnlTextAreaContLayout);
         pnlTextAreaContLayout.setHorizontalGroup(
             pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlTextAreaContLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
-                    .addContainerGap()))
+            .addComponent(jScrollPane2)
+            .addGroup(pnlTextAreaContLayout.createSequentialGroup()
+                .addComponent(jLabel18)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlTextAreaContLayout.setVerticalGroup(
             pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 239, Short.MAX_VALUE)
-            .addGroup(pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlTextAreaContLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel18)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTextAreaContLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlEditCard2Layout = new javax.swing.GroupLayout(pnlEditCard2);
@@ -1199,10 +1193,11 @@ public class GuiMain2 extends javax.swing.JFrame
                 .addComponent(txtEditTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlEditFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelUpdate)
-                    .addComponent(btnUpdate)))
+                    .addComponent(btnUpdate))
+                .addContainerGap())
         );
 
         pnlEditCardContainer.add(pnlEditCard2, "card2");
@@ -1245,7 +1240,7 @@ public class GuiMain2 extends javax.swing.JFrame
                         .addGap(20, 20, 20)
                         .addComponent(pnlLeftSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(CardLayoutSet, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(CardLayoutSet, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         settingsCardLayout.setVerticalGroup(
@@ -1335,11 +1330,13 @@ public class GuiMain2 extends javax.swing.JFrame
         {
             showTextData(title);
             pnlTextAreaCont.setVisible(true);
+            pnlEditFolder.setVisible(false);
         }
         if (val1.equals("Image"))
         {
             showImageData(title);
             pnlTextAreaCont.setVisible(false);
+            pnlEditFolder.setVisible(true);
         }
 
     }//GEN-LAST:event_btnEditChosenActionPerformed
@@ -1453,7 +1450,7 @@ public class GuiMain2 extends javax.swing.JFrame
                     break;
                 case 2:
                     saveImagePresentation();
-                    cbxPresentationType.setEnabled(false);
+                    cbxPresentationType.setEnabled(false);                    
                     break;
             }
             clearCreateData();
@@ -1540,62 +1537,17 @@ public class GuiMain2 extends javax.swing.JFrame
     }
 
     private void cbxPresentationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPresentationTypeActionPerformed
-//        if (cbxPresentationType.getSelectedItem() == "Image") {
-//            pnlEditFolder.setVisible(true);
-//            pnlCreateFolder.setVisible(true);
-//            pnlTextArea.setVisible(false);
-//        } else {
-//            pnlEditFolder.setVisible(false);
-//            pnlCreateFolder.setVisible(false);
-//            pnlTextArea.setVisible(true);
-//        }
-//        if (cbxPresentationType.getSelectedIndex() != 0) {
-//            lblCreateWarningType.setVisible(false);
-//        }
 
-//        if (cbxPresentationType.getSelectedIndex() == 1)
-//        {
-//
-//            pnlTableCardText.setVisible(true);
-
-//            pnlTableClearLayout.setVisible(false);
-//            pnlTextAreaCont.setVisible(true);
-//            TextList();
-//            btnEditChosen.setEnabled(true);
-//            btnRemoveChosen.setEnabled(true);
-//
-//        }
-//        else if (cbxPresentationType.getSelectedIndex() == 2)
-//        {
-//            pnlEditFolder.setVisible(true);
-//            pnlCreateFolder.setVisible(true);
-//            pnlTextArea.setVisible(false);
-
-//            pnlTableCardText.setVisible(false);
-//            pnlTableClearLayout.setVisible(false);
-//            pnlTextAreaCont.setVisible(false);
-//            ImageList();
-//            btnEditChosen.setEnabled(true);
-//            btnRemoveChosen.setEnabled(true);
-//
-//        }
-//        else
-//        {
             pnlEditFolder.setVisible(false);
             pnlCreateFolder.setVisible(false);
             pnlTextArea.setVisible(true);
             pnlTableCardText.setVisible(true);
-
             pnlTableClearLayout.setVisible(false);
-//            btnEditChosen.setEnabled(false);
             btnRemoveChosen.setEnabled(false);
-//        }
 
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
 
     private void cbxPresentationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxPresentationTypeItemStateChanged
-//        pnlTableCardMain.setVisible(true);
-
 
     }//GEN-LAST:event_cbxPresentationTypeItemStateChanged
 
