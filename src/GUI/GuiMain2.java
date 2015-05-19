@@ -107,8 +107,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
         folders = shared.list();
         //  folders = shared.listFiles();
-        for (String paths : folders)
-        {
+        for (String paths : folders) {
             cbxFolder.addItem(paths);
             cbxCreateFolder.addItem(paths);
         }
@@ -126,7 +125,6 @@ public class GuiMain2 extends javax.swing.JFrame
         lblCreateWarningType.setVisible(false);
         lblCreateWarningDisplay.setVisible(false);
         pnlTableCardText.setVisible(false);
-        
 
     }
 
@@ -143,14 +141,10 @@ public class GuiMain2 extends javax.swing.JFrame
             @Override
             public void valueChanged(ListSelectionEvent lse)
             {
-                if (!lse.getValueIsAdjusting())
-                {
-                    if (presTable.getSelectedRow() != -1)
-                    {
+                if (!lse.getValueIsAdjusting()) {
+                    if (presTable.getSelectedRow() != -1) {
                         showPresData();
-                    }
-                    else
-                    {
+                    } else {
                         clearEditData();
                     }
                 }
@@ -199,11 +193,11 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private void showTextData(String presTitle)
     {
-        
+
 //        text =  textModel.getTextByRow(textTable.convertRowIndexToModel(textTable.getSelectedRow()));
         System.out.println(presTitle);
         text = tMgr.getByTitle(presTitle);
-        
+
         txtEditTitle.setText(text.getTitle());
         txtEditTextArea.setText(text.getText());
         tt = tMgr.getByTitle(text.getTitle());
@@ -223,14 +217,12 @@ public class GuiMain2 extends javax.swing.JFrame
 
     }
 
-
-
     private void showImageData(String presTitle)
     {
 //        image = imageModel.getImageByRow(imageTable.convertRowIndexToModel(imageTable.getSelectedRow()));
-        
+
         image = iMgr.getByTitle(presTitle);
-        
+
         txtEditTitle.setText(image.getTitle());
         cbxFolder.setSelectedItem(image.getPath());
         img = iMgr.getByTitle(image.getTitle());
@@ -1292,7 +1284,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlClean.setVisible(false);
         pnlEdit.setVisible(false);
 
-        
+
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -1323,21 +1315,19 @@ public class GuiMain2 extends javax.swing.JFrame
     private void btnEditChosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditChosenActionPerformed
         pnlEditCard2.setVisible(true);
         pnlEditCard1.setVisible(false);
-        
+
         int selectedRow = editTable.getSelectedRow();
         selectedRow = editTable.convertRowIndexToModel(selectedRow);
         String val1 = (String) editTable.getModel().getValueAt(selectedRow, 1);
         String title = (String) editTable.getModel().getValueAt(selectedRow, 0);
-        
+
         System.out.println(val1 + " " + title);
-        
-        if (val1.equals("Text"))
-        {
+
+        if (val1.equals("Text")) {
             showTextData(title);
             pnlTextAreaCont.setVisible(true);
         }
-        if (val1.equals("Image"))
-        {
+        if (val1.equals("Image")) {
             showImageData(title);
             pnlTextAreaCont.setVisible(false);
         }
@@ -1348,8 +1338,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlEditCard2.setVisible(false);
         pnlEditCard1.setVisible(true);
 
-        if (cbxPresentationType.getSelectedIndex() == 1)
-        {
+        if (cbxPresentationType.getSelectedIndex() == 1) {
             int row = textTable.getSelectedRow();
 
             // fetch the text to remove from the table model.
@@ -1362,27 +1351,23 @@ public class GuiMain2 extends javax.swing.JFrame
             // adjust the selection since the selected employee is now gone.
             adjustSelection(row);
 
-        }
-        else if (cbxPresentationType.getSelectedIndex() == 2)
-        {
+        } else {
+            if (cbxPresentationType.getSelectedIndex() == 2) {
 
+            }
         }
 
     }//GEN-LAST:event_btnRemoveChosenActionPerformed
 
     private void adjustSelection(int row)
     {
-        if (textModel.getRowCount() > 0)
-        {
-            if (row == textModel.getRowCount())
-            {
+        if (textModel.getRowCount() > 0) {
+            if (row == textModel.getRowCount()) {
                 row--;
             }
 
             textTable.setRowSelectionInterval(row, row);
-        }
-        else
-        {
+        } else {
             textTable.getSelectionModel().clearSelection();
         }
     }
@@ -1414,49 +1399,44 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_cxEditNotSafeActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (cbxPresentationType.getSelectedIndex() == 1)
-        {
+        if (cbxPresentationType.getSelectedIndex() == 1) {
             updateText();
             pnlEditCard2.setVisible(false);
             cbxPresentationType.setEnabled(true);
-        }
-        else if (cbxPresentationType.getSelectedIndex() == 2)
-        {
-            updateImage();
-            pnlEditCard2.setVisible(false);
-            cbxPresentationType.setEnabled(true);
+        } else {
+            if (cbxPresentationType.getSelectedIndex() == 2) {
+                updateImage();
+                pnlEditCard2.setVisible(false);
+                cbxPresentationType.setEnabled(true);
+            }
         }
 
         //  clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCreateNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewActionPerformed
-        if (cbxPresentationType.getSelectedIndex() == 0)
-        {
+        if (cbxPresentationType.getSelectedIndex() == 0) {
             lblCreateWarningType.setVisible(true);
             lblCreateWarningDisplay.setVisible(false);
-        }
-        else if (lstDisplay.getSelectedIndex() <= 0)
-        {
-            lblCreateWarningType.setVisible(false);
-            lblCreateWarningDisplay.setVisible(true);
-        }
-        else
-        {
+        } else {
+            if (lstDisplay.getSelectedIndex() < 0) {
+                lblCreateWarningType.setVisible(false);
+                lblCreateWarningDisplay.setVisible(true);
+            } else {
 
-            int selection = cbxPresentationType.getSelectedIndex();
-            switch (selection)
-            {
-                case 1:
-                    saveTextPresentation();
-                    cbxPresentationType.setEnabled(false);
-                    break;
-                case 2:
-                    saveImagePresentation();
-                    cbxPresentationType.setEnabled(false);
-                    break;
+                int selection = cbxPresentationType.getSelectedIndex();
+                switch (selection) {
+                    case 1:
+                        saveTextPresentation();
+                        cbxPresentationType.setEnabled(false);
+                        break;
+                    case 2:
+                        saveImagePresentation();
+                        cbxPresentationType.setEnabled(false);
+                        break;
+                }
+                clearCreateData();
             }
-            clearCreateData();
         }
 
     }//GEN-LAST:event_btnCreateNewActionPerformed
@@ -1473,9 +1453,19 @@ public class GuiMain2 extends javax.swing.JFrame
 //        displayId = cbxChooseDisplay.getSelectedIndex();
         displayId = lstDisplay.getSelectedValuesList();
         notSafe = cxCreateNotSafe.isSelected();
-
+        
+        System.out.println(displayId);
+        
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
+
         tMgr.createText(text);
+        
+        int id = tMgr.getByTitle(title).getId();
+        
+//        for (int i = 0; i < displayId.size(); ++i) {
+//            dcMgr.create(id, );
+//        }
+
         textModel.setTextList(tMgr.readAll());
         textTable.setModel(textModel);
 
@@ -1540,56 +1530,55 @@ public class GuiMain2 extends javax.swing.JFrame
     }
 
     private void cbxPresentationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPresentationTypeActionPerformed
-//        if (cbxPresentationType.getSelectedItem() == "Image") {
-//            pnlEditFolder.setVisible(true);
-//            pnlCreateFolder.setVisible(true);
-//            pnlTextArea.setVisible(false);
-//        } else {
-//            pnlEditFolder.setVisible(false);
-//            pnlCreateFolder.setVisible(false);
-//            pnlTextArea.setVisible(true);
-//        }
-//        if (cbxPresentationType.getSelectedIndex() != 0) {
-//            lblCreateWarningType.setVisible(false);
-//        }
-
-//        if (cbxPresentationType.getSelectedIndex() == 1)
-//        {
-//
-//            pnlTableCardText.setVisible(true);
-
-//            pnlTableClearLayout.setVisible(false);
-//            pnlTextAreaCont.setVisible(true);
-//            TextList();
-//            btnEditChosen.setEnabled(true);
-//            btnRemoveChosen.setEnabled(true);
-//
-//        }
-//        else if (cbxPresentationType.getSelectedIndex() == 2)
-//        {
-//            pnlEditFolder.setVisible(true);
-//            pnlCreateFolder.setVisible(true);
-//            pnlTextArea.setVisible(false);
-
-//            pnlTableCardText.setVisible(false);
-//            pnlTableClearLayout.setVisible(false);
-//            pnlTextAreaCont.setVisible(false);
-//            ImageList();
-//            btnEditChosen.setEnabled(true);
-//            btnRemoveChosen.setEnabled(true);
-//
-//        }
-//        else
-//        {
+        if (cbxPresentationType.getSelectedItem() == "Image") {
+            pnlEditFolder.setVisible(true);
+            pnlCreateFolder.setVisible(true);
+            pnlTextArea.setVisible(false);
+        
+        } else {
             pnlEditFolder.setVisible(false);
             pnlCreateFolder.setVisible(false);
             pnlTextArea.setVisible(true);
-            pnlTableCardText.setVisible(true);
+        }
+        if (cbxPresentationType.getSelectedIndex() != 0) {
+            lblCreateWarningType.setVisible(false);
+        }
 
+        if (cbxPresentationType.getSelectedIndex() == 1)
+        {
+
+            pnlTableCardText.setVisible(true);
             pnlTableClearLayout.setVisible(false);
+            pnlTextAreaCont.setVisible(true);
+            TextList();
+            btnEditChosen.setEnabled(true);
+            btnRemoveChosen.setEnabled(true);
+
+        }
+        else if (cbxPresentationType.getSelectedIndex() == 2)
+        {
+            pnlEditFolder.setVisible(true);
+            pnlCreateFolder.setVisible(true);
+            pnlTextArea.setVisible(false);
+            pnlTableCardText.setVisible(false);
+            pnlTableClearLayout.setVisible(false);
+            pnlTextAreaCont.setVisible(false);
+            
+            btnEditChosen.setEnabled(true);
+            btnRemoveChosen.setEnabled(true);
+
+        }
+        else
+        {
+        pnlEditFolder.setVisible(false);
+        pnlCreateFolder.setVisible(false);
+        pnlTextArea.setVisible(true);
+        pnlTableCardText.setVisible(true);
+
+        pnlTableClearLayout.setVisible(false);
 //            btnEditChosen.setEnabled(false);
-            btnRemoveChosen.setEnabled(false);
-//        }
+        btnRemoveChosen.setEnabled(false);
+       }
 
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
 
@@ -1615,7 +1604,7 @@ public class GuiMain2 extends javax.swing.JFrame
         txtCreateTitle.setText("");
         txtCreateTimer.setText("");
         txtCreateTextArea.setText("");
-        cxCreateNotSafe.setSelected(false);   
+        cxCreateNotSafe.setSelected(false);
         cbxPresentationType.setSelectedIndex(0);
         lstDisplay.clearSelection();
         dpCreateEndDate.setDate(null);
@@ -1633,7 +1622,7 @@ public class GuiMain2 extends javax.swing.JFrame
         txtEditTitle.setText("");
         txtEditTextArea.setText("");
         txtEditTextArea.setText("");
-        cxEditNotSafe.setSelected(false);     
+        cxEditNotSafe.setSelected(false);
         dpEditEndDate.setDate(null);
         dpEditStartDate.setDate(null);
         lblCreateWarningDisplay.setVisible(false);
@@ -1655,31 +1644,20 @@ public class GuiMain2 extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

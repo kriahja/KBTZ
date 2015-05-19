@@ -116,4 +116,13 @@ public class DisplayCtrlManager
             throw new BivExceptions("Unable to Update the Text"); 
         }
     }
+        
+    public void create(int presId, int dispId)
+    {
+        try {
+            db.create(presId, dispId);
+        } catch (SQLException ex) {
+            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
