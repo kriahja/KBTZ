@@ -62,11 +62,11 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private final TextManager tMgr;
     private final ImageManager iMgr;
-    
+
     private final DisplayManager dMgr;
 
     ArrayList<String> dispList;
-    
+
     String title;
     String txt;
     Date startDate;
@@ -106,7 +106,7 @@ public class GuiMain2 extends javax.swing.JFrame
         dMgr = DisplayManager.getInstance();
 
         dispList = new ArrayList<>();
-        
+
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
@@ -1288,15 +1288,13 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreate.setVisible(true);
         pnlClean.setVisible(false);
         pnlEdit.setVisible(false);
-        
+
         dispList = dMgr.readAllPres();
-        
-        for(int i = 0; i < dispList.size(); ++i)
-        {
+
+        for (int i = 0; i < dispList.size(); ++i) {
             lstDisplay.setListData(dispList.toArray());
-            
+
         }
-        
 
 
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -1311,15 +1309,14 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreate.setVisible(false);
         pnlClean.setVisible(false);
         TextList();
-        
+
         dispList = dMgr.readAllPres();
-        
-        for(int i = 0; i < dispList.size(); ++i)
-        {
+
+        for (int i = 0; i < dispList.size(); ++i) {
             lstDisplay.setListData(dispList.toArray());
-            
+
         }
-        
+
 //        pnlCreateTypeAndDisplay.setVisible(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -1476,27 +1473,28 @@ public class GuiMain2 extends javax.swing.JFrame
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
 //        displayId = cbxChooseDisplay.getSelectedIndex();
-        
+
         notSafe = cxCreateNotSafe.isSelected();
-        
+
         displayId = lstDisplay.getSelectedIndices();
-        
+
         System.out.println(displayId);
-        
+
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
 
         tMgr.createText(text);
-        
+
         int id = tMgr.getByTitle(title).getId();
-        
-       
-        
+
         for (int i = 0; i < displayId.length; ++i) {
             dcMgr.create(id, displayId[i] + 1);
         }
 
         textModel.setTextList(tMgr.readAll());
         textTable.setModel(textModel);
+
+        editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+        editTable.setModel(editModel);
 
     }
 
@@ -1514,8 +1512,15 @@ public class GuiMain2 extends javax.swing.JFrame
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
         iMgr.createImage(image);
-        imageModel.setImageList(iMgr.readAll());
-        imageTable.setModel(imageModel);
+
+        int id = iMgr.getByTitle(title).getId();
+
+        for (int i = 0; i < displayId.length; ++i) {
+            dcMgr.create(id, displayId[i] + 1);
+        }
+
+        editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+        editTable.setModel(editModel);
 
     }
 
@@ -1563,7 +1568,7 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlEditFolder.setVisible(true);
             pnlCreateFolder.setVisible(true);
             pnlTextArea.setVisible(false);
-        
+
         } else {
             pnlEditFolder.setVisible(false);
             pnlCreateFolder.setVisible(false);
@@ -1573,8 +1578,7 @@ public class GuiMain2 extends javax.swing.JFrame
             lblCreateWarningType.setVisible(false);
         }
 
-        if (cbxPresentationType.getSelectedIndex() == 1)
-        {
+        if (cbxPresentationType.getSelectedIndex() == 1) {
 
             pnlTableCardText.setVisible(true);
             pnlTableClearLayout.setVisible(false);
@@ -1583,31 +1587,29 @@ public class GuiMain2 extends javax.swing.JFrame
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
 
-        }
-        else if (cbxPresentationType.getSelectedIndex() == 2)
-        {
-            pnlEditFolder.setVisible(true);
-            pnlCreateFolder.setVisible(true);
-            pnlTextArea.setVisible(false);
-            pnlTableCardText.setVisible(false);
-            pnlTableClearLayout.setVisible(false);
-            pnlTextAreaCont.setVisible(false);
-            
-            btnEditChosen.setEnabled(true);
-            btnRemoveChosen.setEnabled(true);
+        } else {
+            if (cbxPresentationType.getSelectedIndex() == 2) {
+                pnlEditFolder.setVisible(true);
+                pnlCreateFolder.setVisible(true);
+                pnlTextArea.setVisible(false);
+                pnlTableCardText.setVisible(false);
+                pnlTableClearLayout.setVisible(false);
+                pnlTextAreaCont.setVisible(false);
 
-        }
-        else
-        {
-        pnlEditFolder.setVisible(false);
-        pnlCreateFolder.setVisible(false);
-        pnlTextArea.setVisible(true);
-        pnlTableCardText.setVisible(true);
+                btnEditChosen.setEnabled(true);
+                btnRemoveChosen.setEnabled(true);
 
-        pnlTableClearLayout.setVisible(false);
+            } else {
+                pnlEditFolder.setVisible(false);
+                pnlCreateFolder.setVisible(false);
+                pnlTextArea.setVisible(true);
+                pnlTableCardText.setVisible(true);
+
+                pnlTableClearLayout.setVisible(false);
 //            btnEditChosen.setEnabled(false);
-        btnRemoveChosen.setEnabled(false);
-       }
+                btnRemoveChosen.setEnabled(false);
+            }
+        }
 
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
 

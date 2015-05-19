@@ -202,7 +202,7 @@ public class ImageDBManager
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
-                    + " VALUES (?, ?, ?, ?, ?, ?, 'false')\n"
+                    + " VALUES (?, ?, ?, ?, ?, ?)\n"
                     + " Insert INTO Image\n"
                     + " VALUES (?,  SCOPE_IDENTITY())\n"
                     + "COMMIT";
