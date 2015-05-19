@@ -59,6 +59,19 @@ public class DisplayCtrl
         this.dispId = dispId;
     }
 
+    public DisplayCtrl(String presTitle, String presType, String screenName, Date startDate, Date endDate, Double timer, int presId, int dispId, boolean disable)
+    {
+        this.presTitle = presTitle;
+        this.presType = presType;
+        this.screenName = screenName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.timer = timer;
+        this.presId = presId;
+        this.dispId = dispId;
+        this.disable = disable;
+    }
+
     /**
      * @return the presId
      */

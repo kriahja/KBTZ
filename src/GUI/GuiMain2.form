@@ -1201,7 +1201,7 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="pnlTableCardMain" pref="462" max="32767" attributes="0"/>
+                                      <Component id="pnlTableCardMain" max="32767" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1319,11 +1319,12 @@
                             <Component class="javax.swing.JComboBox" name="cbxSorting">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="4">
-                                    <StringItem index="0" value="Past Presentations"/>
-                                    <StringItem index="1" value="Current Presentations"/>
-                                    <StringItem index="2" value="Future Presentations"/>
-                                    <StringItem index="3" value=" "/>
+                                  <StringArray count="5">
+                                    <StringItem index="0" value="All Presentations"/>
+                                    <StringItem index="1" value="Past Presentations"/>
+                                    <StringItem index="2" value="Current Presentations"/>
+                                    <StringItem index="3" value="Future Presentations"/>
+                                    <StringItem index="4" value=" "/>
                                   </StringArray>
                                 </Property>
                               </Properties>
