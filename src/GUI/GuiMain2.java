@@ -6,8 +6,10 @@
 package GUI;
 
 import BLL.DisplayCtrlManager;
+import BLL.DisplayManager;
 import BLL.ImageManager;
 import BLL.TextManager;
+import Entities.Display;
 import Entities.DisplayCtrl;
 import Entities.Image;
 import Entities.Text;
@@ -25,6 +27,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -60,12 +63,16 @@ public class GuiMain2 extends javax.swing.JFrame
     private final TextManager tMgr;
     private final ImageManager iMgr;
 
+    private final DisplayManager dMgr;
+    ArrayList<DisplayCtrl> dcList;
+    ArrayList<String> dispList;
+
     String title;
     String txt;
     Date startDate;
     Date endDate;
     double timer;
-    List displayId;
+    int[] displayId;
     int index;
     int presTypeId;
     boolean notSafe = false;
@@ -88,7 +95,6 @@ public class GuiMain2 extends javax.swing.JFrame
     public GuiMain2()
     {
         initComponents();
-        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         pnlEditFolder.setVisible(false);
@@ -97,18 +103,23 @@ public class GuiMain2 extends javax.swing.JFrame
         tMgr = TextManager.getInstance();
         iMgr = ImageManager.getInstance();
         dcMgr = DisplayCtrlManager.getInstance();
+        dMgr = DisplayManager.getInstance();
+
+        dispList = new ArrayList<>();
+        dcList = new ArrayList<>();
 
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screensize.getWidth();
         int height = (int) screensize.getHeight();
         PresentationList();
         EditList();
-        enableCreate();
+
         shared = new File("c:/Info/images");
 
         folders = shared.list();
         //  folders = shared.listFiles();
-        for (String paths : folders) {
+        for (String paths : folders)
+        {
             cbxFolder.addItem(paths);
             cbxCreateFolder.addItem(paths);
         }
@@ -131,7 +142,21 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private void PresentationList()
     {
-        presModel = new PresentationTableModel(dcMgr.readAllPres());
+        dcList = dcMgr.readAllEditPres();
+        Date now = new Date(System.currentTimeMillis());
+        ArrayList<DisplayCtrl> current;
+        current = new ArrayList<>();
+        for (int i = 0; i < dcList.size(); ++i)
+        {
+            if ((dcList.get(i).getStartDate().before(now) || dcList.get(i).getStartDate() == now)
+                    && (dcList.get(i).getEndDate().after(now) || dcList.get(i).getEndDate() == now))
+            {
+                current.add(dcList.get(i));
+            }
+
+        }
+
+        presModel = new PresentationTableModel(current);
 
         presTable = new PresentationTable(presModel);
 
@@ -142,10 +167,14 @@ public class GuiMain2 extends javax.swing.JFrame
             @Override
             public void valueChanged(ListSelectionEvent lse)
             {
-                if (!lse.getValueIsAdjusting()) {
-                    if (presTable.getSelectedRow() != -1) {
+                if (!lse.getValueIsAdjusting())
+                {
+                    if (presTable.getSelectedRow() != -1)
+                    {
                         showPresData();
-                    } else {
+                    }
+                    else
+                    {
                         clearEditData();
                     }
                 }
@@ -248,7 +277,8 @@ public class GuiMain2 extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         navPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -319,6 +349,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlTableCardMain = new javax.swing.JPanel();
         pnlTableCardText = new javax.swing.JPanel();
         pnlTableClearLayout = new javax.swing.JPanel();
+        cbxSorting = new javax.swing.JComboBox();
         pnlEditCard2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         txtEditTitle = new javax.swing.JTextField();
@@ -342,8 +373,6 @@ public class GuiMain2 extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1422, 650));
-        setPreferredSize(new java.awt.Dimension(1422, 650));
         setResizable(false);
 
         navPanel.setBackground(new java.awt.Color(67, 74, 84));
@@ -354,8 +383,10 @@ public class GuiMain2 extends javax.swing.JFrame
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -370,8 +401,10 @@ public class GuiMain2 extends javax.swing.JFrame
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -492,16 +525,20 @@ public class GuiMain2 extends javax.swing.JFrame
 
         cbxPresentationType.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
         cbxPresentationType.setForeground(new java.awt.Color(67, 74, 84));
-        cbxPresentationType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Presentation Type:", "Text", "Image" }));
+        cbxPresentationType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Presentation Type:", "Text", "Image", "Video", "Calendar" }));
         cbxPresentationType.setBorder(null);
         cbxPresentationType.setOpaque(false);
-        cbxPresentationType.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        cbxPresentationType.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 cbxPresentationTypeItemStateChanged(evt);
             }
         });
-        cbxPresentationType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxPresentationType.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxPresentationTypeActionPerformed(evt);
             }
         });
@@ -511,7 +548,8 @@ public class GuiMain2 extends javax.swing.JFrame
 
         lstDisplay.setBackground(new java.awt.Color(230, 233, 237));
         lstDisplay.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
-        lstDisplay.setModel(new javax.swing.AbstractListModel() {
+        lstDisplay.setModel(new javax.swing.AbstractListModel()
+        {
             String[] strings = { "ProductionArea", "Lobby", "IT Department", "CEO", "Office", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -519,8 +557,10 @@ public class GuiMain2 extends javax.swing.JFrame
         lstDisplay.setRequestFocusEnabled(false);
         lstDisplay.setSelectionBackground(new java.awt.Color(67, 74, 84));
         lstDisplay.setSelectionForeground(new java.awt.Color(250, 250, 250));
-        lstDisplay.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        lstDisplay.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 lstDisplayValueChanged(evt);
             }
         });
@@ -618,8 +658,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnEdit.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
         btnEdit.setText("Edit Existing");
         btnEdit.setFocusPainted(false);
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEdit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnEditActionPerformed(evt);
             }
         });
@@ -628,8 +670,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnCreate.setText("Create New");
         btnCreate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCreate.setFocusPainted(false);
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCreate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCreateActionPerformed(evt);
             }
         });
@@ -645,7 +689,7 @@ public class GuiMain2 extends javax.swing.JFrame
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
         pnlLeftSettingsLayout.setVerticalGroup(
             pnlLeftSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -682,8 +726,10 @@ public class GuiMain2 extends javax.swing.JFrame
 
         pnlCreate.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtCreateTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtCreateTitle.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtCreateTitleActionPerformed(evt);
             }
         });
@@ -699,8 +745,10 @@ public class GuiMain2 extends javax.swing.JFrame
         closeCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delete85.png"))); // NOI18N
         closeCreate.setToolTipText("Close and Reset Operation");
         closeCreate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        closeCreate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        closeCreate.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 closeCreateMouseClicked(evt);
             }
         });
@@ -746,8 +794,10 @@ public class GuiMain2 extends javax.swing.JFrame
 
         cxCreateNotSafe.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
         cxCreateNotSafe.setText("Not Safe");
-        cxCreateNotSafe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cxCreateNotSafe.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cxCreateNotSafeActionPerformed(evt);
             }
         });
@@ -756,8 +806,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnCancelCreate.setFont(new java.awt.Font("Ebrima", 0, 12)); // NOI18N
         btnCancelCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelCreate.setText("Cancel");
-        btnCancelCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancelCreate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelCreateActionPerformed(evt);
             }
         });
@@ -766,8 +818,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnCreateNew.setFont(new java.awt.Font("Ebrima", 0, 12)); // NOI18N
         btnCreateNew.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateNew.setText("Create");
-        btnCreateNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCreateNew.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCreateNewActionPerformed(evt);
             }
         });
@@ -777,8 +831,10 @@ public class GuiMain2 extends javax.swing.JFrame
         jLabel16.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         jLabel16.setText("Folder:");
 
-        cbxCreateFolder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxCreateFolder.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxCreateFolderActionPerformed(evt);
             }
         });
@@ -891,7 +947,7 @@ public class GuiMain2 extends javax.swing.JFrame
                 .addComponent(txtCreateTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(pnlCreateFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateNew)
                     .addComponent(btnCancelCreate))
@@ -913,8 +969,10 @@ public class GuiMain2 extends javax.swing.JFrame
         lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delete85.png"))); // NOI18N
         lblClose.setToolTipText("Close and Reset Operation");
         lblClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 lblCloseMouseClicked(evt);
             }
         });
@@ -956,8 +1014,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnRemoveChosen.setText("Remove");
         btnRemoveChosen.setBorderPainted(false);
         btnRemoveChosen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRemoveChosen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRemoveChosen.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRemoveChosenActionPerformed(evt);
             }
         });
@@ -968,8 +1028,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnEditChosen.setText("Edit");
         btnEditChosen.setBorderPainted(false);
         btnEditChosen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEditChosen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEditChosen.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnEditChosenActionPerformed(evt);
             }
         });
@@ -985,7 +1047,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlTableClearLayout.setLayout(pnlTableClearLayoutLayout);
         pnlTableClearLayoutLayout.setHorizontalGroup(
             pnlTableClearLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
+            .addGap(0, 462, Short.MAX_VALUE)
         );
         pnlTableClearLayoutLayout.setVerticalGroup(
             pnlTableClearLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -994,6 +1056,15 @@ public class GuiMain2 extends javax.swing.JFrame
 
         pnlTableCardMain.add(pnlTableClearLayout, "card4");
 
+        cbxSorting.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Presentations", "Past Presentations", "Current Presentations", "Future Presentations", " " }));
+        cbxSorting.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                cbxSortingActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlEditCard1Layout = new javax.swing.GroupLayout(pnlEditCard1);
         pnlEditCard1.setLayout(pnlEditCard1Layout);
         pnlEditCard1Layout.setHorizontalGroup(
@@ -1001,9 +1072,11 @@ public class GuiMain2 extends javax.swing.JFrame
             .addGroup(pnlEditCard1Layout.createSequentialGroup()
                 .addComponent(pnlTableCardMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRemoveChosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditChosen, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnRemoveChosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEditChosen, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxSorting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(358, 358, 358))
         );
         pnlEditCard1Layout.setVerticalGroup(
@@ -1015,7 +1088,9 @@ public class GuiMain2 extends javax.swing.JFrame
                     .addGroup(pnlEditCard1Layout.createSequentialGroup()
                         .addComponent(btnEditChosen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRemoveChosen)))
+                        .addComponent(btnRemoveChosen)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxSorting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(261, Short.MAX_VALUE))
         );
 
@@ -1027,8 +1102,10 @@ public class GuiMain2 extends javax.swing.JFrame
         jLabel17.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         jLabel17.setText("Title:");
 
-        txtEditTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtEditTitle.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtEditTitleActionPerformed(evt);
             }
         });
@@ -1038,8 +1115,10 @@ public class GuiMain2 extends javax.swing.JFrame
 
         cxEditNotSafe.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
         cxEditNotSafe.setText("Not Safe");
-        cxEditNotSafe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cxEditNotSafe.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cxEditNotSafeActionPerformed(evt);
             }
         });
@@ -1057,8 +1136,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnUpdate.setFont(new java.awt.Font("Ebrima", 0, 12)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnUpdate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnUpdateActionPerformed(evt);
             }
         });
@@ -1069,8 +1150,10 @@ public class GuiMain2 extends javax.swing.JFrame
         btnCancelUpdate.setText("Cancel");
         btnCancelUpdate.setBorderPainted(false);
         btnCancelUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancelUpdate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelUpdateActionPerformed(evt);
             }
         });
@@ -1276,10 +1359,18 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreateTypeAndDisplay.setVisible(true);
         btnEdit.setSelected(false);
         btnCreate.setSelected(true);
-        pnlCreate.setVisible(false);
-        pnlClean.setVisible(true);
+        pnlCreate.setVisible(true);
+        pnlClean.setVisible(false);
         pnlEdit.setVisible(false);
-        lstDisplay.setEnabled(false);
+
+        dispList = dMgr.readAllPres();
+
+        for (int i = 0; i < dispList.size(); ++i)
+        {
+            lstDisplay.setListData(dispList.toArray());
+
+        }
+
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -1293,6 +1384,15 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreate.setVisible(false);
         pnlClean.setVisible(false);
         TextList();
+
+        dispList = dMgr.readAllPres();
+
+        for (int i = 0; i < dispList.size(); ++i)
+        {
+            lstDisplay.setListData(dispList.toArray());
+
+        }
+
 //        pnlCreateTypeAndDisplay.setVisible(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -1319,12 +1419,14 @@ public class GuiMain2 extends javax.swing.JFrame
 
         System.out.println(val1 + " " + title);
 
-        if (val1.equals("Text")) {
+        if (val1.equals("Text"))
+        {
             showTextData(title);
             pnlTextAreaCont.setVisible(true);
             pnlEditFolder.setVisible(false);
         }
-        if (val1.equals("Image")) {
+        if (val1.equals("Image"))
+        {
             showImageData(title);
             pnlTextAreaCont.setVisible(false);
             pnlEditFolder.setVisible(true);
@@ -1336,7 +1438,8 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlEditCard2.setVisible(false);
         pnlEditCard1.setVisible(true);
 
-        if (cbxPresentationType.getSelectedIndex() == 1) {
+        if (cbxPresentationType.getSelectedIndex() == 1)
+        {
             int row = textTable.getSelectedRow();
 
             // fetch the text to remove from the table model.
@@ -1349,8 +1452,11 @@ public class GuiMain2 extends javax.swing.JFrame
             // adjust the selection since the selected employee is now gone.
             adjustSelection(row);
 
-        } else {
-            if (cbxPresentationType.getSelectedIndex() == 2) {
+        }
+        else
+        {
+            if (cbxPresentationType.getSelectedIndex() == 2)
+            {
 
             }
         }
@@ -1359,13 +1465,17 @@ public class GuiMain2 extends javax.swing.JFrame
 
     private void adjustSelection(int row)
     {
-        if (textModel.getRowCount() > 0) {
-            if (row == textModel.getRowCount()) {
+        if (textModel.getRowCount() > 0)
+        {
+            if (row == textModel.getRowCount())
+            {
                 row--;
             }
 
             textTable.setRowSelectionInterval(row, row);
-        } else {
+        }
+        else
+        {
             textTable.getSelectionModel().clearSelection();
         }
     }
@@ -1397,53 +1507,44 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_cxEditNotSafeActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int selectedRow = editTable.getSelectedRow();
-        selectedRow = editTable.convertRowIndexToModel(selectedRow);
-        String val1 = (String) editTable.getModel().getValueAt(selectedRow, 1);
-//        String title = (String) editTable.getModel().getValueAt(selectedRow, 0);
-//
-//        System.out.println(val1 + " " + title);
-
-        if (val1.equals("Text")) {
+        if (cbxPresentationType.getSelectedIndex() == 1)
+        {
             updateText();
             pnlEditCard2.setVisible(false);
             cbxPresentationType.setEnabled(true);
         }
-        if (val1.equals("Image")) {
-            updateImage();
-            pnlEditCard2.setVisible(false);
-            cbxPresentationType.setEnabled(true);
+        else
+        {
+            if (cbxPresentationType.getSelectedIndex() == 2)
+            {
+                updateImage();
+                pnlEditCard2.setVisible(false);
+                cbxPresentationType.setEnabled(true);
+            }
         }
-        
-//        if (cbxPresentationType.getSelectedIndex() == 1) {
-//            updateText();
-//            pnlEditCard2.setVisible(false);
-//            cbxPresentationType.setEnabled(true);
-//        } else {
-//            if (cbxPresentationType.getSelectedIndex() == 2) {
-//                updateImage();
-//                pnlEditCard2.setVisible(false);
-//                cbxPresentationType.setEnabled(true);
-//            }
-//        }
 
-          clearEditData();
-          editModel.setDisplayCtrlList(dcMgr.readAllPres());
-        editTable.setModel(editModel);
+        //  clearEditData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCreateNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewActionPerformed
-        if (cbxPresentationType.getSelectedIndex() == 0) {
+        if (cbxPresentationType.getSelectedIndex() == 0)
+        {
             lblCreateWarningType.setVisible(true);
             lblCreateWarningDisplay.setVisible(false);
-        } else {
-            if (lstDisplay.getSelectedIndex() < 0) {
+        }
+        else
+        {
+            if (lstDisplay.getSelectedIndex() < 0)
+            {
                 lblCreateWarningType.setVisible(false);
                 lblCreateWarningDisplay.setVisible(true);
-            } else {
+            }
+            else
+            {
 
                 int selection = cbxPresentationType.getSelectedIndex();
-                switch (selection) {
+                switch (selection)
+                {
                     case 1:
                         saveTextPresentation();
                         cbxPresentationType.setEnabled(false);
@@ -1469,23 +1570,29 @@ public class GuiMain2 extends javax.swing.JFrame
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
 //        displayId = cbxChooseDisplay.getSelectedIndex();
-        displayId = lstDisplay.getSelectedValuesList();
+
         notSafe = cxCreateNotSafe.isSelected();
-        
+
+        displayId = lstDisplay.getSelectedIndices();
+
         System.out.println(displayId);
-        
+
         text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt);
 
         tMgr.createText(text);
-        
+
         int id = tMgr.getByTitle(title).getId();
-        
-//        for (int i = 0; i < displayId.size(); ++i) {
-//            dcMgr.create(id, );
-//        }
+
+        for (int i = 0; i < displayId.length; ++i)
+        {
+            dcMgr.create(id, displayId[i] + 1);
+        }
 
         textModel.setTextList(tMgr.readAll());
         textTable.setModel(textModel);
+
+        editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+        editTable.setModel(editModel);
 
     }
 
@@ -1498,13 +1605,21 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpCreateStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
-        displayId = lstDisplay.getSelectedValuesList();
+        displayId = lstDisplay.getSelectedIndices();
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(presTypeId, title, startDate, endDate, timer, notSafe, path);
         iMgr.createImage(image);
-        imageModel.setImageList(iMgr.readAll());
-        imageTable.setModel(imageModel);
+
+        int id = iMgr.getByTitle(title).getId();
+
+        for (int i = 0; i < displayId.length; ++i)
+        {
+            dcMgr.create(id, displayId[i] + 1);
+        }
+
+        editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+        editTable.setModel(editModel);
 
     }
 
@@ -1517,7 +1632,7 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
         timer = Double.parseDouble(txtEditTimer.getText());
-        displayId = lstDisplay.getSelectedValuesList();
+        displayId = lstDisplay.getSelectedIndices();
         notSafe = cxCreateNotSafe.isSelected();
         System.out.println(presTypeId + title + " " + startDate + " " + endDate + " " + timer + " " + notSafe + " " + txt);
         text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
@@ -1537,7 +1652,7 @@ public class GuiMain2 extends javax.swing.JFrame
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
         timer = Double.parseDouble(txtEditTimer.getText());
-        displayId = lstDisplay.getSelectedValuesList();
+        displayId = lstDisplay.getSelectedIndices();
         notSafe = cxCreateNotSafe.isSelected();
 
         image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
@@ -1548,22 +1663,22 @@ public class GuiMain2 extends javax.swing.JFrame
     }
 
     private void cbxPresentationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPresentationTypeActionPerformed
-        if (cbxPresentationType.getSelectedIndex() == 1) {
+        if (cbxPresentationType.getSelectedItem() == "Image")
+        {
             pnlEditFolder.setVisible(true);
             pnlCreateFolder.setVisible(true);
             pnlTextArea.setVisible(false);
-                    
-        } else {
+
+        }
+        else
+        {
             pnlEditFolder.setVisible(false);
             pnlCreateFolder.setVisible(false);
             pnlTextArea.setVisible(true);
         }
-        if (cbxPresentationType.getSelectedIndex() != 0) {
+        if (cbxPresentationType.getSelectedIndex() != 0)
+        {
             lblCreateWarningType.setVisible(false);
-            enableCreate();
-        }
-        else{               
-            disableCreate();
         }
 
         if (cbxPresentationType.getSelectedIndex() == 1)
@@ -1572,67 +1687,43 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlTableCardText.setVisible(true);
             pnlTableClearLayout.setVisible(false);
             pnlTextAreaCont.setVisible(true);
-//            TextList();
+            TextList();
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
-            pnlCreate.setVisible(true);
-            pnlClean.setVisible(false);
-            lstDisplay.setEnabled(true);
-
-        }
-        else if (cbxPresentationType.getSelectedIndex() == 2)
-        {
-            pnlEditFolder.setVisible(true);
-            pnlCreateFolder.setVisible(true);
-            pnlTextArea.setVisible(false);
-            pnlTableCardText.setVisible(false);
-            pnlTableClearLayout.setVisible(false);
-            pnlTextAreaCont.setVisible(false);
-            
-            btnEditChosen.setEnabled(true);
-            btnRemoveChosen.setEnabled(true);
-            pnlCreate.setVisible(true);
-            pnlClean.setVisible(false);
-            lstDisplay.setEnabled(true);
 
         }
         else
         {
-        pnlEditFolder.setVisible(false);
-        pnlCreateFolder.setVisible(false);
-        pnlTextArea.setVisible(true);
-        pnlTableCardText.setVisible(true);
-        lstDisplay.setEnabled(false);
-        pnlTableClearLayout.setVisible(false);
-//      btnEditChosen.setEnabled(false);
-        btnRemoveChosen.setEnabled(false);
-       }
+            if (cbxPresentationType.getSelectedIndex() == 2)
+            {
+                pnlEditFolder.setVisible(true);
+                pnlCreateFolder.setVisible(true);
+                pnlTextArea.setVisible(false);
+                pnlTableCardText.setVisible(false);
+                pnlTableClearLayout.setVisible(false);
+                pnlTextAreaCont.setVisible(false);
+
+                btnEditChosen.setEnabled(true);
+                btnRemoveChosen.setEnabled(true);
+
+            }
+            else
+            {
+                pnlEditFolder.setVisible(false);
+                pnlCreateFolder.setVisible(false);
+                pnlTextArea.setVisible(true);
+                pnlTableCardText.setVisible(true);
+
+                pnlTableClearLayout.setVisible(false);
+//            btnEditChosen.setEnabled(false);
+                btnRemoveChosen.setEnabled(false);
+            }
+        }
 
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
 
-    private void disableCreate() {
-        txtCreateTitle.setEnabled(false);
-        txtCreateTimer.setEnabled(false);
-        txtCreateTextArea.setEnabled(false);
-        cxCreateNotSafe.setEnabled(false);
-        dpCreateEndDate.setEnabled(false);
-        dpCreateStartDate.setEnabled(false);
-        cbxFolder.setEnabled(false);
-        btnCreateNew.setEnabled(false);
-    }
-     private void enableCreate() {
-        txtCreateTitle.setEnabled(true);
-        txtCreateTimer.setEnabled(true);
-        txtCreateTextArea.setEnabled(true);
-        cxCreateNotSafe.setEnabled(true);
-        dpCreateEndDate.setEnabled(true);
-        dpCreateStartDate.setEnabled(true);
-        cbxFolder.setEnabled(true);
-        btnCreateNew.setEnabled(true);
-    }
-    
     private void cbxPresentationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxPresentationTypeItemStateChanged
-      
+
     }//GEN-LAST:event_cbxPresentationTypeItemStateChanged
 
     private void cbxCreateFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCreateFolderActionPerformed
@@ -1642,6 +1733,78 @@ public class GuiMain2 extends javax.swing.JFrame
     private void lstDisplayValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDisplayValueChanged
         lblCreateWarningDisplay.setVisible(false);
     }//GEN-LAST:event_lstDisplayValueChanged
+
+    private void cbxSortingActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cbxSortingActionPerformed
+    {//GEN-HEADEREND:event_cbxSortingActionPerformed
+        dcList = dcMgr.readAllEditPres();
+        System.out.println(cbxSorting.getSelectedIndex());
+
+        if (cbxSorting.getSelectedIndex() == 0)
+        {
+            editModel.setDisplayCtrlList(dcList);
+            editTable.setModel(editModel);
+        }
+
+        if (cbxSorting.getSelectedIndex() == 1)
+        {
+
+            Date now = new Date(System.currentTimeMillis());
+            ArrayList<DisplayCtrl> past;
+            past = new ArrayList<>();
+            for (int i = 0; i < dcList.size(); ++i)
+            {
+                if (dcList.get(i).getStartDate().before(now)
+                        && dcList.get(i).getEndDate().before(now))
+                {
+                    past.add(dcList.get(i));
+                }
+            }
+            System.out.println(past);
+            editModel.setDisplayCtrlList(past);
+            editTable.setModel(editModel);
+
+        }
+        if (cbxSorting.getSelectedIndex() == 2)
+        {
+
+            Date now = new Date(System.currentTimeMillis());
+            ArrayList<DisplayCtrl> current;
+            current = new ArrayList<>();
+            for (int i = 0; i < dcList.size(); ++i)
+            {
+                if ((dcList.get(i).getStartDate().before(now) || dcList.get(i).getStartDate() == now)
+                        && (dcList.get(i).getEndDate().after(now) || dcList.get(i).getEndDate() == now))
+                {
+                    current.add(dcList.get(i));
+                }
+            }
+            System.out.println(current);
+            editModel.setDisplayCtrlList(current);
+            editTable.setModel(editModel);
+
+        }
+        if (cbxSorting.getSelectedIndex() == 3)
+        {
+
+            Date now = new Date(System.currentTimeMillis());
+            ArrayList<DisplayCtrl> future;
+            future = new ArrayList<>();
+            for (int i = 0; i < dcList.size(); ++i)
+            {
+                if (dcList.get(i).getStartDate().after(now)
+                        && dcList.get(i).getEndDate().after(now))
+                {
+                    future.add(dcList.get(i));
+                }
+            }
+            System.out.println(future);
+            editModel.setDisplayCtrlList(future);
+            editTable.setModel(editModel);
+
+        }
+
+
+    }//GEN-LAST:event_cbxSortingActionPerformed
 
     public void clearCreateData()
     {
@@ -1691,20 +1854,31 @@ public class GuiMain2 extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }
+        catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }
+        catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }
+        catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -1733,6 +1907,7 @@ public class GuiMain2 extends javax.swing.JFrame
     private javax.swing.JComboBox cbxCreateFolder;
     private javax.swing.JComboBox cbxFolder;
     private javax.swing.JComboBox cbxPresentationType;
+    private javax.swing.JComboBox cbxSorting;
     private javax.swing.JLabel closeCreate;
     private javax.swing.JPanel createHeading;
     private javax.swing.JCheckBox cxCreateNotSafe;

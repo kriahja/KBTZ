@@ -89,8 +89,9 @@ public class DisplayCtrlDBManager
         Double timer = rs.getDouble("Timer");
         int presId = rs.getInt("PresentationId");
         int dispId = rs.getInt("DisplayId");
+        boolean disable = rs.getBoolean("Disable");
 
-        DisplayCtrl dc = new DisplayCtrl(presTitle, presType, screenName, startDate, endDate, timer, presId, dispId);
+        DisplayCtrl dc = new DisplayCtrl(presTitle, presType, screenName, startDate, endDate, timer, presId, dispId, disable);
 
         return dc;
     }
@@ -122,7 +123,8 @@ public class DisplayCtrlDBManager
         try (Connection con = cm.getConnection())
         {
             ArrayList<DisplayCtrl> dcList = new ArrayList<>();
-            String sql = "Select Presentation.Title, PresType.[Type], Display.ScreenName, Presentation.StartDate, Presentation.EndDate, Presentation.Timer, DisplayCtrl.PresentationId, DisplayCtrl.DisplayId\n"
+            String sql = "Select Presentation.Title, PresType.[Type], Display.ScreenName, Presentation.StartDate, "
+                    + "Presentation.EndDate, Presentation.Timer, DisplayCtrl.PresentationId, DisplayCtrl.DisplayId, DisplayCtrl.[Disable]\n"
                     + "                    from DisplayCtrl\n"
                     + "                    Inner JOIN Presentation ON DisplayCtrl.PresentationId = Presentation.ID\n"
                     + "                    Inner JOIN PresType ON Presentation.PresTypeId = PresType.ID\n"
