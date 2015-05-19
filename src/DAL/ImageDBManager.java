@@ -272,17 +272,12 @@ public class ImageDBManager
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, img.getPath());
             ps.setInt(2, img.getId());
-
             ps.setString(3, img.getTitle());
-
             ps.setDate(4, img.getStartDate());
             ps.setDate(5, img.getEndDate());
             ps.setDouble(6, img.getTimer());
-
             ps.setBoolean(7, img.isNotSafe());
-            
-
-            ps.setInt(9, img.getId());
+            ps.setInt(8, img.getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)

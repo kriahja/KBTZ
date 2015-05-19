@@ -88,6 +88,7 @@ public class GuiMain2 extends javax.swing.JFrame
     public GuiMain2()
     {
         initComponents();
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         pnlEditFolder.setVisible(false);
@@ -102,7 +103,7 @@ public class GuiMain2 extends javax.swing.JFrame
         int height = (int) screensize.getHeight();
         PresentationList();
         EditList();
-
+        enableCreate();
         shared = new File("c:/Info/images");
 
         folders = shared.list();
@@ -491,7 +492,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
         cbxPresentationType.setFont(new java.awt.Font("Ebrima", 0, 11)); // NOI18N
         cbxPresentationType.setForeground(new java.awt.Color(67, 74, 84));
-        cbxPresentationType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Presentation Type:", "Text", "Image", "Video", "Calendar" }));
+        cbxPresentationType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Presentation Type:", "Text", "Image" }));
         cbxPresentationType.setBorder(null);
         cbxPresentationType.setOpaque(false);
         cbxPresentationType.addItemListener(new java.awt.event.ItemListener() {
@@ -644,7 +645,7 @@ public class GuiMain2 extends javax.swing.JFrame
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         pnlLeftSettingsLayout.setVerticalGroup(
             pnlLeftSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -890,7 +891,7 @@ public class GuiMain2 extends javax.swing.JFrame
                 .addComponent(txtCreateTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(pnlCreateFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateNew)
                     .addComponent(btnCancelCreate))
@@ -1232,7 +1233,7 @@ public class GuiMain2 extends javax.swing.JFrame
                         .addGap(20, 20, 20)
                         .addComponent(pnlLeftSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(CardLayoutSet, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(CardLayoutSet, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         settingsCardLayout.setVerticalGroup(
@@ -1275,10 +1276,10 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreateTypeAndDisplay.setVisible(true);
         btnEdit.setSelected(false);
         btnCreate.setSelected(true);
-        pnlCreate.setVisible(true);
-        pnlClean.setVisible(false);
+        pnlCreate.setVisible(false);
+        pnlClean.setVisible(true);
         pnlEdit.setVisible(false);
-
+        lstDisplay.setEnabled(false);
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -1396,19 +1397,39 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_cxEditNotSafeActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (cbxPresentationType.getSelectedIndex() == 1) {
+        int selectedRow = editTable.getSelectedRow();
+        selectedRow = editTable.convertRowIndexToModel(selectedRow);
+        String val1 = (String) editTable.getModel().getValueAt(selectedRow, 1);
+//        String title = (String) editTable.getModel().getValueAt(selectedRow, 0);
+//
+//        System.out.println(val1 + " " + title);
+
+        if (val1.equals("Text")) {
             updateText();
             pnlEditCard2.setVisible(false);
             cbxPresentationType.setEnabled(true);
-        } else {
-            if (cbxPresentationType.getSelectedIndex() == 2) {
-                updateImage();
-                pnlEditCard2.setVisible(false);
-                cbxPresentationType.setEnabled(true);
-            }
         }
+        if (val1.equals("Image")) {
+            updateImage();
+            pnlEditCard2.setVisible(false);
+            cbxPresentationType.setEnabled(true);
+        }
+        
+//        if (cbxPresentationType.getSelectedIndex() == 1) {
+//            updateText();
+//            pnlEditCard2.setVisible(false);
+//            cbxPresentationType.setEnabled(true);
+//        } else {
+//            if (cbxPresentationType.getSelectedIndex() == 2) {
+//                updateImage();
+//                pnlEditCard2.setVisible(false);
+//                cbxPresentationType.setEnabled(true);
+//            }
+//        }
 
-        //  clearEditData();
+          clearEditData();
+          editModel.setDisplayCtrlList(dcMgr.readAllPres());
+        editTable.setModel(editModel);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCreateNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewActionPerformed
@@ -1527,11 +1548,11 @@ public class GuiMain2 extends javax.swing.JFrame
     }
 
     private void cbxPresentationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPresentationTypeActionPerformed
-        if (cbxPresentationType.getSelectedItem() == "Image") {
+        if (cbxPresentationType.getSelectedIndex() == 1) {
             pnlEditFolder.setVisible(true);
             pnlCreateFolder.setVisible(true);
             pnlTextArea.setVisible(false);
-        
+                    
         } else {
             pnlEditFolder.setVisible(false);
             pnlCreateFolder.setVisible(false);
@@ -1539,6 +1560,10 @@ public class GuiMain2 extends javax.swing.JFrame
         }
         if (cbxPresentationType.getSelectedIndex() != 0) {
             lblCreateWarningType.setVisible(false);
+            enableCreate();
+        }
+        else{               
+            disableCreate();
         }
 
         if (cbxPresentationType.getSelectedIndex() == 1)
@@ -1547,9 +1572,12 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlTableCardText.setVisible(true);
             pnlTableClearLayout.setVisible(false);
             pnlTextAreaCont.setVisible(true);
-            TextList();
+//            TextList();
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
+            pnlCreate.setVisible(true);
+            pnlClean.setVisible(false);
+            lstDisplay.setEnabled(true);
 
         }
         else if (cbxPresentationType.getSelectedIndex() == 2)
@@ -1563,6 +1591,9 @@ public class GuiMain2 extends javax.swing.JFrame
             
             btnEditChosen.setEnabled(true);
             btnRemoveChosen.setEnabled(true);
+            pnlCreate.setVisible(true);
+            pnlClean.setVisible(false);
+            lstDisplay.setEnabled(true);
 
         }
         else
@@ -1571,14 +1602,35 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlCreateFolder.setVisible(false);
         pnlTextArea.setVisible(true);
         pnlTableCardText.setVisible(true);
-
+        lstDisplay.setEnabled(false);
         pnlTableClearLayout.setVisible(false);
-//            btnEditChosen.setEnabled(false);
+//      btnEditChosen.setEnabled(false);
         btnRemoveChosen.setEnabled(false);
        }
 
     }//GEN-LAST:event_cbxPresentationTypeActionPerformed
+
+    private void disableCreate() {
+        txtCreateTitle.setEnabled(false);
+        txtCreateTimer.setEnabled(false);
+        txtCreateTextArea.setEnabled(false);
+        cxCreateNotSafe.setEnabled(false);
+        dpCreateEndDate.setEnabled(false);
+        dpCreateStartDate.setEnabled(false);
+        cbxFolder.setEnabled(false);
+        btnCreateNew.setEnabled(false);
     }
+     private void enableCreate() {
+        txtCreateTitle.setEnabled(true);
+        txtCreateTimer.setEnabled(true);
+        txtCreateTextArea.setEnabled(true);
+        cxCreateNotSafe.setEnabled(true);
+        dpCreateEndDate.setEnabled(true);
+        dpCreateStartDate.setEnabled(true);
+        cbxFolder.setEnabled(true);
+        btnCreateNew.setEnabled(true);
+    }
+    
     private void cbxPresentationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxPresentationTypeItemStateChanged
       
     }//GEN-LAST:event_cbxPresentationTypeItemStateChanged
