@@ -7,8 +7,6 @@ package DAL;
 
 import BLL.Exceptions.BivExceptions;
 import Entities.DisplayCtrl;
-import Entities.Presentation;
-import Entities.Text;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -167,4 +165,34 @@ public class DisplayCtrlDBManager
 
         }
     }
+    
+    public void create(int presId, int dispId) throws SQLException
+    {
+     
+
+        try (Connection con = cm.getConnection())
+        {
+
+            String sql = "insert into DisplayCtrl (DisplayId, PresentationId, Disable) values (?, ?, 'false') ";
+
+
+            PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, dispId);
+            ps.setInt(2, presId);
+
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to add dispctrl.");
+            }
+
+            ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            new DisplayCtrl(presId, dispId);
+
+        }
+    
+    }
 }
+
