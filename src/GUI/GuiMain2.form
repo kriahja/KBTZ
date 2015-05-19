@@ -1201,11 +1201,14 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="pnlTableCardMain" max="32767" attributes="0"/>
+                                      <Component id="pnlTableCardMain" pref="462" max="32767" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="btnRemoveChosen" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="btnEditChosen" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="btnRemoveChosen" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="btnEditChosen" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="cbxSorting" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="358" max="-2" attributes="0"/>
                                   </Group>
@@ -1221,6 +1224,8 @@
                                               <Component id="btnEditChosen" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="btnRemoveChosen" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="cbxSorting" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace pref="261" max="32767" attributes="0"/>
@@ -1299,7 +1304,7 @@
                                   <Layout>
                                     <DimensionLayout dim="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <EmptySpace min="0" pref="522" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="462" max="32767" attributes="0"/>
                                       </Group>
                                     </DimensionLayout>
                                     <DimensionLayout dim="1">
@@ -1311,6 +1316,21 @@
                                 </Container>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JComboBox" name="cbxSorting">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="4">
+                                    <StringItem index="0" value="Past Presentations"/>
+                                    <StringItem index="1" value="Current Presentations"/>
+                                    <StringItem index="2" value="Future Presentations"/>
+                                    <StringItem index="3" value=" "/>
+                                  </StringArray>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxSortingActionPerformed"/>
+                              </Events>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="pnlEditCard2">
