@@ -125,4 +125,13 @@ public class DisplayCtrlManager
             Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void delete(int presId)
+    {
+        try {
+            db.delete(presId);
+        } catch (SQLException ex) {
+            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -7,7 +7,6 @@ package BLL;
 
 import BLL.Exceptions.BivExceptions;
 import DAL.DisplayDBManager;
-import Entities.Display;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,4 +58,5 @@ public class DisplayManager
         return null;
 
     }
+  
 }

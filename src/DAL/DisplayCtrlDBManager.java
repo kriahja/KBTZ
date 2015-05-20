@@ -42,29 +42,7 @@ public class DisplayCtrlDBManager
         return instance;
     }
 
-    /**
-     * @param rs results of the query.
-     * @return new Text
-     */
-//    private Text getOneText(ResultSet rs) throws SQLException
-//    {
-//        int id = rs.getInt("ID");
-//        int presTypeId = rs.getInt("PresTypeId");
-//        String title = rs.getString("Title");
-//
-//        Date startDate = rs.getDate("StartDate");
-//        Date endDate = rs.getDate("EndDate");
-//        Double timer = rs.getDouble("Timer");
-//
-//        boolean notSafe = rs.getBoolean("NotSafe");
-//        boolean disable = rs.getBoolean("Disable");
-//
-//        String PresName = rs.getString("ScreenName");
-//
-////        String depName = rs.getString("Name");
-//        return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe);
-//
-//    }
+
     public DisplayCtrl getOnedc(ResultSet rs) throws SQLException
     {
         String presTitle = rs.getString("Title");
@@ -195,6 +173,42 @@ public class DisplayCtrlDBManager
 
         }
     
+    }
+    
+    public void delete(int presId) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = " DELETE FROM DisplayCtrl where PresentationId = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, presId);
+           
+
+            ps.executeUpdate();
+
+        }
+    }
+    
+    public int[] readId(int presId) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            int[] id = null;
+            String sql = "Select DisplayId from DisplayCtrl where PresentationId = ?";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, presId);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                DisplayCtrl dc = getOnedc(rs);
+                
+            }
+            return id;
+        }
     }
 }
 
