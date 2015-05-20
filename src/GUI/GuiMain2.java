@@ -1302,8 +1302,23 @@ public class GuiMain2 extends javax.swing.JFrame
     private void btnPresentationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresentationActionPerformed
         presentationCard.setVisible(true);
         settingsCard.setVisible(false);
-        presModel.setDisplayCtrlList(dcMgr.readAllPres());
-        presTable.setModel(presModel);
+        dcList = dcMgr.readAllEditPres();
+        Date now = new Date(System.currentTimeMillis());
+        ArrayList<DisplayCtrl> current;
+        current = new ArrayList<>();
+        for (int i = 0; i < dcList.size(); ++i)
+        {
+            if ((dcList.get(i).getStartDate().before(now) || dcList.get(i).getStartDate() == now)
+                    && (dcList.get(i).getEndDate().after(now) || dcList.get(i).getEndDate() == now))
+            {
+                current.add(dcList.get(i));
+            }
+
+        }
+
+        presModel = new PresentationTableModel(current);
+
+        presTable = new PresentationTable(presModel);
     }//GEN-LAST:event_btnPresentationActionPerformed
 
     private void btnSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingsActionPerformed
