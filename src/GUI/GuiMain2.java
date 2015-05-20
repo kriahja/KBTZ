@@ -1547,9 +1547,6 @@ public class GuiMain2 extends javax.swing.JFrame
             dcMgr.create(id, displayId[i] + 1);
         }
 
-        textModel.setTextList(tMgr.readAll());
-        textTable.setModel(textModel);
-
         editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
         editTable.setModel(editModel);
 
@@ -1596,8 +1593,11 @@ public class GuiMain2 extends javax.swing.JFrame
         System.out.println(presTypeId + title + " " + startDate + " " + endDate + " " + timer + " " + notSafe + " " + txt);
         text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt);
         tMgr.updateText(text);
-        textModel.setTextList(tMgr.readAll());
-        textTable.setModel(textModel);
+        
+        
+        
+        editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+        editTable.setModel(editModel);
     }
 
     private void updateImage()
@@ -1616,8 +1616,8 @@ public class GuiMain2 extends javax.swing.JFrame
 
         image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
         iMgr.updateImage(image);
-        imageModel.setImageList(iMgr.readAll());
-        imageTable.setModel(imageModel);
+        editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+        editTable.setModel(editModel);
 
     }
 
