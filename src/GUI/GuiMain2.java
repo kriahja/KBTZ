@@ -1307,9 +1307,8 @@ public class GuiMain2 extends javax.swing.JFrame
 
         }
 
-        presModel = new PresentationTableModel(current);
-
-        presTable = new PresentationTable(presModel);
+        presModel.setDisplayCtrlList(current);
+        presTable.setModel(presModel);
     }//GEN-LAST:event_btnPresentationActionPerformed
 
     private void btnSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingsActionPerformed
@@ -1465,19 +1464,25 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_cxEditNotSafeActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (cbxPresentationType.getSelectedIndex() == 1) {
-            updateText();
-            pnlEditCard2.setVisible(false);
-            cbxPresentationType.setEnabled(true);
-        } else {
-            if (cbxPresentationType.getSelectedIndex() == 2) {
-                updateImage();
+       if(lstDisplay.getSelectedIndex() != -1){
+            if (cbxPresentationType.getSelectedIndex() == 1) {
+                updateText();
                 pnlEditCard2.setVisible(false);
                 cbxPresentationType.setEnabled(true);
+            } else {
+                if (cbxPresentationType.getSelectedIndex() == 2) {
+                    updateImage();
+                    pnlEditCard2.setVisible(false);
+                    cbxPresentationType.setEnabled(true);
+                }
             }
-        }
+            clearEditData();
+       }
+       else{
+           lblCreateWarningDisplay.setVisible(true);
+       }
 
-        clearEditData();
+        
 //          EditList();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
