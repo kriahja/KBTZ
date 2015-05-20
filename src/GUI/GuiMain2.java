@@ -1302,8 +1302,8 @@ public class GuiMain2 extends javax.swing.JFrame
     private void btnPresentationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresentationActionPerformed
         presentationCard.setVisible(true);
         settingsCard.setVisible(false);
-//        presModel.setDisplayCtrlList(dcMgr.readAllPres());
-//        presTable.setModel(presModel);
+        presModel.setDisplayCtrlList(dcMgr.readAllPres());
+        presTable.setModel(presModel);
     }//GEN-LAST:event_btnPresentationActionPerformed
 
     private void btnSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingsActionPerformed
