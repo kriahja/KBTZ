@@ -244,12 +244,14 @@ public class ImageDBManager
         try (Connection con = cm.getConnection())
         {
             String sql = "BEGIN Transaction;\n"
+                    + " DELETE FROM DisplayCtrl where PresentationId = ?\n"
                     + "  DELETE FROM Image WHERE Image.PresentationId = ?\n"
                     + "  DELETE FROM Presentation WHERE Presentation.ID = ?\n"
                     + " COMMIT";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.setInt(2, id);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
 

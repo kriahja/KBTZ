@@ -1400,24 +1400,27 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlEditCard2.setVisible(false);
         pnlEditCard1.setVisible(true);
 
-        if (cbxPresentationType.getSelectedIndex() == 1) {
-            int row = textTable.getSelectedRow();
-
-            // fetch the text to remove from the table model.
-            text = textModel.getTextByRow(row);
-            // remove the employee from the model and also from the table model.
-            tMgr.deleteText(id);
-
-            textModel.setTextList(tMgr.readAll());
-
-            // adjust the selection since the selected employee is now gone.
-            adjustSelection(row);
-
-        } else {
-            if (cbxPresentationType.getSelectedIndex() == 2) {
-
-            }
+        int selectedRow = editTable.getSelectedRow();
+        selectedRow = editTable.convertRowIndexToModel(selectedRow);
+        String val1 = (String) editTable.getModel().getValueAt(selectedRow, 1);
+        String title = (String) editTable.getModel().getValueAt(selectedRow, 0);
+        if (val1.equals("Text"))
+        {
+            showTextData(title);   
+            cbxPresentationType.setSelectedIndex(1);
+            tMgr.deleteText(tMgr.getByTitle(title).getId());
+        
+            //tMgr.getByTitle(title).getId();
         }
+        if (val1.equals("Image"))
+        {
+            showImageData(title);
+            cbxPresentationType.setSelectedIndex(2);
+            iMgr.deleteImage(iMgr.getByTitle(title).getId());
+            
+        }
+            editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+            editTable.setModel(editModel);
 
     }//GEN-LAST:event_btnRemoveChosenActionPerformed
 
@@ -1600,7 +1603,7 @@ public class GuiMain2 extends javax.swing.JFrame
         presTypeId = cbxPresentationType.getSelectedIndex() + 1;
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
-        timer = Double.parseDouble(txtEditTimer.getText());
+        timer = Double.parseDouble(txtEditTimer.getText()); 
         displayId = lstDisplay.getSelectedIndices();
         notSafe = cxCreateNotSafe.isSelected();
         dcMgr.delete(id);
