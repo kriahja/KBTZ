@@ -22,7 +22,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,31,-34,0,0,5,-114"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,32,-103,0,0,5,-114"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -54,7 +54,7 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblBelman" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -72,8 +72,8 @@
                   <Component id="btnSettings" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace pref="7830" max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="8017" max="32767" attributes="0"/>
+                  <Component id="lblBelman" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -143,7 +143,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblBelman">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Resources/belmanLogoWhite.png"/>
@@ -183,7 +183,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBelmanPicture" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="368" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -207,9 +207,9 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="12" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="pnlPresentationTableCont" pref="7631" max="32767" attributes="0"/>
+                      <Component id="pnlPresentationTableCont" pref="7818" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBelmanPicture" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -245,7 +245,7 @@
                 <Property name="text" type="java.lang.String" value="See all available presentation for screens:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="lblBelmanPicture">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Resources/Header3.png"/>
@@ -288,7 +288,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jLabel2" min="-2" pref="831" max="-2" attributes="0"/>
+                              <Component id="lblBelmanPic" min="-2" pref="831" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -313,11 +313,11 @@
                       <Component id="jSeparator5" min="-2" pref="12" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="CardLayoutSet" pref="7966" max="32767" attributes="0"/>
+                          <Component id="CardLayoutSet" pref="8153" max="32767" attributes="0"/>
                           <Component id="pnlLeftSettings" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBelmanPic" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -353,7 +353,7 @@
                 <Property name="text" type="java.lang.String" value="Settings"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="lblBelmanPic">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Resources/Header3.png"/>
@@ -370,7 +370,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
+                      <Component id="pnlSelectPresentation" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -379,27 +379,27 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel2" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="pnlPresentation" alignment="1" pref="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnlSelectPresentation" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnCreate" min="-2" pref="34" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnEdit" min="-2" pref="34" max="-2" attributes="0"/>
                           <EmptySpace pref="21" max="32767" attributes="0"/>
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnlPresentation" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="jPanel2">
+                <Container class="javax.swing.JPanel" name="pnlPresentation">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ed" green="e9" red="e6" type="rgb"/>
@@ -586,7 +586,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel3">
+                <Container class="javax.swing.JPanel" name="pnlSelectPresentation">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="54" green="4a" red="43" type="rgb"/>
@@ -691,7 +691,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="7966" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="8153" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -716,17 +716,17 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtCreateTitle" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="cxCreateNotSafe" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblSecurity" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="txtCreateTimer" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTimer" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnCreateNew" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -737,11 +737,11 @@
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="pnlCreateFolder" alignment="0" max="32767" attributes="0"/>
                                           <Component id="dpCreateStartDate" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblStartDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEndDate" min="-2" max="-2" attributes="0"/>
                                           <Component id="dpCreateEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -757,8 +757,8 @@
                               <Component id="createHeading" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSecurity" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -769,8 +769,8 @@
                               <Component id="pnlTextArea" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -778,12 +778,12 @@
                                   <Component id="dpCreateEndDate" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTimer" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtCreateTimer" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="pnlCreateFolder" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="7382" max="32767" attributes="0"/>
+                              <EmptySpace pref="7569" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnCreateNew" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnCancelCreate" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -869,7 +869,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel9">
+                    <Component class="javax.swing.JLabel" name="lblTitle">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Ebrima" size="14" style="0"/>
@@ -877,7 +877,7 @@
                         <Property name="text" type="java.lang.String" value="Title:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel11">
+                    <Component class="javax.swing.JLabel" name="lblStartDate">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Ebrima" size="14" style="0"/>
@@ -885,7 +885,7 @@
                         <Property name="text" type="java.lang.String" value="Start Date:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel12">
+                    <Component class="javax.swing.JLabel" name="lblEndDate">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Ebrima" size="14" style="0"/>
@@ -893,7 +893,7 @@
                         <Property name="text" type="java.lang.String" value="End Date:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel14">
+                    <Component class="javax.swing.JLabel" name="lblSecurity">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Ebrima" size="14" style="0"/>
@@ -901,7 +901,7 @@
                         <Property name="text" type="java.lang.String" value="Security:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel15">
+                    <Component class="javax.swing.JLabel" name="lblTimer">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Ebrima" size="14" style="0"/>
@@ -971,7 +971,7 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFolder" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -983,7 +983,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFolder" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cbxCreateFolder" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -992,7 +992,7 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel16">
+                        <Component class="javax.swing.JLabel" name="lblFolder">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Ebrima" size="14" style="0"/>
@@ -1023,7 +1023,7 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTextArea" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" pref="409" max="32767" attributes="0"/>
@@ -1032,7 +1032,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTextArea" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" pref="178" max="32767" attributes="0"/>
                               </Group>
@@ -1055,7 +1055,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JLabel" name="jLabel10">
+                        <Component class="javax.swing.JLabel" name="lblTextArea">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Ebrima" size="14" style="0"/>
@@ -1110,7 +1110,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEditExistionPres" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="lblClose" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -1121,7 +1121,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEditExistionPres" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="12" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -1132,7 +1132,7 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel6">
+                        <Component class="javax.swing.JLabel" name="lblEditExistionPres">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Ebrima" size="14" style="1"/>
@@ -1353,18 +1353,18 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtEditTimer" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                          <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditTimer" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="pnlEditFolder" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lblEditTitle" alignment="0" min="-2" max="-2" attributes="0"/>
                                                       <Component id="txtEditTitle" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="cxEditNotSafe" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lblEditSecurity" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -1376,11 +1376,11 @@
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="dpEditStartDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="lblEditStartDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="lblEditEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           <Component id="dpEditEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
@@ -1397,8 +1397,8 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditSecurity" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1409,8 +1409,8 @@
                                       <Component id="pnlTextAreaCont" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1418,7 +1418,7 @@
                                           <Component id="dpEditEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblEditTimer" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtEditTimer" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1434,7 +1434,7 @@
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JLabel" name="jLabel17">
+                            <Component class="javax.swing.JLabel" name="lblEditTitle">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Ebrima" size="14" style="0"/>
@@ -1447,7 +1447,7 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEditTitleActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel19">
+                            <Component class="javax.swing.JLabel" name="lblEditSecurity">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Ebrima" size="14" style="0"/>
@@ -1466,7 +1466,7 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cxEditNotSafeActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel20">
+                            <Component class="javax.swing.JLabel" name="lblEditStartDate">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Ebrima" size="14" style="0"/>
@@ -1478,7 +1478,7 @@
                             </Component>
                             <Component class="org.jdesktop.swingx.JXDatePicker" name="dpEditEndDate">
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel21">
+                            <Component class="javax.swing.JLabel" name="lblEditEndDate">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Ebrima" size="14" style="0"/>
@@ -1486,7 +1486,7 @@
                                 <Property name="text" type="java.lang.String" value="End Date:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel22">
+                            <Component class="javax.swing.JLabel" name="lblEditTimer">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Ebrima" size="14" style="0"/>
@@ -1545,7 +1545,7 @@
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditFolder" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="cbxFolder" max="32767" attributes="0"/>
@@ -1554,7 +1554,7 @@
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditFolder" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="cbxFolder" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace pref="17" max="32767" attributes="0"/>
@@ -1563,7 +1563,7 @@
                                 </DimensionLayout>
                               </Layout>
                               <SubComponents>
-                                <Component class="javax.swing.JLabel" name="jLabel7">
+                                <Component class="javax.swing.JLabel" name="lblEditFolder">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="Folder:"/>
                                   </Properties>
@@ -1589,7 +1589,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditText" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1598,7 +1598,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEditText" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace pref="11" max="32767" attributes="0"/>
                                           <Component id="jScrollPane2" min="-2" pref="186" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -1607,7 +1607,7 @@
                                 </DimensionLayout>
                               </Layout>
                               <SubComponents>
-                                <Component class="javax.swing.JLabel" name="jLabel18">
+                                <Component class="javax.swing.JLabel" name="lblEditText">
                                   <Properties>
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Ebrima" size="14" style="0"/>

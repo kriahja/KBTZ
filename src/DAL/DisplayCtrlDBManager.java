@@ -42,7 +42,6 @@ public class DisplayCtrlDBManager
         return instance;
     }
 
-
     public DisplayCtrl getOnedc(ResultSet rs) throws SQLException
     {
         String presTitle = rs.getString("Title");
@@ -118,8 +117,6 @@ public class DisplayCtrlDBManager
             return dcList;
         }
     }
-    
-    
 
     /**
      * @param pres disables or enables the selected Presentations
@@ -145,21 +142,18 @@ public class DisplayCtrlDBManager
 
         }
     }
-    
+
     public void create(int presId, int dispId) throws SQLException
     {
-     
 
         try (Connection con = cm.getConnection())
         {
 
             String sql = "insert into DisplayCtrl (DisplayId, PresentationId, Disable) values (?, ?, 'false') ";
 
-
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dispId);
             ps.setInt(2, presId);
-
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -172,9 +166,9 @@ public class DisplayCtrlDBManager
             new DisplayCtrl(presId, dispId);
 
         }
-    
+
     }
-    
+
     public void delete(int presId) throws SQLException
     {
         try (Connection con = cm.getConnection())
@@ -183,20 +177,19 @@ public class DisplayCtrlDBManager
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, presId);
-           
 
             ps.executeUpdate();
 
         }
     }
-    
+
     public int[] readId(int presId) throws SQLException
     {
         try (Connection con = cm.getConnection())
         {
             int[] id = null;
             String sql = "Select DisplayId from DisplayCtrl where PresentationId = ?";
-            
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, presId);
 
@@ -205,10 +198,43 @@ public class DisplayCtrlDBManager
             while (rs.next())
             {
                 DisplayCtrl dc = getOnedc(rs);
-                
+
             }
             return id;
         }
     }
-}
 
+    public void reloadText(boolean reload) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "update Reload set ReloadText = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setBoolean(1, reload);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to Reload Text");
+            }
+        }
+    }
+
+    public void reloadImage(boolean reload) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "update Reload set ReloadImage = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setBoolean(1, reload);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new BivExceptions("Unable to Reload Text");
+            }
+        }
+    }
+}

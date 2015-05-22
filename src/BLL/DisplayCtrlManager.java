@@ -64,7 +64,7 @@ public class DisplayCtrlManager
         return null;
 
     }
-    
+
     public ArrayList<DisplayCtrl> readAllEditPres()
     {
         try
@@ -77,7 +77,7 @@ public class DisplayCtrlManager
         }
         return null;
 
-    }    
+    }
 
     public ArrayList<DisplayCtrl> runningPresentations()
     {
@@ -104,8 +104,8 @@ public class DisplayCtrlManager
             throw new BivExceptions("unable to load texts");
         }
     }
-    
-        public void updateDisable(DisplayCtrl dc)
+
+    public void updateDisable(DisplayCtrl dc)
     {
         try
         {
@@ -113,24 +113,57 @@ public class DisplayCtrlManager
         }
         catch (SQLException ex)
         {
-            throw new BivExceptions("Unable to Update the Text"); 
+            throw new BivExceptions("Unable to Update the Text");
         }
     }
-        
+
     public void create(int presId, int dispId)
     {
-        try {
+        try
+        {
             db.create(presId, dispId);
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void delete(int presId)
     {
-        try {
+        try
+        {
             db.delete(presId);
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void reloadText(boolean reload)
+    {
+
+        try
+        {
+            db.reloadText(reload);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void reloadImage(boolean reload)
+
+    {
+        try
+        {
+            db.reloadImage(reload);
+        }
+        catch (SQLException ex)
+        {
             Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
