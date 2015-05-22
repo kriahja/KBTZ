@@ -732,7 +732,6 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnCancelCreate" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="pnlTextArea" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="pnlCreateFolder" alignment="0" max="32767" attributes="0"/>
@@ -746,7 +745,11 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <EmptySpace min="20" pref="483" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="pnlTextArea" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -783,7 +786,7 @@
                               <Component id="txtCreateTimer" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="pnlCreateFolder" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="7382" max="32767" attributes="0"/>
+                              <EmptySpace pref="7380" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnCreateNew" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnCancelCreate" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1023,16 +1026,31 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cbxFonts" min="-2" pref="144" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="cbxFontSize" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jScrollPane1" alignment="0" min="-2" pref="488" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" pref="409" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbxFonts" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbxFontSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" pref="178" max="32767" attributes="0"/>
                               </Group>
@@ -1050,6 +1068,7 @@
                             <Component class="javax.swing.JTextArea" name="txtCreateTextArea">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
+                                <Property name="lineWrap" type="boolean" value="true"/>
                                 <Property name="rows" type="int" value="5"/>
                               </Properties>
                             </Component>
@@ -1060,7 +1079,56 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Ebrima" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Text:"/>
+                            <Property name="text" type="java.lang.String" value="Font:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="cbxFonts">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="4">
+                                <StringItem index="0" value="Item 1"/>
+                                <StringItem index="1" value="Item 2"/>
+                                <StringItem index="2" value="Item 3"/>
+                                <StringItem index="3" value="Item 4"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxFontsActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="cbxFontSize">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="15">
+                                <StringItem index="0" value="8"/>
+                                <StringItem index="1" value="10"/>
+                                <StringItem index="2" value="11"/>
+                                <StringItem index="3" value="12"/>
+                                <StringItem index="4" value="14"/>
+                                <StringItem index="5" value="16"/>
+                                <StringItem index="6" value="18"/>
+                                <StringItem index="7" value="20"/>
+                                <StringItem index="8" value="24"/>
+                                <StringItem index="9" value="30"/>
+                                <StringItem index="10" value="36"/>
+                                <StringItem index="11" value="40"/>
+                                <StringItem index="12" value="48"/>
+                                <StringItem index="13" value="60"/>
+                                <StringItem index="14" value="72"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxFontSizeActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel8">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Ebrima" size="14" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Size"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -1589,7 +1657,13 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cbxFonts1" min="-2" pref="144" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="cbxFontSize1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1598,7 +1672,12 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbxFontSize1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbxFonts1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace pref="11" max="32767" attributes="0"/>
                                           <Component id="jScrollPane2" min="-2" pref="186" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -1607,14 +1686,6 @@
                                 </DimensionLayout>
                               </Layout>
                               <SubComponents>
-                                <Component class="javax.swing.JLabel" name="jLabel18">
-                                  <Properties>
-                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                      <Font name="Ebrima" size="14" style="0"/>
-                                    </Property>
-                                    <Property name="text" type="java.lang.String" value="Text:"/>
-                                  </Properties>
-                                </Component>
                                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                                   <AuxValues>
                                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -1625,11 +1696,69 @@
                                     <Component class="javax.swing.JTextArea" name="txtEditTextArea">
                                       <Properties>
                                         <Property name="columns" type="int" value="20"/>
+                                        <Property name="lineWrap" type="boolean" value="true"/>
                                         <Property name="rows" type="int" value="5"/>
                                       </Properties>
                                     </Component>
                                   </SubComponents>
                                 </Container>
+                                <Component class="javax.swing.JLabel" name="jLabel24">
+                                  <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Ebrima" size="14" style="0"/>
+                                    </Property>
+                                    <Property name="text" type="java.lang.String" value="Font:"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JComboBox" name="cbxFonts1">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                      <StringArray count="4">
+                                        <StringItem index="0" value="Item 1"/>
+                                        <StringItem index="1" value="Item 2"/>
+                                        <StringItem index="2" value="Item 3"/>
+                                        <StringItem index="3" value="Item 4"/>
+                                      </StringArray>
+                                    </Property>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxFonts1ActionPerformed"/>
+                                  </Events>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="jLabel25">
+                                  <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Ebrima" size="14" style="0"/>
+                                    </Property>
+                                    <Property name="text" type="java.lang.String" value="Size"/>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JComboBox" name="cbxFontSize1">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                      <StringArray count="15">
+                                        <StringItem index="0" value="8"/>
+                                        <StringItem index="1" value="10"/>
+                                        <StringItem index="2" value="11"/>
+                                        <StringItem index="3" value="12"/>
+                                        <StringItem index="4" value="14"/>
+                                        <StringItem index="5" value="16"/>
+                                        <StringItem index="6" value="18"/>
+                                        <StringItem index="7" value="20"/>
+                                        <StringItem index="8" value="24"/>
+                                        <StringItem index="9" value="30"/>
+                                        <StringItem index="10" value="36"/>
+                                        <StringItem index="11" value="40"/>
+                                        <StringItem index="12" value="48"/>
+                                        <StringItem index="13" value="60"/>
+                                        <StringItem index="14" value="72"/>
+                                      </StringArray>
+                                    </Property>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxFontSize1ActionPerformed"/>
+                                  </Events>
+                                </Component>
                               </SubComponents>
                             </Container>
                           </SubComponents>
