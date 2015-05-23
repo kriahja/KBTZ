@@ -336,7 +336,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlTextArea = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCreateTextArea = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
+        lblTextArea = new javax.swing.JLabel();
         cbxFonts = new javax.swing.JComboBox();
         cbxFontSize = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
@@ -871,19 +871,23 @@ public class GuiMain2 extends javax.swing.JFrame
         txtCreateTextArea.setRows(5);
         jScrollPane1.setViewportView(txtCreateTextArea);
 
-        jLabel10.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
-        jLabel10.setText("Font:");
+        lblTextArea.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        lblTextArea.setText("Font:");
 
         cbxFonts.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxFonts.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxFonts.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxFontsActionPerformed(evt);
             }
         });
 
         cbxFontSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "60", "72" }));
-        cbxFontSize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxFontSize.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxFontSizeActionPerformed(evt);
             }
         });
@@ -898,7 +902,7 @@ public class GuiMain2 extends javax.swing.JFrame
             .addGroup(pnlTextAreaLayout.createSequentialGroup()
                 .addGroup(pnlTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlTextAreaLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(lblTextArea)
                         .addGap(18, 18, 18)
                         .addComponent(cbxFonts, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
@@ -912,7 +916,7 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTextAreaLayout.createSequentialGroup()
                 .addGroup(pnlTextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(lblTextArea)
                     .addComponent(cbxFonts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxFontSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -1228,8 +1232,10 @@ public class GuiMain2 extends javax.swing.JFrame
         jLabel24.setText("Font:");
 
         cbxFonts1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxFonts1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxFonts1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxFonts1ActionPerformed(evt);
             }
         });
@@ -1238,8 +1244,10 @@ public class GuiMain2 extends javax.swing.JFrame
         jLabel25.setText("Size");
 
         cbxFontSize1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "60", "72" }));
-        cbxFontSize1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxFontSize1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxFontSize1ActionPerformed(evt);
             }
         });
@@ -2028,27 +2036,12 @@ public class GuiMain2 extends javax.swing.JFrame
     private org.jdesktop.swingx.JXDatePicker dpEditStartDate;
     private javax.swing.JPanel editHeader;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2068,7 +2061,6 @@ public class GuiMain2 extends javax.swing.JFrame
     private javax.swing.JLabel lblEditFolder;
     private javax.swing.JLabel lblEditSecurity;
     private javax.swing.JLabel lblEditStartDate;
-    private javax.swing.JLabel lblEditText;
     private javax.swing.JLabel lblEditTimer;
     private javax.swing.JLabel lblEditTitle;
     private javax.swing.JLabel lblEndDate;
