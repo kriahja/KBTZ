@@ -119,7 +119,7 @@ public class DisplayCtrlDBManager
     }
 
     /**
-     * @param pres disables or enables the selected Presentations
+     * @param dc
      * @throws java.sql.SQLException
      */
     public void updateDisable(DisplayCtrl dc) throws SQLException
