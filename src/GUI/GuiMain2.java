@@ -382,7 +382,7 @@ public class GuiMain2 extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JSeparator();
         lblPresentationTitle = new javax.swing.JLabel();
         lblPresentationSubtitle = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        header3 = new javax.swing.JLabel();
         pnlPresentationTableCont = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1383,7 +1383,7 @@ public class GuiMain2 extends javax.swing.JFrame
         lblPresentationSubtitle.setForeground(new java.awt.Color(101, 109, 120));
         lblPresentationSubtitle.setText("See all available presentation for screens:");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Header3.png"))); // NOI18N
+        header3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Header3.png"))); // NOI18N
 
         pnlPresentationTableCont.setLayout(new java.awt.BorderLayout());
 
@@ -1393,7 +1393,7 @@ public class GuiMain2 extends javax.swing.JFrame
             presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(presentationCardLayout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(header3)
                 .addGap(0, 368, Short.MAX_VALUE))
             .addGroup(presentationCardLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
@@ -1415,7 +1415,7 @@ public class GuiMain2 extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, 7631, Short.MAX_VALUE)
                 .addGap(355, 355, 355)
-                .addComponent(jLabel3))
+                .addComponent(header3))
         );
 
         cardContainer.add(presentationCard, "card2");
@@ -2054,6 +2054,7 @@ public class GuiMain2 extends javax.swing.JFrame
     private org.jdesktop.swingx.JXDatePicker dpEditEndDate;
     private org.jdesktop.swingx.JXDatePicker dpEditStartDate;
     private javax.swing.JPanel editHeader;
+    private javax.swing.JLabel header3;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -2071,7 +2072,6 @@ public class GuiMain2 extends javax.swing.JFrame
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel lblBelman;
     private javax.swing.JLabel lblBelmanPic;
-    private javax.swing.JLabel lblBelmanPicture;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblCreateWarningDisplay;
     private javax.swing.JLabel lblCreateWarningType;

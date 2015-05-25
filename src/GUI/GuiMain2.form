@@ -1696,7 +1696,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="header3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="368" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -1722,7 +1722,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="pnlPresentationTableCont" pref="7631" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="header3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1758,7 +1758,7 @@
                 <Property name="text" type="java.lang.String" value="See all available presentation for screens:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="header3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Resources/Header3.png"/>
