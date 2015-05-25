@@ -54,16 +54,14 @@ public class TextDBManager
      */
     public ArrayList<Text> readAll() throws SQLException
     {
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
             ArrayList<Text> txtList = new ArrayList<>();
-            String sql = "Select Presentation.* , Text.Text from Presentation, Text"
+            String sql = "Select Presentation.* , Text.Text, Text.Font, Text.FontSize from Presentation, Text"
                     + " where Presentation.ID = Text.PresentationId";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Text txt = getOneText(rs);
                 txtList.add(txt);
             }
@@ -71,7 +69,6 @@ public class TextDBManager
         }
     }
 
-    
 
     private Text getOneText(ResultSet rs) throws SQLException
     {
@@ -84,12 +81,13 @@ public class TextDBManager
         Double timer = rs.getDouble("Timer");
 
         boolean notSafe = rs.getBoolean("NotSafe");
-        
 
         String text = rs.getString("Text");
+        String font = rs.getString("Font");
+        int fontSize = rs.getInt("FontSize");
 
 //        String depName = rs.getString("Name");
-        return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, text);
+        return new Text(id, presTypeId, title, startDate, endDate, timer, notSafe, text, font, fontSize);
     }
 
     /**
@@ -101,7 +99,7 @@ public class TextDBManager
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
+            String sql = "SELECT Presentation.* , Text.Text, Text.Font, Text.FontSize FROM Presentation, Text "
                     + "WHERE Title = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, title);
@@ -126,7 +124,7 @@ public class TextDBManager
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
+            String sql = "SELECT Presentation.* , Text.Text, Text.Font, Text.FontSize FROM Presentation, Text "
                     + "WHERE Presentation.ID = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -151,7 +149,7 @@ public class TextDBManager
         try (Connection con = cm.getConnection())
         {
             ArrayList<Text> txtList = new ArrayList<>();
-            String sql = "SELECT Presentation.* , Text.Text FROM Presentation, Text "
+            String sql = "SELECT Presentation.* , Text.Text, Text.Font, Text.FontSize FROM Presentation, Text "
                     + "WHERE Presentation.NotSafe = ? and Presentation.ID = Text.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setBoolean(1, safe);
@@ -184,7 +182,7 @@ public class TextDBManager
                     + " Insert INTO Presentation\n"
                     + " VALUES (?, ?, ?, ?, ?, ?)\n"
                     + " Insert INTO [Text]\n"
-                    + " VALUES (?,  SCOPE_IDENTITY())\n"
+                    + " VALUES (?,  SCOPE_IDENTITY(), ?, ?)\n"
                     + "COMMIT";
 //            String sql = "Insert into Presentation(PresTypeId, Title, StartDate, EndDate, Timer, NotSafe)"
             //                    + "Values (?, ?, ?, ?, ?, ?)";
@@ -198,6 +196,8 @@ public class TextDBManager
             ps.setBoolean(6, txt.isNotSafe());
 
             ps.setString(7, txt.getText());
+            ps.setString(8, txt.getFont());
+            ps.setInt(9, txt.getFontSize());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -248,23 +248,25 @@ public class TextDBManager
         try (Connection con = cm.getConnection())
         {
             String sql = " begin transaction "
-                    + " update Text set Text = ? where PresentationId = ? "
+                    + " update Text set Text = ?, Font = ?, FontSize = ? where PresentationId = ? "
                     + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ? where ID = ? "
                     + " Commit ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, txt.getText());
-            ps.setInt(2, txt.getId());
+            ps.setString(2, txt.getFont());
+            ps.setInt(3, txt.getFontSize());
+            ps.setInt(4, txt.getId());
 
-            ps.setString(3, txt.getTitle());
+            ps.setString(5, txt.getTitle());
 
-            ps.setDate(4, txt.getStartDate());
-            ps.setDate(5, txt.getEndDate());
-            ps.setDouble(6, txt.getTimer());
+            ps.setDate(6, txt.getStartDate());
+            ps.setDate(7, txt.getEndDate());
+            ps.setDouble(8, txt.getTimer());
 
-            ps.setBoolean(7, txt.isNotSafe());
+            ps.setBoolean(9, txt.isNotSafe());
             
 
-            ps.setInt(8, txt.getId());
+            ps.setInt(10, txt.getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)

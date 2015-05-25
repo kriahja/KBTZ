@@ -15,6 +15,8 @@ public class Text extends Presentation
 {
 
     private String text;
+    private String font;
+    private int fontSize;
 
     /**
      *
@@ -35,6 +37,13 @@ public class Text extends Presentation
     }
 
   
+    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text, String font, int fontSize)
+    {
+        super(id, presTypeId, title, startDate, endDate, timer, notSafe);
+        this.text = text;
+        this.font = font;
+        this.fontSize = fontSize;
+    }
 
     public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
     {
@@ -66,6 +75,14 @@ public class Text extends Presentation
         super(presTypeId, title, startDate, endDate, timer, notSafe);
         this.text = text;
     }
+    
+    public Text(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text, String font, int fontSize)
+    {
+        super(presTypeId, title, startDate, endDate, timer, notSafe);
+        this.text = text;
+        this.font = font;
+        this.fontSize = fontSize;
+    }
 
     /**
      * @return the text
@@ -81,6 +98,38 @@ public class Text extends Presentation
     public void setText(String text)
     {
         this.text = text;
+    }
+
+    /**
+     * @return the font
+     */
+    public String getFont()
+    {
+        return font;
+    }
+
+    /**
+     * @param font the font to set
+     */
+    public void setFont(String font)
+    {
+        this.font = font;
+    }
+
+    /**
+     * @return the fontSize
+     */
+    public int getFontSize()
+    {
+        return fontSize;
+    }
+
+    /**
+     * @param fontSize the fontSize to set
+     */
+    public void setFontSize(int fontSize)
+    {
+        this.fontSize = fontSize;
     }
 
 }
