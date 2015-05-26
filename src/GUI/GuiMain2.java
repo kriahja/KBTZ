@@ -73,7 +73,7 @@ public class GuiMain2 extends javax.swing.JFrame
     String title;
     String txt;
     String fontType = "Arial";
-    int fontSize = 12;
+    int fontSize = 24;
     int fontBold = Font.BOLD;
     int fontPlain = Font.PLAIN;
     int fontItalic = Font.ITALIC;
