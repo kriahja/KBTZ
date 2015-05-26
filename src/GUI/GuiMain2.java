@@ -237,24 +237,28 @@ public class GuiMain2 extends javax.swing.JFrame
         txtEditTextArea.setText(text.getText());
         txtEditTextArea.setForeground(new Color(text.getFontColor()));
         cbxFontWeight1.setSelectedIndex(text.getFontStyle());
-        txtCreateTextArea.setFont(new Font(text.getFont(), text.getFontStyle(), text.getFontSize()));
+             
         tt = tMgr.getByTitle(text.getTitle());
         id = tt.getId();
-
+       
         dpEditStartDate.setDate(text.getStartDate());
         dpEditEndDate.setDate(text.getEndDate());
         //String.valueOf(double)
         txtEditTimer.setText(String.valueOf(text.getTimer()));   
-        System.out.println(text.getFontSize());
+        
         
         fontSize = text.getFontSize();
         String fontS = String.valueOf(fontSize);
         cbxFonts1.setSelectedItem(text.getFont());
         cbxFontSize1.setSelectedItem(fontS);
        
+         txtEditTextArea.setFont(new Font(text.getFont(), text.getFontStyle(), text.getFontSize()));
+        
+        
         btnEditChosen.setEnabled(true);
         btnRemoveChosen.setEnabled(true);
         System.out.println("Test for edit button");
+        
 
     }
 
