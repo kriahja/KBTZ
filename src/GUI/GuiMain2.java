@@ -245,7 +245,7 @@ public class GuiMain2 extends javax.swing.JFrame
         dpEditEndDate.setDate(text.getEndDate());
         //String.valueOf(double)
         txtEditTimer.setText(String.valueOf(text.getTimer()));   
-        System.out.println(text.getFontSize());
+        
         
         fontSize = text.getFontSize();
         String fontS = String.valueOf(fontSize);
