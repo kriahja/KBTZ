@@ -1646,7 +1646,7 @@ public class GuiMain2 extends javax.swing.JFrame
         {
           color = colorPicker.getColor().getRGB();
         }
-        else {            
+        else {    
            color = colorPicker.getColor().getAlpha();
         }
         
