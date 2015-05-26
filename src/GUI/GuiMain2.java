@@ -93,7 +93,9 @@ public class GuiMain2 extends javax.swing.JFrame
     String path;
     String font;
     int size;
-    
+    int style;
+    int color;
+    int fontColor;
 
     File shared;
     //  File[] folders;
@@ -233,6 +235,9 @@ public class GuiMain2 extends javax.swing.JFrame
 
         txtEditTitle.setText(text.getTitle());
         txtEditTextArea.setText(text.getText());
+        txtEditTextArea.setForeground(new Color(text.getFontColor()));
+        cbxFontWeight1.setSelectedIndex(text.getFontStyle());
+        txtCreateTextArea.setFont(new Font(text.getFont(), text.getFontStyle(), text.getFontSize()));
         tt = tMgr.getByTitle(text.getTitle());
         id = tt.getId();
 
@@ -246,7 +251,7 @@ public class GuiMain2 extends javax.swing.JFrame
         String fontS = String.valueOf(fontSize);
         cbxFonts1.setSelectedItem(text.getFont());
         cbxFontSize1.setSelectedItem(fontS);
-        
+       
         btnEditChosen.setEnabled(true);
         btnRemoveChosen.setEnabled(true);
         System.out.println("Test for edit button");
@@ -849,6 +854,11 @@ public class GuiMain2 extends javax.swing.JFrame
         });
 
         btnChooseColor.setText("Color");
+        btnChooseColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseColorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTextAreaLayout = new javax.swing.GroupLayout(pnlTextArea);
         pnlTextArea.setLayout(pnlTextAreaLayout);
@@ -895,9 +905,8 @@ public class GuiMain2 extends javax.swing.JFrame
             .addComponent(createHeading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlCreateLayout.createSequentialGroup()
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtCreateTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9)
+                    .addComponent(txtCreateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCreateTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addGroup(pnlCreateLayout.createSequentialGroup()
@@ -1217,15 +1226,16 @@ public class GuiMain2 extends javax.swing.JFrame
             pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTextAreaContLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(cbxFontSize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25)
-                    .addComponent(cbxFonts1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel18)
                         .addComponent(cbxFontWeight1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnChooseColor1)))
+                        .addComponent(btnChooseColor1))
+                    .addGroup(pnlTextAreaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel24)
+                        .addComponent(cbxFontSize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel25)
+                        .addComponent(cbxFonts1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1240,24 +1250,22 @@ public class GuiMain2 extends javax.swing.JFrame
                     .addComponent(txtEditTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
                     .addComponent(pnlEditFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEditTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlEditCard2Layout.createSequentialGroup()
-                                .addComponent(btnUpdate)
-                                .addGap(26, 26, 26)
-                                .addComponent(btnCancelUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlEditCard2Layout.createSequentialGroup()
-                                .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dpEditStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20))
-                                .addGap(36, 36, 36)
-                                .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel21)
-                                    .addComponent(dpEditEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(pnlTextAreaCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel17)
+                    .addComponent(txtEditTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlEditCard2Layout.createSequentialGroup()
+                            .addComponent(btnUpdate)
+                            .addGap(26, 26, 26)
+                            .addComponent(btnCancelUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlEditCard2Layout.createSequentialGroup()
+                            .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(dpEditStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel20))
+                            .addGap(36, 36, 36)
+                            .addGroup(pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel21)
+                                .addComponent(dpEditEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(pnlTextAreaCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(483, Short.MAX_VALUE))
         );
         pnlEditCard2Layout.setVerticalGroup(
@@ -1633,12 +1641,20 @@ public class GuiMain2 extends javax.swing.JFrame
         
         font = cbxFonts.getSelectedItem().toString();
         size = Integer.parseInt(cbxFontSize.getSelectedItem().toString());
+        style = cbxFontWeight.getSelectedIndex();
+        if(colorPicker.getColor() != Color.WHITE)
+        {
+          color = colorPicker.getColor().getRGB();
+        }
+        else {            
+           color = colorPicker.getColor().getAlpha();
+        }
         
         System.out.println(font + " " + size);
 
         System.out.println(displayId);
 
-        text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt, font, size);
+        text = new Text(presTypeId, title, startDate, endDate, timer, notSafe, txt, font, size, style, color);
 
         tMgr.createText(text);
 
@@ -1692,8 +1708,16 @@ public class GuiMain2 extends javax.swing.JFrame
         
         font = cbxFonts1.getSelectedItem().toString();
         size = Integer.parseInt(cbxFontSize1.getSelectedItem().toString());
+        style = cbxFontWeight1.getSelectedIndex();
+        if(colorPicker.getColor() != Color.WHITE)
+        {
+          color = colorPicker.getColor().getRGB();
+        }
+        else {            
+           color = colorPicker.getColor().getAlpha();
+        }
         
-        text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt, font, size);
+        text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt, font, size, style, color);
         
         tMgr.updateText(text);
         displayId = lstDisplay.getSelectedIndices();
@@ -1900,10 +1924,10 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_cbxFontSize1ActionPerformed
 
     private void cbxFontWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFontWeightActionPerformed
-        String currentFont = cbxFonts1.getSelectedItem().toString();
+        String currentFont = cbxFonts.getSelectedItem().toString();
         if(cbxFontWeight.getSelectedIndex() == 0){
             txtCreateTextArea.setFont(new Font(currentFont, fontPlain, fontSize));
-            fontType = new String(currentFont);
+            fontType = new String(currentFont);            
             System.out.println(fontPlain);
         }else if (cbxFontWeight.getSelectedIndex() == 1){
             txtCreateTextArea.setFont(new Font(currentFont, fontBold, fontSize)); 
@@ -1951,6 +1975,10 @@ public class GuiMain2 extends javax.swing.JFrame
     private void btnChooseColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseColor1ActionPerformed
         jdColorPicker.setVisible(true);
     }//GEN-LAST:event_btnChooseColor1ActionPerformed
+
+    private void btnChooseColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseColorActionPerformed
+       jdColorPicker.setVisible(true);
+    }//GEN-LAST:event_btnChooseColorActionPerformed
 
     public void clearCreateData()
     {

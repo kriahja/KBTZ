@@ -665,10 +665,8 @@
                           <Component id="createHeading" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCreateTitle" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCreateTitle" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
                                   <Component id="txtCreateTimer" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                                   <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -1082,6 +1080,9 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Color"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChooseColorActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1375,31 +1376,27 @@
                                           <Component id="txtEditTimer" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                                           <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="pnlEditFolder" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="txtEditTitle" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
+                                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtEditTitle" alignment="0" min="-2" pref="409" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                                  <Component id="btnCancelUpdate" min="-2" pref="71" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                                      <Component id="btnCancelUpdate" min="-2" pref="71" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="dpEditStartDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="dpEditStartDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="dpEditEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
+                                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="dpEditEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Component id="pnlTextAreaCont" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="pnlTextAreaCont" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="483" max="32767" attributes="0"/>
                                   </Group>
@@ -1598,15 +1595,17 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cbxFontSize1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cbxFonts1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="cbxFontWeight1" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="btnChooseColor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cbxFontSize1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cbxFonts1" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace pref="11" max="32767" attributes="0"/>
