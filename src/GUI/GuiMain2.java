@@ -391,6 +391,10 @@ public class GuiMain2 extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
         pnlPresentationTableCont = new javax.swing.JPanel();
 
+        jdColorPicker.setMaximumSize(new java.awt.Dimension(600, 500));
+        jdColorPicker.setMinimumSize(new java.awt.Dimension(600, 500));
+        jdColorPicker.setModal(true);
+
         btnSelectColor.setText("Select");
         btnSelectColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,7 +408,7 @@ public class GuiMain2 extends javax.swing.JFrame
             jdColorPickerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdColorPickerLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(colorPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
             .addGroup(jdColorPickerLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
@@ -414,7 +418,7 @@ public class GuiMain2 extends javax.swing.JFrame
         jdColorPickerLayout.setVerticalGroup(
             jdColorPickerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdColorPickerLayout.createSequentialGroup()
-                .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(colorPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(37, 37, 37)
                 .addComponent(btnSelectColor)
                 .addGap(0, 19, Short.MAX_VALUE))
