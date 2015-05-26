@@ -237,35 +237,23 @@ public class GuiMain2 extends javax.swing.JFrame
         txtEditTextArea.setText(text.getText());
         txtEditTextArea.setForeground(new Color(text.getFontColor()));
         cbxFontWeight1.setSelectedIndex(text.getFontStyle());
-        String fontStyle = "Font.PLAIN";
-        if(text.getFontStyle() == 1)
-        {
-            fontStyle = "Font.Bold";
-        }
-        if(text.getFontStyle() == 2)
-        {
-            fontStyle = "Font.Italic";
-        }
-        txtEditTextArea.setFont(new Font(text.getFont(), cbxFontWeight1.getSelectedIndex(), text.getFontSize()));
-        
-        
-        
+
         tt = tMgr.getByTitle(text.getTitle());
         id = tt.getId();
-       
+
         dpEditStartDate.setDate(text.getStartDate());
         dpEditEndDate.setDate(text.getEndDate());
         //String.valueOf(double)
-        txtEditTimer.setText(String.valueOf(text.getTimer()));   
+        txtEditTimer.setText(String.valueOf(text.getTimer()));
         System.out.println(text.getFontSize());
-        
+
         fontSize = text.getFontSize();
         String fontS = String.valueOf(fontSize);
         cbxFonts1.setSelectedItem(text.getFont());
         cbxFontSize1.setSelectedItem(fontS);
-       
-        
-        
+
+        txtEditTextArea.setFont(new Font(text.getFont(), text.getFontStyle(), text.getFontSize()));
+
         btnEditChosen.setEnabled(true);
         btnRemoveChosen.setEnabled(true);
         System.out.println("Test for edit button");
@@ -1465,8 +1453,8 @@ public class GuiMain2 extends javax.swing.JFrame
         for (int i = 0; i < dispList.size(); ++i) {
             lstDisplay.setListData(dispList.toArray());
 
-        }        
-        cbxFonts.setModel(new DefaultComboBoxModel(fonts));       
+        }
+        cbxFonts.setModel(new DefaultComboBoxModel(fonts));
 
 
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -1489,7 +1477,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
         }
         cbxFonts1.setModel(new DefaultComboBoxModel(fonts));
-        
+
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
@@ -1527,7 +1515,7 @@ public class GuiMain2 extends javax.swing.JFrame
             showImageData(title);
             pnlTextAreaCont.setVisible(false);
             pnlEditFolder.setVisible(true);
-            cbxPresentationType.setSelectedIndex(2);    
+            cbxPresentationType.setSelectedIndex(2);
         }
         cbxPresentationType.setEnabled(false);
 
@@ -1541,22 +1529,20 @@ public class GuiMain2 extends javax.swing.JFrame
         selectedRow = editTable.convertRowIndexToModel(selectedRow);
         String val1 = (String) editTable.getModel().getValueAt(selectedRow, 1);
         String title = (String) editTable.getModel().getValueAt(selectedRow, 0);
-        if (val1.equals("Text"))
-        {
-            showTextData(title);   
+        if (val1.equals("Text")) {
+            showTextData(title);
             cbxPresentationType.setSelectedIndex(1);
             tMgr.deleteText(tMgr.getByTitle(title).getId());
-        
+
         }
-        if (val1.equals("Image"))
-        {
+        if (val1.equals("Image")) {
             showImageData(title);
             cbxPresentationType.setSelectedIndex(2);
             iMgr.deleteImage(iMgr.getByTitle(title).getId());
-            
+
         }
-            editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
-            editTable.setModel(editModel);
+        editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
+        editTable.setModel(editModel);
 
     }//GEN-LAST:event_btnRemoveChosenActionPerformed
 
@@ -1593,7 +1579,7 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_txtEditTitleActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-       if(lstDisplay.getSelectedIndex() != -1){
+        if (lstDisplay.getSelectedIndex() != -1) {
             if (cbxPresentationType.getSelectedIndex() == 1) {
                 updateText();
                 pnlEditCard2.setVisible(false);
@@ -1606,12 +1592,10 @@ public class GuiMain2 extends javax.swing.JFrame
                 }
             }
             clearEditData();
-       }
-       else{
-           lblCreateWarningDisplay.setVisible(true);
-       }
+        } else {
+            lblCreateWarningDisplay.setVisible(true);
+        }
 
-        
 //          EditList();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -1652,18 +1636,16 @@ public class GuiMain2 extends javax.swing.JFrame
         endDate = new java.sql.Date(dpCreateEndDate.getDate().getTime());
         timer = Double.parseDouble(txtCreateTimer.getText());
         displayId = lstDisplay.getSelectedIndices();
-        
+
         font = cbxFonts.getSelectedItem().toString();
         size = Integer.parseInt(cbxFontSize.getSelectedItem().toString());
         style = cbxFontWeight.getSelectedIndex();
-        if(colorPicker.getColor() != Color.WHITE)
-        {
-          color = colorPicker.getColor().getRGB();
+        if (colorPicker.getColor() != Color.WHITE) {
+            color = colorPicker.getColor().getRGB();
+        } else {
+            color = colorPicker.getColor().getAlpha();
         }
-        else {            
-           color = colorPicker.getColor().getAlpha();
-        }
-        
+
         System.out.println(font + " " + size);
 
         System.out.println(displayId);
@@ -1719,20 +1701,18 @@ public class GuiMain2 extends javax.swing.JFrame
         displayId = lstDisplay.getSelectedIndices();
         System.out.println(presTypeId + title + " " + startDate + " " + endDate + " " + timer + " " + notSafe + " " + txt);
         dcMgr.delete(id);
-        
+
         font = cbxFonts1.getSelectedItem().toString();
         size = Integer.parseInt(cbxFontSize1.getSelectedItem().toString());
         style = cbxFontWeight1.getSelectedIndex();
-        if(colorPicker.getColor() != Color.WHITE)
-        {
-          color = colorPicker.getColor().getRGB();
+        if (colorPicker.getColor() != Color.WHITE) {
+            color = colorPicker.getColor().getRGB();
+        } else {
+            color = colorPicker.getColor().getAlpha();
         }
-        else {            
-           color = colorPicker.getColor().getAlpha();
-        }
-        
+
         text = new Text(id, 1, title, startDate, endDate, timer, notSafe, txt, font, size, style, color);
-        
+
         tMgr.updateText(text);
         displayId = lstDisplay.getSelectedIndices();
         dcMgr.delete(id);
@@ -1755,20 +1735,19 @@ public class GuiMain2 extends javax.swing.JFrame
         presTypeId = cbxPresentationType.getSelectedIndex() + 1;
         startDate = new java.sql.Date(dpEditStartDate.getDate().getTime());
         endDate = new java.sql.Date(dpEditEndDate.getDate().getTime());
-        timer = Double.parseDouble(txtEditTimer.getText()); 
+        timer = Double.parseDouble(txtEditTimer.getText());
         displayId = lstDisplay.getSelectedIndices();
         dcMgr.delete(id);
-        
+
         image = new Image(id, 2, title, startDate, endDate, timer, notSafe, path);
         iMgr.updateImage(image);
-        
+
         displayId = lstDisplay.getSelectedIndices();
-        
 
         for (int i = 0; i < displayId.length; ++i) {
             dcMgr.create(id, displayId[i] + 1);
         }
-        
+
         editModel.setDisplayCtrlList(dcMgr.readAllEditPres());
         editTable.setModel(editModel);
 
@@ -1912,15 +1891,15 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_cbxSortingActionPerformed
 
     private void cbxFontsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFontsActionPerformed
-        
+
         String currentFont = cbxFonts.getSelectedItem().toString();
         txtCreateTextArea.setFont(new Font(currentFont, Font.PLAIN, fontSize));
         fontType = new String(currentFont);
-       
+
     }//GEN-LAST:event_cbxFontsActionPerformed
 
     private void cbxFontSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFontSizeActionPerformed
-        int currentSize = Integer.parseInt((String)cbxFontSize.getSelectedItem());       
+        int currentSize = Integer.parseInt((String) cbxFontSize.getSelectedItem());
         fontSize = new Integer(currentSize);
         txtCreateTextArea.setFont(new Font(fontType, Font.PLAIN, fontSize));
     }//GEN-LAST:event_cbxFontSizeActionPerformed
@@ -1932,36 +1911,38 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_cbxFonts1ActionPerformed
 
     private void cbxFontSize1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFontSize1ActionPerformed
-       int currentSize = Integer.parseInt((String)cbxFontSize1.getSelectedItem());       
+        int currentSize = Integer.parseInt((String) cbxFontSize1.getSelectedItem());
         fontSize = new Integer(currentSize);
         txtEditTextArea.setFont(new Font(fontType, Font.PLAIN, fontSize));
     }//GEN-LAST:event_cbxFontSize1ActionPerformed
 
     private void cbxFontWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFontWeightActionPerformed
         String currentFont = cbxFonts.getSelectedItem().toString();
-        if(cbxFontWeight.getSelectedIndex() == 0){
+        if (cbxFontWeight.getSelectedIndex() == 0) {
             txtCreateTextArea.setFont(new Font(currentFont, fontPlain, fontSize));
-            fontType = new String(currentFont);            
+            fontType = new String(currentFont);
             System.out.println(fontPlain);
-        }else if (cbxFontWeight.getSelectedIndex() == 1){
-            txtCreateTextArea.setFont(new Font(currentFont, fontBold, fontSize)); 
-            fontType = new String(currentFont);
-            System.out.println(fontBold);
-        }else if (cbxFontWeight.getSelectedIndex() == 2){
-            txtCreateTextArea.setFont(new Font(currentFont, fontItalic, fontSize));
-            fontType = new String(currentFont);
-            System.out.println(fontItalic);
-            
-        }
+        } else {
+            if (cbxFontWeight.getSelectedIndex() == 1) {
+                txtCreateTextArea.setFont(new Font(currentFont, fontBold, fontSize));
+                fontType = new String(currentFont);
+                System.out.println(fontBold);
+            } else {
+                if (cbxFontWeight.getSelectedIndex() == 2) {
+                    txtCreateTextArea.setFont(new Font(currentFont, fontItalic, fontSize));
+                    fontType = new String(currentFont);
+                    System.out.println(fontItalic);
+
+                }
     }//GEN-LAST:event_cbxFontWeightActionPerformed
 
     private void btnSelectColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectColorActionPerformed
         Color color = colorPicker.getColor();
         int rgbColor = colorPicker.getColor().getRGB();
-        if(btnCreate.isSelected()){
+        if (btnCreate.isSelected()) {
             txtCreateTextArea.setForeground(new Color(rgbColor));
         }
-        if(btnEdit.isSelected()){
+        if (btnEdit.isSelected()) {
             txtEditTextArea.setForeground(new Color(rgbColor));
         }
         System.out.println(rgbColor);
@@ -1969,21 +1950,23 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_btnSelectColorActionPerformed
 
     private void cbxFontWeight1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFontWeight1ActionPerformed
-         String currentFont = cbxFonts1.getSelectedItem().toString();
-        if(cbxFontWeight1.getSelectedIndex() == 0){
+        String currentFont = cbxFonts1.getSelectedItem().toString();
+        if (cbxFontWeight1.getSelectedIndex() == 0) {
             txtEditTextArea.setFont(new Font(currentFont, fontPlain, fontSize));
             fontType = new String(currentFont);
             System.out.println(fontPlain);
-        }else if (cbxFontWeight1.getSelectedIndex() == 1){
-            txtEditTextArea.setFont(new Font(currentFont, fontBold, fontSize)); 
-            fontType = new String(currentFont);
-            System.out.println(fontBold);
-        }else if (cbxFontWeight1.getSelectedIndex() == 2){
-            txtEditTextArea.setFont(new Font(currentFont, fontItalic, fontSize));
-            fontType = new String(currentFont);
-            System.out.println(fontItalic);
-            
-        }
+        } else {
+            if (cbxFontWeight1.getSelectedIndex() == 1) {
+                txtEditTextArea.setFont(new Font(currentFont, fontBold, fontSize));
+                fontType = new String(currentFont);
+                System.out.println(fontBold);
+            } else {
+                if (cbxFontWeight1.getSelectedIndex() == 2) {
+                    txtEditTextArea.setFont(new Font(currentFont, fontItalic, fontSize));
+                    fontType = new String(currentFont);
+                    System.out.println(fontItalic);
+
+                }
     }//GEN-LAST:event_cbxFontWeight1ActionPerformed
 
     private void btnChooseColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseColor1ActionPerformed
@@ -1991,7 +1974,7 @@ public class GuiMain2 extends javax.swing.JFrame
     }//GEN-LAST:event_btnChooseColor1ActionPerformed
 
     private void btnChooseColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseColorActionPerformed
-       jdColorPicker.setVisible(true);
+        jdColorPicker.setVisible(true);
     }//GEN-LAST:event_btnChooseColorActionPerformed
 
     public void clearCreateData()
