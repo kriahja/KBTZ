@@ -237,10 +237,22 @@ public class GuiMain2 extends javax.swing.JFrame
         txtEditTextArea.setText(text.getText());
         txtEditTextArea.setForeground(new Color(text.getFontColor()));
         cbxFontWeight1.setSelectedIndex(text.getFontStyle());
-        txtCreateTextArea.setFont(new Font(text.getFont(), text.getFontStyle(), text.getFontSize()));
+        String fontStyle = "Font.PLAIN";
+        if(text.getFontStyle() == 1)
+        {
+            fontStyle = "Font.Bold";
+        }
+        if(text.getFontStyle() == 2)
+        {
+            fontStyle = "Font.Italic";
+        }
+        txtEditTextArea.setFont(new Font(text.getFont(), cbxFontWeight1.getSelectedIndex(), text.getFontSize()));
+        
+        
+        
         tt = tMgr.getByTitle(text.getTitle());
         id = tt.getId();
-
+       
         dpEditStartDate.setDate(text.getStartDate());
         dpEditEndDate.setDate(text.getEndDate());
         //String.valueOf(double)
@@ -252,6 +264,8 @@ public class GuiMain2 extends javax.swing.JFrame
         cbxFonts1.setSelectedItem(text.getFont());
         cbxFontSize1.setSelectedItem(fontS);
        
+        
+        
         btnEditChosen.setEnabled(true);
         btnRemoveChosen.setEnabled(true);
         System.out.println("Test for edit button");
