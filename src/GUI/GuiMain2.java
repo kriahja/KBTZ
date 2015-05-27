@@ -108,8 +108,9 @@ public class GuiMain2 extends javax.swing.JFrame
     public GuiMain2()
     {
         initComponents();
+        setIcon();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        
         pnlEditFolder.setVisible(false);
         pnlCreateFolder.setVisible(false);
 
@@ -300,6 +301,12 @@ public class GuiMain2 extends javax.swing.JFrame
         jSeparator4 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         cardContainer = new javax.swing.JPanel();
+        presentationCard = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblPresentationTitle = new javax.swing.JLabel();
+        lblPresentationSubtitle = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        pnlPresentationTableCont = new javax.swing.JPanel();
         settingsCard = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         lblSettingsSubtitle = new javax.swing.JLabel();
@@ -384,14 +391,7 @@ public class GuiMain2 extends javax.swing.JFrame
         cbxFontWeight1 = new javax.swing.JComboBox();
         btnChooseColor1 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        presentationCard = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        lblPresentationTitle = new javax.swing.JLabel();
-        lblPresentationSubtitle = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        pnlPresentationTableCont = new javax.swing.JPanel();
 
-        jdColorPicker.setMaximumSize(new java.awt.Dimension(600, 500));
         jdColorPicker.setMinimumSize(new java.awt.Dimension(600, 500));
         jdColorPicker.setModal(true);
 
@@ -425,8 +425,8 @@ public class GuiMain2 extends javax.swing.JFrame
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("B.I.V Admin");
         setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
 
         navPanel.setBackground(new java.awt.Color(67, 74, 84));
 
@@ -501,6 +501,55 @@ public class GuiMain2 extends javax.swing.JFrame
 
         cardContainer.setBackground(new java.awt.Color(255, 255, 255));
         cardContainer.setLayout(new java.awt.CardLayout());
+
+        presentationCard.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblPresentationTitle.setBackground(new java.awt.Color(67, 74, 84));
+        lblPresentationTitle.setFont(new java.awt.Font("Ebrima", 1, 28)); // NOI18N
+        lblPresentationTitle.setForeground(new java.awt.Color(67, 74, 84));
+        lblPresentationTitle.setText("Presentations");
+
+        lblPresentationSubtitle.setBackground(new java.awt.Color(101, 109, 120));
+        lblPresentationSubtitle.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        lblPresentationSubtitle.setForeground(new java.awt.Color(101, 109, 120));
+        lblPresentationSubtitle.setText("See all available presentation for screens:");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Header3.png"))); // NOI18N
+
+        pnlPresentationTableCont.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout presentationCardLayout = new javax.swing.GroupLayout(presentationCard);
+        presentationCard.setLayout(presentationCardLayout);
+        presentationCardLayout.setHorizontalGroup(
+            presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
+            .addGroup(presentationCardLayout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(0, 368, Short.MAX_VALUE))
+            .addGroup(presentationCardLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPresentationSubtitle)
+                    .addComponent(lblPresentationTitle)
+                    .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.PREFERRED_SIZE, 1052, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+        presentationCardLayout.setVerticalGroup(
+            presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(presentationCardLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblPresentationTitle)
+                .addGap(0, 0, 0)
+                .addComponent(lblPresentationSubtitle)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, 7631, Short.MAX_VALUE)
+                .addGap(355, 355, 355)
+                .addComponent(jLabel3))
+        );
+
+        cardContainer.add(presentationCard, "card2");
 
         settingsCard.setBackground(new java.awt.Color(255, 255, 255));
         settingsCard.setPreferredSize(new java.awt.Dimension(1199, 500));
@@ -1054,7 +1103,7 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlTableClearLayout.setLayout(pnlTableClearLayoutLayout);
         pnlTableClearLayoutLayout.setHorizontalGroup(
             pnlTableClearLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGap(0, 807, Short.MAX_VALUE)
         );
         pnlTableClearLayoutLayout.setVerticalGroup(
             pnlTableClearLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1075,8 +1124,8 @@ public class GuiMain2 extends javax.swing.JFrame
         pnlEditCard1Layout.setHorizontalGroup(
             pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditCard1Layout.createSequentialGroup()
-                .addComponent(pnlTableCardMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(pnlTableCardMain, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnRemoveChosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1274,7 +1323,7 @@ public class GuiMain2 extends javax.swing.JFrame
                                 .addComponent(jLabel21)
                                 .addComponent(dpEditEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(pnlTextAreaCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(483, Short.MAX_VALUE))
+                .addContainerGap(816, Short.MAX_VALUE))
         );
         pnlEditCard2Layout.setVerticalGroup(
             pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1368,56 +1417,9 @@ public class GuiMain2 extends javax.swing.JFrame
 
         cardContainer.add(settingsCard, "card3");
 
-        presentationCard.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblPresentationTitle.setBackground(new java.awt.Color(67, 74, 84));
-        lblPresentationTitle.setFont(new java.awt.Font("Ebrima", 1, 28)); // NOI18N
-        lblPresentationTitle.setForeground(new java.awt.Color(67, 74, 84));
-        lblPresentationTitle.setText("Presentations");
-
-        lblPresentationSubtitle.setBackground(new java.awt.Color(101, 109, 120));
-        lblPresentationSubtitle.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
-        lblPresentationSubtitle.setForeground(new java.awt.Color(101, 109, 120));
-        lblPresentationSubtitle.setText("See all available presentation for screens:");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Header3.png"))); // NOI18N
-
-        pnlPresentationTableCont.setLayout(new java.awt.BorderLayout());
-
-        javax.swing.GroupLayout presentationCardLayout = new javax.swing.GroupLayout(presentationCard);
-        presentationCard.setLayout(presentationCardLayout);
-        presentationCardLayout.setHorizontalGroup(
-            presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(presentationCardLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 368, Short.MAX_VALUE))
-            .addGroup(presentationCardLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPresentationSubtitle)
-                    .addComponent(lblPresentationTitle)
-                    .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE))
-                .addGap(473, 473, 473))
-        );
-        presentationCardLayout.setVerticalGroup(
-            presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(presentationCardLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblPresentationTitle)
-                .addGap(0, 0, 0)
-                .addComponent(lblPresentationSubtitle)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, 7631, Short.MAX_VALUE)
-                .addGap(355, 355, 355)
-                .addComponent(jLabel3))
-        );
-
-        cardContainer.add(presentationCard, "card2");
-
         getContentPane().add(cardContainer, java.awt.BorderLayout.CENTER);
+
+        getAccessibleContext().setAccessibleDescription("Belman Info Viewer Administration");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -2164,4 +2166,8 @@ public class GuiMain2 extends javax.swing.JFrame
     private javax.swing.JTextField txtEditTimer;
     private javax.swing.JTextField txtEditTitle;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/icon50x50.png")));
+    }
 }
