@@ -1623,11 +1623,9 @@ public class GuiMain2 extends javax.swing.JFrame
                 switch (selection) {
                     case 1:
                         saveTextPresentation();
-                        cbxPresentationType.setEnabled(false);
                         break;
                     case 2:
                         saveImagePresentation();
-                        cbxPresentationType.setEnabled(false);
                         break;
                 }
                 clearCreateData();
