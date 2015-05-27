@@ -1127,7 +1127,7 @@
                         <Component class="javax.swing.JComboBox" name="cbxFontSize">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="15">
+                              <StringArray count="18">
                                 <StringItem index="0" value="8"/>
                                 <StringItem index="1" value="10"/>
                                 <StringItem index="2" value="11"/>
@@ -1141,8 +1141,11 @@
                                 <StringItem index="10" value="36"/>
                                 <StringItem index="11" value="40"/>
                                 <StringItem index="12" value="48"/>
-                                <StringItem index="13" value="60"/>
-                                <StringItem index="14" value="72"/>
+                                <StringItem index="13" value="50"/>
+                                <StringItem index="14" value="60"/>
+                                <StringItem index="15" value="72"/>
+                                <StringItem index="16" value="80"/>
+                                <StringItem index="17" value="92"/>
                               </StringArray>
                             </Property>
                           </Properties>
@@ -1767,7 +1770,7 @@
                                 <Component class="javax.swing.JComboBox" name="cbxFontSize1">
                                   <Properties>
                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                      <StringArray count="15">
+                                      <StringArray count="17">
                                         <StringItem index="0" value="8"/>
                                         <StringItem index="1" value="10"/>
                                         <StringItem index="2" value="11"/>
@@ -1783,6 +1786,8 @@
                                         <StringItem index="12" value="48"/>
                                         <StringItem index="13" value="60"/>
                                         <StringItem index="14" value="72"/>
+                                        <StringItem index="15" value="80"/>
+                                        <StringItem index="16" value="92"/>
                                       </StringArray>
                                     </Property>
                                   </Properties>

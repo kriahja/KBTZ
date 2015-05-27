@@ -891,7 +891,7 @@ public class GuiMain2 extends javax.swing.JFrame
             }
         });
 
-        cbxFontSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "60", "72" }));
+        cbxFontSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "50", "60", "72", "80", "92" }));
         cbxFontSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxFontSizeActionPerformed(evt);
@@ -1235,7 +1235,7 @@ public class GuiMain2 extends javax.swing.JFrame
         jLabel25.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         jLabel25.setText("Size");
 
-        cbxFontSize1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "60", "72" }));
+        cbxFontSize1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "60", "72", "80", "92" }));
         cbxFontSize1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxFontSize1ActionPerformed(evt);
@@ -1462,7 +1462,8 @@ public class GuiMain2 extends javax.swing.JFrame
             lstDisplay.setListData(dispList.toArray());
 
         }        
-        cbxFonts.setModel(new DefaultComboBoxModel(fonts));       
+        cbxFonts.setModel(new DefaultComboBoxModel(fonts));  
+        cbxFontSize.setSelectedIndex(9);
 
 
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -1526,6 +1527,7 @@ public class GuiMain2 extends javax.swing.JFrame
             cbxPresentationType.setSelectedIndex(2);    
         }
         cbxPresentationType.setEnabled(false);
+        cbxFontSize1.setSelectedIndex(9);
 
     }//GEN-LAST:event_btnEditChosenActionPerformed
 
