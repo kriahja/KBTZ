@@ -14,16 +14,10 @@ import Entities.Image;
 import Entities.Text;
 import GUI.EditTable.EditTable;
 import GUI.EditTable.EditTableModel;
-import GUI.ImageTable.ImageTable;
-import GUI.ImageTable.ImageTableModel;
 import GUI.PresentationTable.PresentationTable;
 import GUI.PresentationTable.PresentationTableModel;
-
-import GUI.TextTable.TextTable;
-import GUI.TextTable.TextTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
@@ -48,8 +42,6 @@ public class MainGui extends javax.swing.JFrame {
     /**
      * Creates new form MainGui
      */
-    private TextTable textTable;
-    private TextTableModel textModel;
     private PresentationTable presTable;
     private PresentationTableModel presModel;
 
@@ -186,15 +178,6 @@ public class MainGui extends javax.swing.JFrame {
 
     private void showPresData() {
         pres = presModel.getDisplayCtrlByRow(presTable.convertRowIndexToModel(presTable.getSelectedRow()));
-    }
-
-    private void TextList() {
-        textModel = new TextTableModel(tMgr.readAll());
-
-        textTable = new TextTable(textModel);
-
-        pnlTableCardText.add(new JScrollPane(textTable), BorderLayout.CENTER);
-
     }
 
     private void EditList() {
@@ -398,6 +381,9 @@ public class MainGui extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("B.I.V Admin");
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1366, 768));
+        setMinimumSize(new java.awt.Dimension(720, 480));
+        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         navPanel.setBackground(new java.awt.Color(67, 74, 84));
 
@@ -463,7 +449,7 @@ public class MainGui extends javax.swing.JFrame {
                 .addComponent(btnSettings)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7830, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2130, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -496,14 +482,14 @@ public class MainGui extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addGroup(presentationCardLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 368, Short.MAX_VALUE))
+                .addGap(0, 1441, Short.MAX_VALUE))
             .addGroup(presentationCardLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPresentationSubtitle)
                     .addComponent(lblPresentationTitle)
                     .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.PREFERRED_SIZE, 1052, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(1201, Short.MAX_VALUE))
         );
         presentationCardLayout.setVerticalGroup(
             presentationCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,8 +501,8 @@ public class MainGui extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.DEFAULT_SIZE, 7631, Short.MAX_VALUE)
-                .addGap(355, 355, 355)
+                .addComponent(pnlPresentationTableCont, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1943, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
 
@@ -724,11 +710,11 @@ public class MainGui extends javax.swing.JFrame {
         pnlClean.setLayout(pnlCleanLayout);
         pnlCleanLayout.setHorizontalGroup(
             pnlCleanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 969, Short.MAX_VALUE)
+            .addGap(0, 2038, Short.MAX_VALUE)
         );
         pnlCleanLayout.setVerticalGroup(
             pnlCleanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 7966, Short.MAX_VALUE)
+            .addGap(0, 590, Short.MAX_VALUE)
         );
 
         CardLayoutSet.add(pnlClean, "card4");
@@ -765,7 +751,7 @@ public class MainGui extends javax.swing.JFrame {
             .addGroup(createHeadingLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 759, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(closeCreate)
                 .addGap(10, 10, 10))
         );
@@ -950,7 +936,7 @@ public class MainGui extends javax.swing.JFrame {
                         .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(dpCreateEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(97, 560, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlCreateLayout.createSequentialGroup()
                 .addComponent(pnlTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -980,7 +966,7 @@ public class MainGui extends javax.swing.JFrame {
                 .addComponent(txtCreateTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(pnlCreateFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7378, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateNew)
                     .addComponent(btnCancelCreate))
@@ -1096,13 +1082,13 @@ public class MainGui extends javax.swing.JFrame {
             pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditCard1Layout.createSequentialGroup()
                 .addComponent(pnlTableCardMain, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnRemoveChosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEditChosen, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cbxSorting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(358, 358, 358))
+                .addContainerGap(1094, Short.MAX_VALUE))
         );
         pnlEditCard1Layout.setVerticalGroup(
             pnlEditCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1116,7 +1102,7 @@ public class MainGui extends javax.swing.JFrame {
                         .addComponent(btnEditChosen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemoveChosen)))
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pnlEditCardContainer.add(pnlEditCard1, "card3");
@@ -1294,7 +1280,7 @@ public class MainGui extends javax.swing.JFrame {
                                 .addComponent(jLabel21)
                                 .addComponent(dpEditEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(pnlTextAreaCont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addContainerGap(1552, Short.MAX_VALUE))
         );
         pnlEditCard2Layout.setVerticalGroup(
             pnlEditCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1339,9 +1325,9 @@ public class MainGui extends javax.swing.JFrame {
             pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditLayout.createSequentialGroup()
                 .addComponent(editHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(pnlEditCardContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlEditCardContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         CardLayoutSet.add(pnlEdit, "card3");
@@ -1352,22 +1338,20 @@ public class MainGui extends javax.swing.JFrame {
             settingsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator5)
             .addGroup(settingsCardLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(settingsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSettingsSubtitle)
-                    .addComponent(lblSettingsTitle))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(pnlLeftSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(CardLayoutSet, javax.swing.GroupLayout.PREFERRED_SIZE, 2038, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(settingsCardLayout.createSequentialGroup()
                 .addGroup(settingsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(settingsCardLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(settingsCardLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(pnlLeftSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CardLayoutSet, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(19, 19, 19)
+                        .addGroup(settingsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSettingsSubtitle)
+                            .addComponent(lblSettingsTitle)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         settingsCardLayout.setVerticalGroup(
             settingsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1380,10 +1364,11 @@ public class MainGui extends javax.swing.JFrame {
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(settingsCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CardLayoutSet, javax.swing.GroupLayout.DEFAULT_SIZE, 7966, Short.MAX_VALUE)
-                    .addComponent(pnlLeftSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2))
+                    .addComponent(pnlLeftSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardLayoutSet, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(0, 0, 0))
         );
 
         cardContainer.add(settingsCard, "card3");
@@ -1448,8 +1433,6 @@ public class MainGui extends javax.swing.JFrame {
         pnlEdit.setVisible(true);
         pnlCreate.setVisible(false);
         pnlClean.setVisible(false);
-        TextList();
-
         dispList = dMgr.readAllPres();
 
         for (int i = 0; i < dispList.size(); ++i) {
@@ -1527,17 +1510,7 @@ public class MainGui extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRemoveChosenActionPerformed
 
-    private void adjustSelection(int row) {
-        if (textModel.getRowCount() > 0) {
-            if (row == textModel.getRowCount()) {
-                row--;
-            }
 
-            textTable.setRowSelectionInterval(row, row);
-        } else {
-            textTable.getSelectionModel().clearSelection();
-        }
-    }
     private void btnCancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelUpdateActionPerformed
         pnlEditCard2.setVisible(false);
         pnlEditCard1.setVisible(true);

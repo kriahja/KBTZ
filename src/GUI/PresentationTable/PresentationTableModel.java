@@ -15,8 +15,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author notandi
  */
-public class PresentationTableModel extends AbstractTableModel
-{
+public class PresentationTableModel extends AbstractTableModel {
 
     public static final int TITLE_COLUMN = 0;
     public static final int TYPE_COLUMN = 1;
@@ -26,50 +25,44 @@ public class PresentationTableModel extends AbstractTableModel
     DisplayCtrlManager dcMgr;
     Presentation present;
 
-    private final String[] headers =
-    {
-        "Title", "Type", "Display", "Disable / Enable"
-    };
+    private final String[] headers
+            = {
+                "Title", "Type", "Display", "Disable / Enable"
+            };
 
-    private final Class[] columnTypes =
-    {
-        String.class, String.class, String.class, Boolean.class
-    };
+    private final Class[] columnTypes
+            = {
+                String.class, String.class, String.class, Boolean.class
+            };
 
     private ArrayList<DisplayCtrl> pres;
 
-    public PresentationTableModel(ArrayList<DisplayCtrl> initialPresentations)
-    {
+    public PresentationTableModel(ArrayList<DisplayCtrl> initialPresentations) {
         pres = initialPresentations;
         dcMgr = DisplayCtrlManager.getInstance();
     }
 
-    public PresentationTableModel()
-    {
+    public PresentationTableModel() {
         pres = new ArrayList<>();
         dcMgr = DisplayCtrlManager.getInstance();
 
     }
 
     @Override
-    public int getRowCount()
-    {
+    public int getRowCount() {
         return pres.size();
     }
 
     @Override
-    public int getColumnCount()
-    {
+    public int getColumnCount() {
         return headers.length;
     }
 
     @Override
-    public Object getValueAt(int row, int col)
-    {
+    public Object getValueAt(int row, int col) {
         DisplayCtrl dc = pres.get(row);
 
-        switch (col)
-        {
+        switch (col) {
             case TITLE_COLUMN:
                 return dc.getPresTitle();
             case TYPE_COLUMN:
@@ -83,30 +76,25 @@ public class PresentationTableModel extends AbstractTableModel
     }
 
     @Override
-    public String getColumnName(int col)
-    {
+    public String getColumnName(int col) {
         return headers[col];
     }
 
     @Override
-    public Class<?> getColumnClass(int col)
-    {
+    public Class<?> getColumnClass(int col) {
         return columnTypes[col];
     }
 
     @Override
-    public boolean isCellEditable(int row, int col)
-    {
+    public boolean isCellEditable(int row, int col) {
         return (col != TITLE_COLUMN && col != TYPE_COLUMN && col != DISAPLY_COLUMN);
     }
 
     @Override
-    public void setValueAt(Object value, int row, int col)
-    {
+    public void setValueAt(Object value, int row, int col) {
         DisplayCtrl dc = pres.get(row);
         System.out.println(dc.getPresTitle());
-        switch (col)
-        {
+        switch (col) {
 
             case DISABLE_COLUMN:
                 dc.setDisable(Boolean.valueOf(value.toString()));
@@ -114,18 +102,15 @@ public class PresentationTableModel extends AbstractTableModel
                 break;
         }
         // Fire this event to trigger the tableModelListener.
-//        fireTableRowsUpdated(row, row);
         fireTableCellUpdated(row, col);
 
     }
 
-    public DisplayCtrl getDisplayCtrlByRow(int row)
-    {
+    public DisplayCtrl getDisplayCtrlByRow(int row) {
         return pres.get(row);
     }
 
-    public void setDisplayCtrlList(ArrayList<DisplayCtrl> txtList)
-    {
+    public void setDisplayCtrlList(ArrayList<DisplayCtrl> txtList) {
         pres = txtList;
         fireTableDataChanged();
     }

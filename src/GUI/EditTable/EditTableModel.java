@@ -16,8 +16,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author notandi
  */
-public class EditTableModel extends AbstractTableModel
-{
+public class EditTableModel extends AbstractTableModel {
 
     public static final int TITLE_COLUMN = 0;
     public static final int TYPE_COLUMN = 1;
@@ -29,50 +28,44 @@ public class EditTableModel extends AbstractTableModel
     DisplayCtrlManager dcMgr;
     Presentation present;
 
-    private final String[] headers =
-    {
-        "Title", "Type", "Display", "Start date", "End date", "Minutes"
-    };
+    private final String[] headers
+            = {
+                "Title", "Type", "Display", "Start date", "End date", "Minutes"
+            };
 
-    private final Class[] columnTypes =
-    {
-        String.class, String.class, String.class, Date.class, Date.class, Double.class
-    };
+    private final Class[] columnTypes
+            = {
+                String.class, String.class, String.class, Date.class, Date.class, Double.class
+            };
 
     private ArrayList<DisplayCtrl> pres;
 
-    public EditTableModel(ArrayList<DisplayCtrl> initialPresentations)
-    {
+    public EditTableModel(ArrayList<DisplayCtrl> initialPresentations) {
         pres = initialPresentations;
 
     }
 
-    public EditTableModel()
-    {
+    public EditTableModel() {
         pres = new ArrayList<>();
         dcMgr = DisplayCtrlManager.getInstance();
 
     }
 
     @Override
-    public int getRowCount()
-    {
+    public int getRowCount() {
         return pres.size();
     }
 
     @Override
-    public int getColumnCount()
-    {
+    public int getColumnCount() {
         return headers.length;
     }
 
     @Override
-    public Object getValueAt(int row, int col)
-    {
+    public Object getValueAt(int row, int col) {
         DisplayCtrl dc = pres.get(row);
 
-        switch (col)
-        {
+        switch (col) {
             case TITLE_COLUMN:
                 return dc.getPresTitle();
             case TYPE_COLUMN:
@@ -90,24 +83,29 @@ public class EditTableModel extends AbstractTableModel
     }
 
     @Override
-    public String getColumnName(int col)
-    {
+    public String getColumnName(int col) {
         return headers[col];
     }
 
     @Override
-    public Class<?> getColumnClass(int col)
-    {
+    public Class<?> getColumnClass(int col) {
         return columnTypes[col];
     }
 
-    public DisplayCtrl getDisplayCtrlByRow(int row)
-    {
+    /**
+     *
+     * @param row
+     * @return
+     */
+    public DisplayCtrl getDisplayCtrlByRow(int row) {
         return pres.get(row);
     }
 
-    public void setDisplayCtrlList(ArrayList<DisplayCtrl> txtList)
-    {
+    /**
+     *
+     * @param txtList
+     */
+    public void setDisplayCtrlList(ArrayList<DisplayCtrl> txtList) {
         pres = txtList;
         fireTableDataChanged();
     }

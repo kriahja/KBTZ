@@ -18,6 +18,10 @@ import javax.swing.table.TableRowSorter;
 public class PresentationTable extends JTable
 {
 
+    /**
+     *
+     * @param model
+     */
     public PresentationTable(PresentationTableModel model)
     {
         super(model);

@@ -15,31 +15,31 @@ import javax.swing.table.TableRowSorter;
  *
  * @author notandi
  */
-public class EditTable extends JTable
-{
+public class EditTable extends JTable {
 
-    public EditTable(EditTableModel model)
-    {
+    /**
+     *
+     * @param model
+     */
+    public EditTable(EditTableModel model) {
         super(model);
         setRowSorter(new TableRowSorter(model));
         setShowVerticalLines(true);
     }
-     @Override
-    public Component prepareRenderer(TableCellRenderer tcr, int row, int col)
-    {
-        
+
+    @Override
+    public Component prepareRenderer(TableCellRenderer tcr, int row, int col) {
+
         Component c = super.prepareRenderer(tcr, row, col); //To change body of generated methods, choose Tools | Templates.       
-        if (! isRowSelected(row))
-        {   // every second row is painted light grey with default fore-ground color.
+        if (!isRowSelected(row)) {   // every second row is painted light grey with default fore-ground color.
             c.setBackground(row % 2 == 0 ? Color.LIGHT_GRAY : getBackground());
             c.setForeground(getForeground());
-        }
-        else // selected row is painted yellow
+        } else // selected row is painted yellow
         {
             c.setBackground(Color.GRAY);
             c.setForeground(Color.BLACK);
         }
-        return c;     
-    }   
-    
+        return c;
+    }
+
 }
