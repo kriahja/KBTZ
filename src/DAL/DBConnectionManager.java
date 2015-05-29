@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.Properties;
 
-
+/**
+ *
+ * @author Zalan
+ */
 public class DBConnectionManager {
     private final SQLServerDataSource ds;
     private static DBConnectionManager instance = null;
@@ -40,6 +43,11 @@ public class DBConnectionManager {
         ds.setPassword(props.getProperty("PASSWORD"));
     }
    
+    /**
+     *
+     * @return
+     * @throws SQLServerException
+     */
     public Connection getConnection() throws SQLServerException
     {
         return ds.getConnection();

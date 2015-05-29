@@ -20,31 +20,35 @@ import java.util.ArrayList;
  *
  * @author notandi
  */
-public class DisplayCtrlDBManager
-{
+public class DisplayCtrlDBManager {
 
     private final DBConnectionManager cm;
 
     private static DisplayCtrlDBManager instance = null;
 
-    private DisplayCtrlDBManager() throws IOException
-    {
+    private DisplayCtrlDBManager() throws IOException {
         cm = DBConnectionManager.getInstance();
 
     }
 
-    public static DisplayCtrlDBManager getInstance() throws IOException
-    {
-        if (instance == null)
-        {
+    /**
+     *
+     * @return @throws IOException
+     */
+    public static DisplayCtrlDBManager getInstance() throws IOException {
+        if (instance == null) {
             instance = new DisplayCtrlDBManager();
         }
         return instance;
     }
 
-
-    public DisplayCtrl getOnedc(ResultSet rs) throws SQLException
-    {
+    /**
+     *
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
+    public DisplayCtrl getOnedc(ResultSet rs) throws SQLException {
         String presTitle = rs.getString("Title");
         String presType = rs.getString("Type");
         String screenName = rs.getString("ScreenName");
@@ -57,8 +61,13 @@ public class DisplayCtrlDBManager
         return dc;
     }
 
-    public DisplayCtrl getOnedcEditPres(ResultSet rs) throws SQLException
-    {
+    /**
+     *
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
+    public DisplayCtrl getOnedcEditPres(ResultSet rs) throws SQLException {
         String presTitle = rs.getString("Title");
         String presType = rs.getString("Type");
         String screenName = rs.getString("ScreenName");
@@ -74,10 +83,12 @@ public class DisplayCtrlDBManager
         return dc;
     }
 
-    public ArrayList<DisplayCtrl> readAllPres() throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public ArrayList<DisplayCtrl> readAllPres() throws SQLException {
+        try (Connection con = cm.getConnection()) {
             ArrayList<DisplayCtrl> dcList = new ArrayList<>();
             String sql = "Select Presentation.Title, PresType.[Type], DisplayCtrl.[Disable], Display.ScreenName , DisplayCtrl.PresentationId , DisplayCtrl.DisplayId\n"
                     + "                    from DisplayCtrl\n"
@@ -87,8 +98,7 @@ public class DisplayCtrlDBManager
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 DisplayCtrl dc = getOnedc(rs);
                 dcList.add(dc);
             }
@@ -96,10 +106,12 @@ public class DisplayCtrlDBManager
         }
     }
 
-    public ArrayList<DisplayCtrl> readAllEditPres() throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public ArrayList<DisplayCtrl> readAllEditPres() throws SQLException {
+        try (Connection con = cm.getConnection()) {
             ArrayList<DisplayCtrl> dcList = new ArrayList<>();
             String sql = "Select Presentation.Title, PresType.[Type], Display.ScreenName, Presentation.StartDate, "
                     + "Presentation.EndDate, Presentation.Timer, DisplayCtrl.PresentationId, DisplayCtrl.DisplayId, DisplayCtrl.[Disable]\n"
@@ -110,25 +122,20 @@ public class DisplayCtrlDBManager
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 DisplayCtrl dc = getOnedcEditPres(rs);
                 dcList.add(dc);
             }
             return dcList;
         }
     }
-    
-    
 
     /**
-     * @param pres disables or enables the selected Presentations
+     * @param dc
      * @throws java.sql.SQLException
      */
-    public void updateDisable(DisplayCtrl dc) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    public void updateDisable(DisplayCtrl dc) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             System.out.println(dc.isDisable() + "" + dc.getPresId());
             String sql = "update DisplayCtrl set Disable = ? where PresentationId = ? and DisplayId = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -138,32 +145,31 @@ public class DisplayCtrlDBManager
             ps.setInt(3, dc.getDispId());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
+            if (affectedRows == 0) {
                 throw new BivExceptions("Unable to Update Dispctrl.");
             }
 
         }
     }
-    
-    public void create(int presId, int dispId) throws SQLException
-    {
-     
 
-        try (Connection con = cm.getConnection())
-        {
+    /**
+     *
+     * @param presId
+     * @param dispId
+     * @throws SQLException
+     */
+    public void create(int presId, int dispId) throws SQLException {
+
+        try (Connection con = cm.getConnection()) {
 
             String sql = "insert into DisplayCtrl (DisplayId, PresentationId, Disable) values (?, ?, 'false') ";
-
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dispId);
             ps.setInt(2, presId);
 
-
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
+            if (affectedRows == 0) {
                 throw new BivExceptions("Unable to add dispctrl.");
             }
 
@@ -172,43 +178,47 @@ public class DisplayCtrlDBManager
             new DisplayCtrl(presId, dispId);
 
         }
-    
+
     }
-    
-    public void delete(int presId) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+
+    /**
+     *
+     * @param presId
+     * @throws SQLException
+     */
+    public void delete(int presId) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             String sql = " DELETE FROM DisplayCtrl where PresentationId = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, presId);
-           
 
             ps.executeUpdate();
 
         }
     }
-    
-    public int[] readId(int presId) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+
+    /**
+     *
+     * @param presId
+     * @return
+     * @throws SQLException
+     */
+    public int[] readId(int presId) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             int[] id = null;
             String sql = "Select DisplayId from DisplayCtrl where PresentationId = ?";
-            
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, presId);
 
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 DisplayCtrl dc = getOnedc(rs);
-                
+
             }
             return id;
         }
     }
 }
-

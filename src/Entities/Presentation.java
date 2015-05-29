@@ -11,8 +11,7 @@ import java.sql.Date;
  *
  * @author notandi
  */
-public abstract class Presentation
-{
+public abstract class Presentation {
 
     private PresType pType;
 
@@ -23,21 +22,19 @@ public abstract class Presentation
     private Date endDate;
     private double timer;
     private boolean notSafe;
-    
+
     /**
      *
-     * @param id auto generated id for a specific  
+     * @param id auto generated id for a specific
      * @param presTypeId this determents the type of a specific presentation
      * @param title title for the specific presentation
      * @param startDate start Date for a specific presentation
      * @param endDate end Date for a specific presentation
      * @param timer timer for a specific presentation
-     * @param notSafe mark for not safe(not costumerFriendly) for a specific text presentation
+     * @param notSafe mark for not safe(not costumerFriendly) for a specific
+     * text presentation
      */
- 
-
-    public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
-    {
+    public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe) {
         this.id = id;
         this.presTypeId = presTypeId;
         this.title = title;
@@ -46,18 +43,12 @@ public abstract class Presentation
         this.timer = timer;
         this.notSafe = notSafe;
     }
-    // without DisplayId.
-//    public Presentation(int id, Presentation pres)
-//    {
-//        this(id, pres.getPresTypeId(), pres.getTitle(), pres.getStartDate(), pres.getEndDate(), pres.getTimer(), pres.isNotSafe());
-//    }
 
     /**
      *
      * @param pType
      */
-    public Presentation(PresType pType)
-    {
+    public Presentation(PresType pType) {
         this.pType = pType;
         presTypeId = pType.getId();
     }
@@ -68,10 +59,10 @@ public abstract class Presentation
      * @param startDate start Date for a specific presentation
      * @param endDate end Date for a specific presentation
      * @param timer timer for a specific presentation
-     * @param notSafe mark for not safe(not costumerFriendly) for a specific text presentation
+     * @param notSafe mark for not safe(not costumerFriendly) for a specific
+     * text presentation
      */
-    public Presentation(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
-    {
+    public Presentation(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe) {
 
         this.presTypeId = presTypeId;
         this.title = title;
@@ -82,129 +73,94 @@ public abstract class Presentation
     }
 
     /**
-     *
-     * @param id auto generated id for a specific
-     * @param title title for the specific presentation
-     * @param startDate start Date for a specific presentation
-     * @param endDate end Date for a specific presentation
-     * @param timer timer for a specific presentation
-     * @param notSafe mark for not safe(not costumerFriendly) for a specific text presentation
-     */
-//    public Presentation(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
-//    {
-//        this.id = id;
-//        this.presTypeId = presTypeId;
-//        this.title = title;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.timer = timer;
-//        this.notSafe = notSafe;
-//       
-//    }
-
-    /**
      * @return the id
      */
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
     /**
      * @return the title
      */
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
     /**
      * @param title the title to set
      */
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
     /**
      * @return the startDate
      */
-    public Date getStartDate()
-    {
+    public Date getStartDate() {
         return startDate;
     }
 
     /**
      * @param startDate the startDate to set
      */
-    public void setStartDate(Date startDate)
-    {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
     /**
      * @return the endDate
      */
-    public Date getEndDate()
-    {
+    public Date getEndDate() {
         return endDate;
     }
 
     /**
      * @param endDate the endDate to set
      */
-    public void setEndDate(Date endDate)
-    {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
     /**
      * @return the timer
      */
-    public double getTimer()
-    {
+    public double getTimer() {
         return timer;
     }
 
     /**
      * @param timer the timer to set
      */
-    public void setTimer(double timer)
-    {
+    public void setTimer(double timer) {
         this.timer = timer;
     }
 
     /**
      * @return the notSafe
      */
-    public boolean isNotSafe()
-    {
+    public boolean isNotSafe() {
         return notSafe;
     }
 
     /**
      * @param notSafe the notSafe to set
      */
-    public void setNotSafe(boolean notSafe)
-    {
+    public void setNotSafe(boolean notSafe) {
         this.notSafe = notSafe;
     }
 
     /**
      * @return the presTypeId
      */
-    public int getPresTypeId()
-    {
+    public int getPresTypeId() {
         return presTypeId;
     }
 
     /**
      * @param presTypeId
      */
-    public void setPresTypeId(int presTypeId)
-    {
+    public void setPresTypeId(int presTypeId) {
         this.presTypeId = presTypeId;
     }
 
-  
 }

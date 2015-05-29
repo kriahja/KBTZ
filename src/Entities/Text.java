@@ -11,8 +11,7 @@ import java.sql.Date;
  *
  * @author notandi
  */
-public class Text extends Presentation
-{
+public class Text extends Presentation {
 
     private String text;
     private String font;
@@ -32,15 +31,27 @@ public class Text extends Presentation
      * text presentation
      * @param text text for a specific text presentation
      */
-    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text)
-    {
+    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text) {
         super(id, presTypeId, title, startDate, endDate, timer, notSafe);
         this.text = text;
     }
 
-  
-    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text, String font, int fontSize, int fontStyle, int fontColor)
-    {
+    /**
+     *
+     * @param id
+     * @param presTypeId
+     * @param title
+     * @param startDate
+     * @param endDate
+     * @param timer
+     * @param notSafe
+     * @param text
+     * @param font
+     * @param fontSize
+     * @param fontStyle
+     * @param fontColor
+     */
+    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text, String font, int fontSize, int fontStyle, int fontColor) {
         super(id, presTypeId, title, startDate, endDate, timer, notSafe);
         this.text = text;
         this.font = font;
@@ -49,8 +60,17 @@ public class Text extends Presentation
         this.fontColor = fontColor;
     }
 
-    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe)
-    {
+    /**
+     *
+     * @param id
+     * @param presTypeId
+     * @param title
+     * @param startDate
+     * @param endDate
+     * @param timer
+     * @param notSafe
+     */
+    public Text(int id, int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe) {
         super(id, presTypeId, title, startDate, endDate, timer, notSafe);
     }
 
@@ -58,8 +78,7 @@ public class Text extends Presentation
      * @param id
      * @param txt
      */
-    public Text(int id, Text txt)
-    {
+    public Text(int id, Text txt) {
         this(id, txt.getPresTypeId(), txt.getTitle(), txt.getStartDate(), txt.getEndDate(), txt.getTimer(), txt.isNotSafe(), txt.getText());
     }
 
@@ -74,14 +93,26 @@ public class Text extends Presentation
      * presentation
      * @param text text for a specific presentation
      */
-    public Text(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text)
-    {
+    public Text(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text) {
         super(presTypeId, title, startDate, endDate, timer, notSafe);
         this.text = text;
     }
-    
-    public Text(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text, String font, int fontSize, int fontStyle, int fontColor)
-    {
+
+    /**
+     *
+     * @param presTypeId
+     * @param title
+     * @param startDate
+     * @param endDate
+     * @param timer
+     * @param notSafe
+     * @param text
+     * @param font
+     * @param fontSize
+     * @param fontStyle
+     * @param fontColor
+     */
+    public Text(int presTypeId, String title, Date startDate, Date endDate, double timer, boolean notSafe, String text, String font, int fontSize, int fontStyle, int fontColor) {
         super(presTypeId, title, startDate, endDate, timer, notSafe);
         this.text = text;
         this.font = font;
@@ -93,48 +124,42 @@ public class Text extends Presentation
     /**
      * @return the text
      */
-    public String getText()
-    {
+    public String getText() {
         return text;
     }
 
     /**
      * @param text the text to set
      */
-    public void setText(String text)
-    {
+    public void setText(String text) {
         this.text = text;
     }
 
     /**
      * @return the font
      */
-    public String getFont()
-    {
+    public String getFont() {
         return font;
     }
 
     /**
      * @param font the font to set
      */
-    public void setFont(String font)
-    {
+    public void setFont(String font) {
         this.font = font;
     }
 
     /**
      * @return the fontSize
      */
-    public int getFontSize()
-    {
+    public int getFontSize() {
         return fontSize;
     }
 
     /**
      * @param fontSize the fontSize to set
      */
-    public void setFontSize(int fontSize)
-    {
+    public void setFontSize(int fontSize) {
         this.fontSize = fontSize;
     }
 
@@ -146,7 +171,6 @@ public class Text extends Presentation
         return fontColor;
     }
 
-    
     public void setFontStyle(int fontStyle) {
         this.fontStyle = fontStyle;
     }

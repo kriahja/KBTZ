@@ -20,46 +20,41 @@ import java.util.ArrayList;
  *
  * @author a.tamas
  */
-public class ImageDBManager
-{
+public class ImageDBManager {
 
     private final DBConnectionManager cm;
 
     private static ImageDBManager instance = null;
 
-    private ImageDBManager() throws IOException
-    {
+    private ImageDBManager() throws IOException {
         cm = DBConnectionManager.getInstance();
 
     }
 
-    public static ImageDBManager getInstance() throws IOException
-    {
-        if (instance == null)
-        {
+    /**
+     *
+     * @return @throws IOException
+     */
+    public static ImageDBManager getInstance() throws IOException {
+        if (instance == null) {
             instance = new ImageDBManager();
         }
         return instance;
     }
 
     /**
-     * @param Image ArrayList reads all the ImagePresentations.
      * @return imgList
      * @throws java.sql.SQLException
      */
-
-    public ArrayList<Image> readAll() throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    public ArrayList<Image> readAll() throws SQLException {
+        try (Connection con = cm.getConnection()) {
             ArrayList<Image> imgList = new ArrayList<>();
             String sql = "Select Presentation.* , Image.Path from Presentation, Image"
                     + " where Presentation.ID = Image.PresentationId";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Image img = getOneImage(rs);
                 imgList.add(img);
             }
@@ -72,9 +67,7 @@ public class ImageDBManager
      * @return imgList
      * @throws SQLException
      */
-
-    private Image getOneImage(ResultSet rs) throws SQLException
-    {
+    private Image getOneImage(ResultSet rs) throws SQLException {
         int id = rs.getInt("ID");
         int presTypeId = rs.getInt("PresTypeId");
         String title = rs.getString("Title");
@@ -83,32 +76,27 @@ public class ImageDBManager
         Date endDate = rs.getDate("EndDate");
         Double timer = rs.getDouble("Timer");
         boolean notSafe = rs.getBoolean("NotSafe");
-        
 
         String path = rs.getString("Path");
 
-//        String depName = rs.getString("Name");
         return new Image(id, presTypeId, title, startDate, endDate, timer, notSafe, path);
     }
 
     /**
-     * @param title title of the image is used to locate a specific ImagePresentation.
+     * @param title title of the image is used to locate a specific
+     * ImagePresentation.
      * @return getOneImage or null
      * @throws java.sql.SQLException
      */
-
-    public Image readByTitle(String title) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    public Image readByTitle(String title) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             String sql = "SELECT Presentation.* , Image.Path FROM Presentation, Image "
                     + "WHERE Title = ? and Presentation.ID = Image.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, title);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 return getOneImage(rs);
             }
         }
@@ -116,43 +104,20 @@ public class ImageDBManager
         return null;
     }
 
-//    public Image readByPath(String path)
-//    {
-//        try (Connection con = cm.getConnection())
-//        {
-//            String sql = "SELECT * FROM Image WHERE Path = ?";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, path);
-//
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next())
-//            {
-//                return getOneImage(rs);
-//            }
-//        }
-//        catch (SQLException ex)
-//        {
-//            throw new BivExceptions("Unable to read Image name.");
-//        }
-//        return null;
-//    }
     /**
      * @param id ImagePresentations are read by id.
      * @return null
      * @throws java.sql.SQLException
      */
-    public Image readById(int id) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    public Image readById(int id) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             String sql = "SELECT Presentation.* , Image.Path FROM Presentation, Image "
                     + "WHERE Presentation.ID = ? and Presentation.ID = Image.PresentationId";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 return getOneImage(rs);
             }
         }
@@ -165,11 +130,8 @@ public class ImageDBManager
      * @return imgList.
      * @throws java.sql.SQLException
      */
-
-    public ArrayList<Image> readByNotSafe(boolean safe) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    public ArrayList<Image> readByNotSafe(boolean safe) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             ArrayList<Image> imgList = new ArrayList<>();
             String sql = "SELECT Presentation.* , Image.Path FROM Presentation, Image "
                     + "WHERE Presentation.NotSafe = ? and Presentation.ID = Image.PresentationId";
@@ -177,8 +139,7 @@ public class ImageDBManager
             ps.setBoolean(1, safe);
 
             ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Image img = getOneImage(rs);
                 imgList.add(img);
             }
@@ -193,12 +154,9 @@ public class ImageDBManager
      * @return Image
      * @throws java.sql.SQLException
      */
+    public Image createImage(Image img) throws SQLException {
 
-    public Image createImage(Image img) throws SQLException
-    {
-
-        try (Connection con = cm.getConnection())
-        {
+        try (Connection con = cm.getConnection()) {
 
             String sql = "Begin TRANSACTION;\n"
                     + " Insert INTO Presentation\n"
@@ -220,8 +178,7 @@ public class ImageDBManager
             ps.setString(7, img.getPath());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
+            if (affectedRows == 0) {
                 throw new BivExceptions("Unable to add image.");
             }
 
@@ -238,11 +195,8 @@ public class ImageDBManager
      * @param id deletes the image based on the imagePresentationId.
      * @throws java.sql.SQLException
      */
-
-    public void delete(int id) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    public void delete(int id) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             String sql = "BEGIN Transaction;\n"
                     + " DELETE FROM DisplayCtrl where PresentationId = ?\n"
                     + "  DELETE FROM Image WHERE Image.PresentationId = ?\n"
@@ -262,11 +216,8 @@ public class ImageDBManager
      * @param img updates the imagePresentations based on the presentationID.
      * @throws java.sql.SQLException
      */
-
-    public void update(Image img) throws SQLException
-    {
-        try (Connection con = cm.getConnection())
-        {
+    public void update(Image img) throws SQLException {
+        try (Connection con = cm.getConnection()) {
             String sql = " begin transaction\n"
                     + " update Image set Path = ? where PresentationId = ?\n"
                     + " update Presentation set  Title = ?, StartDate = ?, EndDate = ?, Timer = ?, NotSafe = ? where ID = ?\n"
@@ -282,36 +233,12 @@ public class ImageDBManager
             ps.setInt(8, img.getId());
 
             int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
+            if (affectedRows == 0) {
                 throw new BivExceptions("Unable to Update image.");
             }
 
         }
 
     }
-     /**
-     * @param img disables or enables the imagePresentations
-     * @throws java.sql.SQLException
-     */
-
-//    public void updateDisable(Image img) throws SQLException
-//    {
-//        try (Connection con = cm.getConnection())
-//        {
-//            String sql = "update Presentation set Disable = ? where ID = ?";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//
-//            ps.setBoolean(1, img.isDisable());
-//            ps.setInt(2, img.getId());
-//
-//            int affectedRows = ps.executeUpdate();
-//            if (affectedRows == 0)
-//            {
-//                throw new BivExceptions("Unable to Update image.");
-//            }
-//
-//        }
-//    }
 
 }
