@@ -43,11 +43,11 @@ import javax.swing.event.TableModelListener;
  *
  * @author Zalan
  */
-public class GuiMain2 extends javax.swing.JFrame
+public class BivAdmin extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form GuiMain2
+     * Creates new form BivAdmin
      */
     private TextTable textTable;
     private TextTableModel textModel;
@@ -105,7 +105,7 @@ public class GuiMain2 extends javax.swing.JFrame
 
     JFrame frame;
 
-    public GuiMain2()
+    public BivAdmin()
     {
         initComponents();
         setIcon();
@@ -2045,14 +2045,15 @@ public class GuiMain2 extends javax.swing.JFrame
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BivAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BivAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BivAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiMain2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BivAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -2060,7 +2061,7 @@ public class GuiMain2 extends javax.swing.JFrame
         {
             public void run()
             {
-                new GuiMain2().setVisible(true);
+                new BivAdmin().setVisible(true);
             }
         });
     }

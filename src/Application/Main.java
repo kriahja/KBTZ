@@ -5,7 +5,7 @@
  */
 package Application;
 
-import GUI.GuiMain2;
+import GUI.BivAdmin;
 import GUI.MainGui;
 
 /**
@@ -45,7 +45,7 @@ public class Main
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiMain2().setVisible(true);
+                new BivAdmin().setVisible(true);
             }
         });
     }
