@@ -162,19 +162,30 @@ public class Text extends Presentation {
     public void setFontSize(int fontSize) {
         this.fontSize = fontSize;
     }
-
+    /**
+     * @return fontStyle
+     */
     public int getFontStyle() {
         return fontStyle;
     }
+    /**
+     * @return frontColor the fontSize to set
+     */
 
     public int getFontColor() {
         return fontColor;
     }
 
+    /**
+     * @param fontStyle the frontStyle to set
+     */
     public void setFontStyle(int fontStyle) {
         this.fontStyle = fontStyle;
     }
-
+    /**
+     *
+     * @param fontColor the frontColor to set
+     */
     public void setFontColor(int fontColor) {
         this.fontColor = fontColor;
     }
