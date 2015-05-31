@@ -5,21 +5,10 @@
  */
 package BLL;
 
-import BLL.Exceptions.BivExceptions;
-import DAL.DisplayDBManager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -28,59 +17,32 @@ import org.junit.Test;
  */
 public class DisplayManagerTest {
     ArrayList<String> readAllPres;
-    DisplayDBManager db;
+    DisplayManager dm;
     /**
      *
      */
     public DisplayManagerTest() throws SQLException {
-       
+       dm = DisplayManager.getInstance();
        
     }
   
-
-//    @Before
-//    public void setUp() throws Exception {
-//       
-////        readAllPres.add("a");
-////        readAllPres.add("b");
-////        readAllPres.add("c");
-//    }
-
-//    @After
-//    public void tearDown() throws Exception {
-//    }
-
- 
     /**
      * Test of readAllPres method, of class DisplayManager.
      */
     @Test
     public void testReadAllPres() throws SQLException, IOException {
         System.out.println("Test readAllPres");
-//      
-//        ArrayList<String> expected = new ArrayList<>();
-//        expected.add("a");
-//        expected.add("b");
-//        expected.add("c");         
-//        assertEquals(expected,readAllPres);
-        ArrayList<String> expected = db.readAllDispName();
-        Iterator itr = expected.iterator();
-        assertTrue(itr.hasNext()); 
-//        ArrayList<String> result = DisplayDBManager.getInstance().readAllDispName();
-//        assertEquals(expected, db.readAllDispName());
+
+        ArrayList<String> expected = new ArrayList<>();
+        ArrayList<String> actual = new ArrayList<>();
+        actual = dm.readAllPres();
+
+        expected.add("ProductionArea");
+        expected.add("Lobby");
+        expected.add("IT Department");
+        expected.add("CEO");
+
+        assertEquals(expected, actual);
     }
 
-    /**
-     * Test of getInstance method, of class DisplayManager.
-     */
-//    @Test
-//    public void testGetInstance() {
-//        System.out.println("getInstance");
-//        DisplayManager expResult = null;
-//        DisplayManager result = DisplayManager.getInstance();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-////        fail("The test case is a prototype.");
-//    }
-    
 }
