@@ -35,7 +35,7 @@ public class TextManager {
 
     /**
      *
-     * @return
+     * @return instance
      */
     public static TextManager getInstance() {
         if (instance == null) {
@@ -70,7 +70,7 @@ public class TextManager {
 
     /**
      *
-     * @return all the text that is marked notSafe in TextDBManager
+     * @return  text that is marked notSafe in TextDBManager
      */
     public ArrayList<Text> getBySafe() {
         try {
@@ -79,11 +79,6 @@ public class TextManager {
             throw new BivExceptions("Unable to Read By NotSafe");
         }
     }
-
-    /**
-     * @param title reads all the information in the getByTitle method in
-     * TextDBManager.
-     */
 
     /**
      *

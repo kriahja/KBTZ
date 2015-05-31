@@ -36,7 +36,7 @@ public class ImageManager {
 
     /**
      *
-     * @return
+     * @return instance 
      */
     public static ImageManager getInstance() {
         if (instance == null) {
@@ -58,7 +58,7 @@ public class ImageManager {
 
     /**
      * @param id Reads the Information in the getById method in ImageDBManager.
-     * @return 
+     * @return a specific id from ImageDBManager.
      */
     public Image getById(int id) {
         try {
@@ -82,7 +82,7 @@ public class ImageManager {
     /**
      * @param title Reads the Information in the getByTitle method in
      * ImageDBManager.
-     * @return 
+     * @return a specific title from ImageDBManager.
      */
     public Image getByTitle(String title) {
         try {
