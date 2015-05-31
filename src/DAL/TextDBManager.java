@@ -47,6 +47,7 @@ public class TextDBManager {
      *
      * @return txtList
      * @throws SQLException
+     * 
      */
     public ArrayList<Text> readAll() throws SQLException {
         try (Connection con = cm.getConnection()) {
@@ -63,7 +64,13 @@ public class TextDBManager {
             return txtList;
         }
     }
-
+/**
+     *
+     * @param rs results of the query.
+     * @return new Text
+     * @throws SQLException
+     * 
+     */
     private Text getOneText(ResultSet rs) throws SQLException {
         int id = rs.getInt("ID");
         int presTypeId = rs.getInt("PresTypeId");

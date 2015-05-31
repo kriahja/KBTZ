@@ -32,7 +32,6 @@ public class ImageDBManager {
     }
 
     /**
-     *
      * @return @throws IOException
      */
     public static ImageDBManager getInstance() throws IOException {
