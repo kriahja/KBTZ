@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package BLL;
-
 import BLL.Exceptions.BivExceptions;
 import DAL.DisplayCtrlDBManager;
 import Entities.DisplayCtrl;
@@ -13,31 +12,23 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
- *
+ * Controls which Presentation goes to which Display. 
  * @author notandi
  */
 public class DisplayCtrlManager {
-
     private static DisplayCtrlManager instance = null;
-
     private static DisplayCtrlDBManager db;
-
     private DisplayCtrlManager() {
-
         try {
             db = DisplayCtrlDBManager.getInstance();
         } catch (IOException ex) {
             throw new BivExceptions("Unable to connect to displayCtrl");
         }
     }
-
     /**
-     *
-     * @return
+     *  
+     * @return instance
      */
     public static DisplayCtrlManager getInstance() {
         if (instance == null) {
@@ -45,38 +36,31 @@ public class DisplayCtrlManager {
         }
         return instance;
     }
-
     /**
      *
-     * @return
+     * @return readAllPress() from DisplayCtrlDBManager
      */
     public ArrayList<DisplayCtrl> readAllPres() {
         try {
             return db.readAllPres();
         } catch (SQLException ex) {
-            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BivExceptions("Unable to read all presentations");
         }
-        return null;
-
     }
-
     /**
      *
-     * @return
+     * @return readAllEditPres() from DisplayCtrlDBManager
      */
     public ArrayList<DisplayCtrl> readAllEditPres() {
         try {
             return db.readAllEditPres();
         } catch (SQLException ex) {
-            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BivExceptions("Unable to read all existing presentations");
         }
-        return null;
-
     }
-
     /**
      *
-     * @return
+     * @return the current date from DisplayCtrlDBManager
      */
     public ArrayList<DisplayCtrl> runningPresentations() {
         try {
@@ -85,7 +69,6 @@ public class DisplayCtrlManager {
             all = db.readAllPres();
             Date now = new Date(System.currentTimeMillis());
             Calendar c = Calendar.getInstance();
-
             for (int i = 0; i < all.size(); ++i) {
                 if ((all.get(i).getStartDate().before(now) || all.get(i).getStartDate() == now)
                         && (all.get(i).getEndDate().after(now) || all.get(i).getEndDate() == now)) {
@@ -94,44 +77,41 @@ public class DisplayCtrlManager {
             }
             return current;
         } catch (SQLException ex) {
-            throw new BivExceptions("unable to load texts");
+            throw new BivExceptions("unable to load currently running presentations");
         }
     }
-
     /**
      *
-     * @param dc
+     * @param dc gets a specific DisplayCtrl
      */
     public void updateDisable(DisplayCtrl dc) {
         try {
             db.updateDisable(dc);
         } catch (SQLException ex) {
-            throw new BivExceptions("Unable to Update the Text");
+            throw new BivExceptions("Unable to update disable presentation");
         }
     }
-
     /**
      *
-     * @param presId
-     * @param dispId
+     * @param presId gets a specific Presentation id
+     * @param dispId gets a specific Display id
      */
     public void create(int presId, int dispId) {
         try {
             db.create(presId, dispId);
         } catch (SQLException ex) {
-            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BivExceptions("Unable to Create a presentation with the display");
         }
     }
-
     /**
      *
-     * @param presId
+     * @param presId gets a specific Presentation id
      */
     public void delete(int presId) {
         try {
             db.delete(presId);
         } catch (SQLException ex) {
-            Logger.getLogger(DisplayCtrlManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BivExceptions("Unable to Delete a presentation");
         }
     }
 }
