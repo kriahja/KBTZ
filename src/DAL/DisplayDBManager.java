@@ -61,7 +61,7 @@ public class DisplayDBManager {
     /**
      *
      * @param rs
-     * @return
+     * @return disp
      * @throws SQLException
      */
     public Display getOneDisplay(ResultSet rs) throws SQLException {

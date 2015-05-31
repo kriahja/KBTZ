@@ -16,6 +16,11 @@ public class DBConnectionManager {
     private final SQLServerDataSource ds;
     private static DBConnectionManager instance = null;
     
+    /**
+     *
+     * @return instance
+     * @throws IOException
+     */
     public static DBConnectionManager getInstance() throws IOException
     {
         if(instance == null)
@@ -27,6 +32,7 @@ public class DBConnectionManager {
     
     /**
      * @param fileName connects us to the SQL database server.
+     * @throws IOException
     */
 
    private DBConnectionManager(String fileName) throws IOException
@@ -45,7 +51,7 @@ public class DBConnectionManager {
    
     /**
      *
-     * @return
+     * @return ds.getConnection
      * @throws SQLServerException
      */
     public Connection getConnection() throws SQLServerException

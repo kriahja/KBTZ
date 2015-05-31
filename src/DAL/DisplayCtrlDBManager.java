@@ -32,8 +32,8 @@ public class DisplayCtrlDBManager {
     }
 
     /**
-     *
-     * @return @throws IOException
+     *@return instance
+     * @throws IOException
      */
     public static DisplayCtrlDBManager getInstance() throws IOException {
         if (instance == null) {
@@ -45,7 +45,7 @@ public class DisplayCtrlDBManager {
     /**
      *
      * @param rs
-     * @return
+     * @return dc
      * @throws SQLException
      */
     public DisplayCtrl getOnedc(ResultSet rs) throws SQLException {
@@ -64,7 +64,7 @@ public class DisplayCtrlDBManager {
     /**
      *
      * @param rs
-     * @return
+     * @return dc
      * @throws SQLException
      */
     public DisplayCtrl getOnedcEditPres(ResultSet rs) throws SQLException {
@@ -84,8 +84,8 @@ public class DisplayCtrlDBManager {
     }
 
     /**
-     *
-     * @return @throws SQLException
+     * @return dcList 
+     * @throws SQLException
      */
     public ArrayList<DisplayCtrl> readAllPres() throws SQLException {
         try (Connection con = cm.getConnection()) {
@@ -107,8 +107,8 @@ public class DisplayCtrlDBManager {
     }
 
     /**
-     *
-     * @return @throws SQLException
+     *@return dcList
+     * @throws SQLException
      */
     public ArrayList<DisplayCtrl> readAllEditPres() throws SQLException {
         try (Connection con = cm.getConnection()) {
@@ -201,7 +201,7 @@ public class DisplayCtrlDBManager {
     /**
      *
      * @param presId
-     * @return
+     * @return id
      * @throws SQLException
      */
     public int[] readId(int presId) throws SQLException {
