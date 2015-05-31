@@ -37,11 +37,16 @@ public class PresentationTableModel extends AbstractTableModel {
 
     private ArrayList<DisplayCtrl> pres;
 
+    /**
+     *
+     * @param initialPresentations
+     */
     public PresentationTableModel(ArrayList<DisplayCtrl> initialPresentations) {
         pres = initialPresentations;
         dcMgr = DisplayCtrlManager.getInstance();
     }
 
+    
     public PresentationTableModel() {
         pres = new ArrayList<>();
         dcMgr = DisplayCtrlManager.getInstance();
@@ -106,10 +111,19 @@ public class PresentationTableModel extends AbstractTableModel {
 
     }
 
+    /**
+     *
+     * @param row
+     * @return pres.get(row)
+     */
     public DisplayCtrl getDisplayCtrlByRow(int row) {
         return pres.get(row);
     }
 
+    /**
+     *
+     * @param txtList
+     */
     public void setDisplayCtrlList(ArrayList<DisplayCtrl> txtList) {
         pres = txtList;
         fireTableDataChanged();

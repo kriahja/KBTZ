@@ -40,11 +40,16 @@ public class EditTableModel extends AbstractTableModel {
 
     private ArrayList<DisplayCtrl> pres;
 
+    /**
+     *
+     * @param initialPresentations
+     */
     public EditTableModel(ArrayList<DisplayCtrl> initialPresentations) {
         pres = initialPresentations;
 
     }
 
+    
     public EditTableModel() {
         pres = new ArrayList<>();
         dcMgr = DisplayCtrlManager.getInstance();
@@ -95,7 +100,7 @@ public class EditTableModel extends AbstractTableModel {
     /**
      *
      * @param row
-     * @return
+     * @return pres.get(row)
      */
     public DisplayCtrl getDisplayCtrlByRow(int row) {
         return pres.get(row);
